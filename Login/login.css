@@ -151,6 +151,12 @@ body{
     margin-bottom: 4px;
 }
 
+.social-media a {
+    text-decoration: none;
+    display: inline-block;
+    background: none;
+}
+
 .register{
     display: block;
     text-align: center;
