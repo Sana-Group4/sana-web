@@ -34,7 +34,7 @@ body{
 .container .img-box {
     height: 100%;
     width: 50%;
-    background-color: rgb 233, 62, 91;
+    background-color: rgb(92, 110, 190);
 }
 
 .container .img-box img {
@@ -175,6 +175,14 @@ body{
 .register-link:hover {
   text-decoration: underline;
 }
+
+
+.input-error {
+    border: 2px solid #e63946 !important;
+    background-color: #ffe6e6;
+    box-shadow: 0 0 6px rgba(230, 57, 70, 0.6);
+}
+
 
 /*changes design based on device the web is used- this is for mobile*/
 @media (max-width: 768px){
