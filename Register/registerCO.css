@@ -54,7 +54,27 @@ body{
     background-color: aliceblue;
 }
 
+.input-box input[type="submit"]{
+    background-color: rgba(161,129,242, 0.19);
+    box-shadow: none;
+    color: black;
+    box-shadow: 12px 12px 12px -1px rgba(28, 44, 118, 0.16),
+    -6px -6px 6px -1px rgba(92, 110, 190, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
 
+}
+
+.input-box input[type="submit"]:hover{
+     background-color: rgb(92, 110, 190);
+     color: white;
+     box-shadow: 4px 4px 4px -1px rgba(28, 44, 118, 0.25),
+     -4px -4px 4px -1px rgba(92, 110, 190, 0.5);
+     transform: translateY(-2px);
+}
 
 
 
