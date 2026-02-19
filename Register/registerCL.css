@@ -34,6 +34,22 @@ body{
 
 }
 
+.container .content-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+    
+}
+
+.container .content-box .content{
+    width: 65%;
+    background-color: #ebeef1;
+    z-index: 1;
+
+}
+
 .input-box label {
     display: block;
     color: rgba(0, 0, 0, 0.8);
