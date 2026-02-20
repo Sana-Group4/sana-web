@@ -93,6 +93,24 @@ body{
      transform: translateY(-2px);
 }
 
+.login{
+    display: block;
+    text-align: center;
+    margin: 20px;
+}
+
+.login-link {
+  display: block;
+  text-align: center;
+  color: rgba(92, 110, 190, 0.7);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+.login-link:hover {
+  text-decoration: underline;
+}
 
 
 /*changes design based on device the web is used- this is for mobile*/
