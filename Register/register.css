@@ -1,0 +1,125 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: verdana;
+    background-color: #ebeef1;
+    
+}
+
+body{
+    background-color: #ebeef1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-size: 50%;
+
+}
+
+.container{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 150px;
+    border-radius: 40px;
+    overflow: hidden;
+    gap: 40px;
+    flex-direction: column;
+    box-shadow: 10px 10px 10px -1px rgba(92, 110, 190, 0.16),
+    -10px -10px 10px -1px rgb(92, 110, 190, 0.7);
+
+}
+
+.selection-text{
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+
+.selection-text h1{
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    
+}
+
+.selection-text p{
+    font-size: 16px;
+    color: #666;
+
+}
+
+.role-card {
+  background: #ebeef1;
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit; 
+  box-shadow: 0 5px 15px rgba(92, 110, 190, 0.16);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+
+}
+
+.role-card img {
+  width: 100%;
+  border-radius: 10px;
+
+}
+
+.role-card h2 {
+  margin-top: 15px;
+  font-size: 18px;
+
+}
+
+.role-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(92, 110, 190, 0.16);
+
+}
+
+.role-wrapper{
+    display: flex;
+    gap: 50px;
+    align-items: stretch;
+}
+
+
+/*changes design based on device the web is used- this is for mobile*/
+@media (max-width: 768px){
+    .container{
+        margin: 40px;
+    }
+    .container .img-box{
+        display: none;
+    }
+    .container .content-box{
+        width: 100%;
+    }
+    .container .content-box .content{
+        width: 75%;
+
+    }
+}
+/*display image for tablets on web*/
+@media (max-width: 962px){
+    .container{
+        margin: 40px;
+    }
+    
+    .container .content-box{
+        width: 100%;
+    }
+    .container .content-box .content{
+        width: 75%;
+        
+    }
+}
