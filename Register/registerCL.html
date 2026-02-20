@@ -3,53 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sana Webiste Register</title>
+  <title>Sana Website Register</title>
   <link rel="stylesheet" href="registerCL.css">
   <link rel="icon" href="/public/vite.svg" type="image/svg+xml"> 
 </head>
 
 <body>
     <div class="container">
-            <div class="content-box">   
-                <div class="content">
-                    <h2> Register Client Account</h2>
-                        <form action="">
+        <div class="content-box">   
+            <div class="content">
 
-                            <div class="input-box">
-                                <label for="inputUserName">Enter First Name</label>
-                                <input type="text" placeholder="First Name" id="inputFName">
-                            </div>
+                <h2>Register Client Account</h2>
 
-                            <div class="input-box">
-                                <label for="inputPass">Enter Last Name</label>
-                                <input type="text" placeholder="Last Name" id="inputLName">
-                            </div>
+                <form action="../Login/login.html" method="post">
 
-                            <div class="input-box">
-                                <label for="inputUserName">Enter Email</label>
-                                <input type="text" placeholder="Email" id="inputEmail">
-                            </div>
-
-                            <div class="input-box">
-                                <label for="inputPass">Enter Password</label>
-                                <input type="text" placeholder="Password" id="inputPass">
-                            </div>
-
-                            <div class="input-box">
-                                <label for="inputPass">Confirm Password</label>
-                                <input type="text" placeholder="Password" id="confPass">
-                            </div>
-
-                            <div class="input-box">                           
-                                <input type="submit" value="Log In">                            
-                            </div>
-
-                            <div class="login">
-                                <label for="login">Already have an Account?</label>
-                                <a href="/Login/login.html" class="login-link">Sign In</a>
-                            </div>
+                    <div class="input-box">
+                        <label for="inputFName">Enter First Name</label>
+                        <input type="text" placeholder="First Name" id="inputFName" name="firstName" required>
                     </div>
+
+                    <div class="input-box">
+                        <label for="inputLName">Enter Last Name</label>
+                        <input type="text" placeholder="Last Name" id="inputLName" name="lastName" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="inputEmail">Enter Email</label>
+                        <input type="email" placeholder="Email" id="inputEmail" name="email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="inputPass">Enter Password</label>
+                        <input type="password" placeholder="Password" id="inputPass" name="password" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="confPass">Confirm Password</label>
+                        <input type="password" placeholder="Confirm Password" id="confPass" name="confPassword"required>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="submit" value="Submit">
+                    </div>
+
+                    <div class="login">
+                        <label>Already have an Account?</label>
+                        <a href="../Login/login.html" class="login-link">Sign In</a>
+                    </div>
+
+                </form>
+
             </div>
         </div>
     </div>
 </body>
+</html>

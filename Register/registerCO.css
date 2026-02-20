@@ -35,6 +35,17 @@ body{
 }
 
 
+.container .content-box .content h2{
+    color: rgba(0, 0, 0, 0.8);
+    border-bottom: 3px solid rgb(92, 110, 190);
+    padding: 5px;
+    display: inline-block;
+    margin: 30px;
+    margin: 30px 30px 30px 0px;
+    font-size: 1.5rem;
+    letter-spacing: 0.9px;
+}
+
 .container .content-box{
     display: flex;
     justify-content: center;
@@ -54,7 +65,8 @@ body{
 .input-box label {
     display: block;
     color: rgba(0, 0, 0, 0.8);
-    letter-spacing: 1px;   
+    letter-spacing: 1px;
+    padding-top: 5px;   
 }
 
 .input-box input {
@@ -77,7 +89,6 @@ body{
     color: black;
     box-shadow: 12px 12px 12px -1px rgba(28, 44, 118, 0.16),
     -6px -6px 6px -1px rgba(92, 110, 190, 0.7);
-    text-transform: uppercase;
     letter-spacing: 0.5px;
     font-size: 0.9rem;
     cursor: pointer;
