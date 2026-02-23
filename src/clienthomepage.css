@@ -56,13 +56,14 @@ html{
 }
 
 .nav ul{
+    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 6px;
 }
 
-.nav ul, .sidebar-bottom ul {
+.sidebar-bottom ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -73,7 +74,7 @@ html{
 
 .sidebar a{
     text-decoration: none;
-    color: black;
+    color: #6B7280;
     font-size: 1.6rem;
     display: flex;
     align-items: center;
