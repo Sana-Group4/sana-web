@@ -88,6 +88,18 @@ body {
   color: #111827;
 }
 
+.nav a:hover,
+.sidebar-bottom a:hover {
+  transform: translateY(-1px);
+}
+
+sidebar-bottom a.active {
+  background: #6D28D9;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
+}
+
 .content {
   flex: 1;
   padding: 18px 22px 40px;
