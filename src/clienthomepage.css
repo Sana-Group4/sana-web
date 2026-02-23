@@ -93,15 +93,22 @@ html{
 }
 
 .sidebar a.active{
-  background: #e8e8e9;
+  background: #6D28D9;             
+  color: #ffffff;                   
+  font-weight: 700;                 
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22); 
+}
+
+.sidebar a.active .nav-icon{
+  fill: currentColor;
 }
 
 .sidebar a:hover{
-    background: rgb(221, 221, 221);
+    background: #f2f2f2;            
 }
 
 .sidebar a.active:hover{
-  background: rgb(202, 202, 202);
+  background: #5B21B6;              
 }
 
 /* Left nav styling end */
@@ -319,7 +326,6 @@ html{
 
 }
 
-
 .bottom-nav{
   display: none;
 }
@@ -372,7 +378,6 @@ html{
   }
 }
 
-
 /* greeting bar adjuted to look a bit nicer*/
 @media (max-width: 900px){
   .topbar{
@@ -384,7 +389,6 @@ html{
     font-size: 1.2rem;
   }
 }
-
 
 @media (max-width: 900px){
   .item-card{
