@@ -51,15 +51,21 @@ html{
     display: flex;
     flex-direction: column;
     margin-top: auto;
+    padding-top: 12px;
+    border-bottom: 1px solid #eff0f4;
+    border-bottom: none;
 }
 
 .nav ul{
+  list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 10px;
+    padding: 6px;
+    margin: 0;
 }
 
-.nav ul, .sidebar-bottom ul {
+.sidebar-bottom ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -70,13 +76,14 @@ html{
 
 .sidebar a{
     text-decoration: none;
-    color: black;
+    color: #6b7280;
     font-size: 1.6rem;
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: .5em;
-    border-radius: .5em;
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    font-weight: 600;
 }
 
 .nav-icon{
@@ -87,21 +94,25 @@ html{
 }
 
 .sidebar-bottom li + li {
-  border-top: 1px solid #050505;
-  margin-top: 1.2rem;
-  padding-top: 1.2rem;
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .sidebar a.active{
-  background: #e8e8e9;
+  background: #6d28d9;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
 }
 
 .sidebar a:hover{
-    background: rgb(221, 221, 221);
+    background: #f3f4f6;
+    color: #111827;
 }
 
 .sidebar a.active:hover{
-  background: rgb(202, 202, 202);
+  background: #5B21B6;
 }
 
 /* Left nav styling end */
@@ -225,8 +236,8 @@ html{
 
 .workout-btn {
   text-decoration: none;
-  background: black;
-  color: white;
+  background: #6d28d9;
+  color: #fff; 
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -234,7 +245,7 @@ html{
 }
 
 .workout-btn:hover {
-  background: #333;
+  background: #5B21B6;
 }
 
 .section-header {
