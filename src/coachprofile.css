@@ -58,7 +58,7 @@ body {
 }
 
 .nav a.active {
-  background: #6D28D9;              
+  background: RGBA(92, 110, 190, 0.7);              
   color: #ffffff;
   font-weight: 700;
   box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
@@ -94,7 +94,7 @@ body {
 }
 
 sidebar-bottom a.active {
-  background: #6D28D9;
+  background: RGBA(92, 110, 190, 0.7);
   color: #ffffff;
   font-weight: 700;
   box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
@@ -213,7 +213,7 @@ sidebar-bottom a.active {
 
 .pbtn-devices {
   width: 280px;
-  background: #5b66b7;
+  background: RGBA(92, 110, 190, 0.7);
   color: white;
 }
 
