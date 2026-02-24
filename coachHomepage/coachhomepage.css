@@ -100,7 +100,7 @@ html{
 }
 
 .sidebar a.active{
-  background: #6d28d9;
+  background: RGBA(92, 110, 190, 0.7);
   color: #ffffff;
   font-weight: 700;
   box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
@@ -112,7 +112,7 @@ html{
 }
 
 .sidebar a.active:hover{
-  background: #5B21B6;
+  background: RGBA(92, 110, 190, 0.7);
 }
 
 /* Left nav styling end */
@@ -236,7 +236,7 @@ html{
 
 .workout-btn {
   text-decoration: none;
-  background: #6d28d9;
+  background: RGBA(92, 110, 190, 0.7);
   color: #fff; 
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -245,7 +245,7 @@ html{
 }
 
 .workout-btn:hover {
-  background: #5B21B6;
+  background: RGBA(92, 110, 190, 0.7);
 }
 
 .section-header {

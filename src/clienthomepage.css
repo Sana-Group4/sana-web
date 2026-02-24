@@ -98,7 +98,7 @@ html{
 }
 
 .sidebar a.active{
-  background: #6D28D9;             
+  background: RGBA(92, 110, 190, 0.7);             
   color: #ffffff;                   
   font-weight: 700;                 
   box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22); 
@@ -114,7 +114,7 @@ html{
 }
 
 .sidebar a.active:hover{
-  background: #5B21B6;              
+  background: RGBA(92, 110, 190, 0.7);              
 }
 
 /* Left nav styling end */
