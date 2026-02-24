@@ -25,9 +25,13 @@
                             <input type="text" placeholder="Email" id="inputEmail" required>
                         </div>
 
-                        <div class="input-box">
+                        <div class="input-box password-box">
                             <label for="inputPass">Enter Password</label>
-                            <input type="text" placeholder="Password" id="inputPass" required>
+
+                            <div class="password-wrapper">
+                                <input type="password" placeholder="Password" id="inputPass" required>
+                                <img src="/src/assets/eye.svg" alt="Toggle Password" id="togglePassword" class="eye-icon">
+                            </div>
                         </div>
 
                         <div class="input-box">
@@ -66,3 +70,16 @@
                         </div>
                     </form>
                 </div>
+
+                <script>
+                    const passwordInput = document.getElementById("inputPass");
+                    const toggleIcon = document.getElementById("togglePassword");
+
+                    toggleIcon.addEventListener("click", function () {
+                        if (passwordInput.type === "password") {
+                            passwordInput.type = "text";
+                        } else {
+                            passwordInput.type = "password";
+                        }
+                    });
+                </script>

@@ -27,16 +27,22 @@
 
                 </form>
 
-                <form id="passwordForm" style="display: none;">
+               <form id="passwordForm" style="display: none;">
 
-                    <div class="input-box">
+                    <div class="input-box password-box">
                         <label for="inputPass">Enter New Password</label>
-                        <input type="password" id="inputPass" placeholder="password" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="inputPass" placeholder="password" required>
+                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="inputPass">
+                        </div>
                     </div>
 
-                    <div class="input-box">
+                    <div class="input-box password-box">
                         <label for="confPass">Confirm Password</label>
-                        <input type="password" id="confPass"  placeholder="password" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="confPass" placeholder="password" required>
+                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="confPass">
+                        </div>
                     </div>
 
                     <div class="input-box">
@@ -48,35 +54,45 @@
             </div>
         </div>
     </div>
+    <script>
 
-<script>
+            document.getElementById("emailForm").addEventListener("submit", function(event) {
+                event.preventDefault(); 
 
-document.getElementById("emailForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
+                document.getElementById("emailForm").style.display = "none";
+                document.getElementById("passwordForm").style.display = "block";
+            });
 
-   
-    document.getElementById("emailForm").style.display = "none";
+            document.getElementById("passwordForm").addEventListener("submit", function(event) {
+                event.preventDefault();
 
-   
-    document.getElementById("passwordForm").style.display = "block";
-});
+                const pass = document.getElementById("inputPass").value;
+                const confirm = document.getElementById("confPass").value;
 
+                if (pass !== confirm) {
+                    alert("Passwords do not match!");
+                    return;
+                }
 
-document.getElementById("passwordForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+                alert("Password successfully updated!");
+                window.location.href = "../Login/login.html";
+            });
 
-    const pass = document.getElementById("inputPass").value;
-    const confirm = document.getElementById("confPass").value;
+            document.querySelectorAll(".eye-icon").forEach(icon => {
+                icon.addEventListener("click", function () {
 
-    if (pass !== confirm) {
-        alert("Passwords do not match!");
-        return;
-    }
+                    const input = document.getElementById(this.dataset.target);
 
-    alert("Password successfully updated!");
-    window.location.href = "../Login/login.html";
-});
-</script>
+                    if (input.type === "password") {
+                        input.type = "text";
+                    } else {
+                        input.type = "password";
+                    }
 
-</body>
+                });
+            });
+
+    </script>
+
+    </body>
 </html>

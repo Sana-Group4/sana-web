@@ -13,7 +13,7 @@
         <div class="content-box">   
             <div class="content">
 
-                <h2>Register Client Account</h2>
+                <h2>Register Sana Client Account</h2>
 
                 <form action="../Login/login.html" method="post">
 
@@ -34,12 +34,18 @@
 
                     <div class="input-box">
                         <label for="inputPass">Enter Password</label>
-                        <input type="password" placeholder="Password" id="inputPass" name="password" required>
+                        <div class="password-wrapper">
+                            <input type="password" placeholder="Password" id="inputPass" name="password" required>
+                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="inputPass">
+                        </div>
                     </div>
 
                     <div class="input-box">
                         <label for="confPass">Confirm Password</label>
-                        <input type="password" placeholder="Confirm Password" id="confPass" name="confPassword"required>
+                        <div class="password-wrapper">
+                            <input type="password" placeholder="Confirm Password" id="confPass" name="confPassword" required>
+                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="confPass">
+                        </div>
                     </div>
 
                     <div class="input-box">
@@ -56,5 +62,18 @@
             </div>
         </div>
     </div>
+    <script>
+        document.querySelectorAll(".eye-icon").forEach(icon => {
+            icon.addEventListener("click", function () {
+                const input = document.getElementById(this.dataset.target);
+
+                if (input.type === "password") {
+                    input.type = "text";
+                } else {
+                    input.type = "password";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
