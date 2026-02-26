@@ -1,0 +1,273 @@
+* {
+    padding: 0;
+    margin: 0;
+    
+}
+
+html{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.5rem;
+}
+
+.layout{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    min-height: 100vh;
+}
+
+/* Left nav styling */
+
+.sidebar{
+    box-sizing: border-box;
+    width: 250px;
+    background: white;
+    border-right: 1px solid rgb(252, 246, 246);
+    padding: 5px 1em;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: start;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  height: 80px;
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+}
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    padding-top: 12px;
+    border-bottom: 1px solid #eff0f4;
+    border-bottom: none;
+}
+
+.nav ul{
+  list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px;
+    margin: 0;
+}
+
+.sidebar-bottom ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.sidebar a{
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.nav-icon{
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.sidebar-bottom li + li {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.sidebar a.active{
+  background: RGBA(92, 110, 190, 0.7);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
+}
+
+.sidebar a:hover{
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.sidebar a.active:hover{
+  background: RGBA(92, 110, 190, 0.7);
+}
+
+/* Left nav styling end */
+
+/* Top bar nav styling */
+
+.topbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  border-radius: 12px;          
+}
+
+.greeting .small{
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 0.2rem;
+}
+
+.greeting .big{
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.topbar-right{
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.icon-btn{
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 10px;
+}
+
+.icon-btn:hover{
+  background: #f1f1f1;
+}
+
+.avatar{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ddd; /* placeholder */
+}
+
+.content {
+  padding: 1.5rem;
+  background: #f4f5f7;
+}
+
+
+.clients-section {
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+
+.clients-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+
+.client-card {
+  background: white;
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  justify-content: space-between;
+  border: 1px solid #ececec;
+  transition: 0.2s ease;
+}
+
+.client-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+
+.client-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #ddd;
+}
+
+
+.client-details {
+  flex: 1;
+}
+
+.client-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.client-email {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 0.2rem;
+}
+
+
+.workout-btn {
+  text-decoration: none;
+  background: RGBA(92, 110, 190, 0.7);
+  color: #fff; 
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: 0.2s ease;
+}
+
+.workout-btn:hover {
+  background: RGBA(92, 110, 190, 0.7);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.add-link {
+  font-size: 0.9rem;
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.add-link:hover {
+  color: black;
+}
+
+.client-meta {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 3px;
+}
