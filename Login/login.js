@@ -152,19 +152,19 @@ function logout() {
     window.location.href = "/coachHomepage/index.html";
 }
 
+//user test
+async function loadUsers() {
+    const response = await authenticatedFetch(
+        "http://127.0.0.1:8000/api/users",
+        { method: "GET" }
+    );
 
-// //example protect  test
-// async function getAccount() {
+    if (response.ok) {
+        const users = await response.json();
+        console.log(users);
+    } else {
+        console.log("Failed to load users");
+    }
+}
 
-//     const response = await authenticatedFetch(
-//         "http://127.0.0.1:8000/api/account",
-//         { method: "GET" }
-//     );
-
-//     if (response.ok) {
-//         const data = await response.json();
-//         console.log("Account:", data);
-//     } else {
-//         console.log("Failed to fetch account");
-//     }
-// }
+document.addEventListener("DOMContentLoaded", loadUsers);
