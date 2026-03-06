@@ -12,6 +12,7 @@
   <script src="/Login/login.js" defer></script>
 </head>
     <body>
+        
         <div class="container">
             <div class="img-box">
                 <img src="../img/athlete-resting.png" alt="">
@@ -66,10 +67,56 @@
 
                         <div class="register">
                         <label for="register">Not with us?</label>
-                        <a href="/Register/register.html" class="register-link">Register</a>
+                        <a href="/Register/registerCL.html" class="register-link">Register</a>
                         </div>
                         
                         
                         </div>
                     </form>
+                    
+<script>
+
+document.getElementById("loginForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const formData = new URLSearchParams();
+
+formData.append("username", document.getElementById("username").value);
+formData.append("password", document.getElementById("password").value);
+
+try{
+
+const res = await fetch("http://127.0.0.1:8000/auth/login",{
+
+method:"POST",
+body: formData,
+credentials:"include"
+
+});
+
+const result = await res.json();
+
+if(!res.ok){
+
+throw new Error(result.detail);
+
+}
+
+localStorage.setItem("access_token", result.access_token);
+
+alert("Login successful");
+
+window.location.href="../Dashboard/dashboard.html";
+
+}catch(err){
+
+alert(err.message);
+
+}
+
+});
+
+</script>
                 </div>
+                

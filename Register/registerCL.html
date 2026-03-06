@@ -1,79 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sana Website Register</title>
-  <link rel="stylesheet" href="registerCL.css">
-  <link rel="icon" href="/public/vite.svg" type="image/svg+xml"> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sana Register</title>
+<link rel="stylesheet" href="registerCL.css">
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="content-box">   
-            <div class="content">
 
-                <h2>Register Sana Client Account</h2>
+<div class="container">
+<div class="content-box">
+<div class="content">
 
-                <form action="../Login/login.html" method="post">
+<h2>Register Sana Client Account</h2>
 
-                    <div class="input-box">
-                        <label for="inputFName">Enter First Name</label>
-                        <input type="text" placeholder="First Name" id="inputFName" name="firstName" required>
-                    </div>
+<form id="registerForm">
 
-                    <div class="input-box">
-                        <label for="inputLName">Enter Last Name</label>
-                        <input type="text" placeholder="Last Name" id="inputLName" name="lastName" required>
-                    </div>
+<div class="input-box">
+<label>First Name</label>
+<input type="text" id="firstName" required>
+</div>
 
-                    <div class="input-box">
-                        <label for="inputEmail">Enter Email</label>
-                        <input type="email" placeholder="Email" id="inputEmail" name="email" required>
-                    </div>
+<div class="input-box">
+<label>Last Name</label>
+<input type="text" id="lastName" required>
+</div>
 
-                    <div class="input-box">
-                        <label for="inputPass">Enter Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" placeholder="Password" id="inputPass" name="password" required>
-                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="inputPass">
-                        </div>
-                    </div>
+<div class="input-box">
+<label>Username</label>
+<input type="text" id="username" required>
+</div>
 
-                    <div class="input-box">
-                        <label for="confPass">Confirm Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" placeholder="Confirm Password" id="confPass" name="confPassword" required>
-                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="confPass">
-                        </div>
-                    </div>
+<div class="input-box">
+<label>Email</label>
+<input type="email" id="email" required>
+</div>
 
-                    <div class="input-box">
-                        <input type="submit" value="Submit">
-                    </div>
+<div class="input-box">
+<label>Password</label>
 
-                    <div class="login">
-                        <label>Already have an Account?</label>
-                        <a href="../Login/login.html" class="login-link">Sign In</a>
-                    </div>
+<div class="password-wrapper">
+<input type="password" id="password" required>
+<img src="/src/assets/eye.svg" class="eye-icon" data-target="password">
+</div>
 
-                </form>
+</div>
 
-            </div>
-        </div>
-    </div>
-    <script>
-        document.querySelectorAll(".eye-icon").forEach(icon => {
-            icon.addEventListener("click", function () {
-                const input = document.getElementById(this.dataset.target);
+<div class="input-box">
+<label>Confirm Password</label>
 
-                if (input.type === "password") {
-                    input.type = "text";
-                } else {
-                    input.type = "password";
-                }
-            });
-        });
-    </script>
+<div class="password-wrapper">
+<input type="password" id="confPassword" required>
+<img src="/src/assets/eye.svg" class="eye-icon" data-target="confPassword">
+</div>
+
+</div>
+
+<div class="input-box">
+<label>Account Type</label>
+
+<select id="userType">
+<option value="CLIENT">Client</option>
+<option value="COACH">Coach</option>
+</select>
+
+</div>
+
+<div class="input-box">
+<input type="submit" value="Register">
+</div>
+
+<div class="login">
+<label>Already have an account?</label>
+<a href="../Login/login.html">Sign In</a>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+const icons = document.querySelectorAll(".eye-icon");
+
+icons.forEach(icon => {
+
+icon.addEventListener("click", () => {
+
+const input = document.getElementById(icon.dataset.target);
+
+input.type = input.type === "password" ? "text" : "password";
+
+});
+
+});
+
+});
+
+document.getElementById("registerForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const password = document.getElementById("password").value;
+const confirm = document.getElementById("confPassword").value;
+
+if(password !== confirm){
+
+alert("Passwords do not match");
+return;
+
+}
+
+const data = {
+
+firstName: document.getElementById("firstName").value,
+lastName: document.getElementById("lastName").value,
+username: document.getElementById("username").value,
+email: document.getElementById("email").value,
+password: password,
+userType: document.getElementById("userType").value
+
+};
+
+try{
+
+const res = await fetch("http://127.0.0.1:8000/auth/register",{
+
+method:"POST",
+headers:{ "Content-Type":"application/json" },
+credentials:"include",
+body: JSON.stringify(data)
+
+});
+
+const result = await res.json();
+
+if(!res.ok){
+
+throw new Error(result.detail);
+
+}
+
+localStorage.setItem("access_token", result.access_token);
+
+alert("Account created!");
+
+window.location.href="../coachHomepage/index.html";
+
+}catch(err){
+
+alert(result.detail || "Unknown error");;
+
+}
+
+});
+
+</script>
+
 </body>
 </html>

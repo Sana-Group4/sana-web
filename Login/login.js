@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById("inputPass");
     const toggleIcon = document.getElementById("togglePassword");
     const loginForm = document.getElementById("loginForm");
-    const emailInput = document.getElementById("inputEmail");
+    //const emailInput = document.getElementById("inputEmail");
     const loginBtn = document.getElementById("loginBtn");
     const spinner = document.getElementById("spinner");
     const btnText = document.getElementById("btnText");
+    const username = document.getElementById("inputEmail");
 
     // If already logged in -> go to client home
     const existingToken = localStorage.getItem("access_token");
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         loginForm.addEventListener("submit", async function (e) {
             e.preventDefault();
 
-            const email = emailInput.value.trim();
+            const username = emailInput.value.trim();
             const password = passwordInput.value.trim();
 
             if (!email || !password) {
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const formData = new URLSearchParams();
                 formData.append("grant_type", "password");
-                formData.append("username", email);
+                formData.append("username", username);
                 formData.append("password", password);
 
                 const response = await fetch("http://127.0.0.1:8000/auth/login", {
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 //Redirect AFTER successful login
-                window.location.href ="/coachHomepage.index.html";
+                window.location.href ="/coachHomepage/index.html";
 
             } catch (error) {
                 alert(error.message);
@@ -155,7 +156,7 @@ function logout() {
 //user test
 async function loadUsers() {
     const response = await authenticatedFetch(
-        "http://127.0.0.1:8000/api/users",
+        "http://127.0.0.1:8000/api/account",
         { method: "GET" }
     );
 
