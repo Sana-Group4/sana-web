@@ -299,20 +299,18 @@ table{
 
 th,td{
 
-    padding:14px;
+    padding:14px 16px;
     border-bottom:1px solid #eee;
+    text-align: left;
 
 }
 
 .workout-footer{
-
     margin-top:10px;
-
 }
 
 
 .todo-item{
-
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -320,39 +318,19 @@ th,td{
     padding:10px;
     border-radius:10px;
     margin-bottom:10px;
-
 }
 
-.todo-time{
-
+.info-goals{
     background:#eee;
     padding:4px 10px;
     border-radius:15px;
-
 }
 
-.goal-item{
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
-
+.todo-item span:first-child{
+    margin-right:10px;
 }
-
-.goal-item input{
-
-    width:80px;
-    padding:5px;
-    border-radius:6px;
-    border:1px solid #ddd;
-
-}
-
 
 .primary-btn{
-
     margin-top:10px;
     padding:8px 12px;
     background:#6C7AE0;
@@ -360,26 +338,12 @@ th,td{
     border:none;
     border-radius:6px;
     cursor:pointer;
-
 }
 
 .edit-btn{
-
     border:none;
     background:none;
     cursor:pointer;
-
 }
 
-.goal-value{
-    font-weight:600;
-    margin-right:10px;
-}
 
-.goal-item{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:12px 0;
-    border-bottom:1px solid #eee;
-}
