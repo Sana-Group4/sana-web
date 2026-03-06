@@ -15,6 +15,11 @@ html{
     min-height: 100vh;
 }
 
+.content{
+  background-color:  #f6f6f6;
+  padding: 1.5rem;
+}
+
 /* Left nav styling */
 
 .sidebar{
@@ -123,27 +128,28 @@ html{
     padding: 1.2rem 1.5rem;
     border-bottom: 1px solid #e5e5e5;
     border-radius: 12px;          
+    margin-bottom:30px;
   }
   
-  .greeting .small{
+.greeting .small{
     font-size: 0.9rem;
     opacity: 0.7;
     margin-bottom: 0.2rem;
   }
   
-  .greeting .big{
+.greeting .big{
     font-size: 1.4rem;
     font-weight: 700;
     line-height: 1.2;
   }
   
-  .topbar-right{
+.topbar-right{
     display: flex;
     align-items: center;
     gap: 0.8rem;
   }
   
-  .icon-btn{
+.icon-btn{
     border: none;
     background: transparent;
     font-size: 1.2rem;
@@ -152,13 +158,228 @@ html{
     border-radius: 10px;
   }
   
-  .icon-btn:hover{
+.icon-btn:hover{
     background: #f1f1f1;
   }
   
-  .avatar{
+.avatar{
     width: 36px;
     height: 36px;
     border-radius: 50%;
     background: #ddd; /* placeholder */
   }
+
+
+.analytics-container{
+
+    max-width:1600px;
+    width:100%;
+    margin-top: 10px;
+
+}
+
+.analytics-title{
+  margin-bottom:25px;
+  margin-top:10px;
+  font-size:34px;
+  font-weight:700;
+  letter-spacing:-0.3px;
+
+}
+
+.summary-grid{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:25px;
+
+}
+
+.metric-card{
+    background:white;
+    padding:24px;
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+    font-size:14px;
+    color:#5a5656;
+    margin-bottom:5px;
+}
+
+.metric-card p{
+    font-size:26px;
+    font-weight:700;
+}
+
+
+.analytics-main{
+
+    display:grid;
+    grid-template-columns:2.5fr 1fr;
+    gap:28px;
+
+}
+
+.analytics-left{
+
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+
+}
+
+.analytics-right{
+
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    position:sticky;
+    top:90px;
+    height:fit-content;
+
+}
+
+
+.card{
+
+    background:white;
+    padding:22px;
+    border-radius:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+    min-height:140px;
+    transition:0.2s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.chart-card{
+    min-height:260px;
+}
+
+.activity-grid{
+
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+    margin-top:15px;
+
+}
+
+.day{
+
+    height:28px;
+    background:#eee;
+    border-radius:6px;
+
+}
+
+.day.active{
+
+    background:#6C7AE0;
+
+}
+
+
+.workouts-card{
+
+    min-height:260px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+
+}
+
+th,td{
+
+    padding:14px;
+    border-bottom:1px solid #eee;
+
+}
+
+.workout-footer{
+
+    margin-top:10px;
+
+}
+
+
+.todo-item{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#f7f7f7;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:10px;
+
+}
+
+.todo-time{
+
+    background:#eee;
+    padding:4px 10px;
+    border-radius:15px;
+
+}
+
+.goal-item{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+
+}
+
+.goal-item input{
+
+    width:80px;
+    padding:5px;
+    border-radius:6px;
+    border:1px solid #ddd;
+
+}
+
+
+.primary-btn{
+
+    margin-top:10px;
+    padding:8px 12px;
+    background:#6C7AE0;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+
+}
+
+.edit-btn{
+
+    border:none;
+    background:none;
+    cursor:pointer;
+
+}
+
+.goal-value{
+    font-weight:600;
+    margin-right:10px;
+}
+
+.goal-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
