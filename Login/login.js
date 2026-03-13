@@ -2,7 +2,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const passwordInput = document.getElementById("inputPass");
     const toggleIcon = document.getElementById("togglePassword");
+    const loginForm = document.getElementById("loginForm");
+    //const emailInput = document.getElementById("inputEmail");
+    const loginBtn = document.getElementById("loginBtn");
+    const spinner = document.getElementById("spinner");
+    const btnText = document.getElementById("btnText");
+    const username = document.getElementById("inputEmail");
 
+    // If already logged in -> go to client home
+    const existingToken = localStorage.getItem("access_token");
+    if (existingToken) {
+        window.location.href = "/Client/home.html";
+        return;
+    }
+
+    // Toggle password visibility
     if (toggleIcon && passwordInput) {
         toggleIcon.addEventListener("click", function () {
             passwordInput.type =
@@ -10,14 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const loginForm = document.getElementById("loginForm");
-    const emailInput = document.getElementById("inputEmail");
-
+    // Login submit
     if (loginForm) {
         loginForm.addEventListener("submit", async function (e) {
             e.preventDefault();
 
-            const email = emailInput.value.trim();
+            const username = emailInput.value.trim();
             const password = passwordInput.value.trim();
 
             if (!email || !password) {
@@ -26,37 +38,134 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             try {
-                const response = await fetch("http://127.0.0.1:8000/docs#/default/login_auth_login_post", {
+                // Show spinner
+                loginBtn.disabled = true;
+                spinner.classList.remove("hidden");
+                btnText.textContent = "Logging in...";
+
+                const formData = new URLSearchParams();
+                formData.append("grant_type", "password");
+                formData.append("username", username);
+                formData.append("password", password);
+
+                const response = await fetch("http://127.0.0.1:8000/auth/login", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
+                    body: formData
                 });
+
+                if (!response.ok) {
+                    throw new Error("Invalid email or password.");
+                }
 
                 const data = await response.json();
 
-                if (response.ok) {
-                    alert("Login successful!");
-
-                    // If backend returns JWT token
-                    if (data.access_token) {
-                        localStorage.setItem("access_token", data.access_token);
-                    }
-
-                    window.location.href = "dashboard.html";
-                } else {
-                    alert(data.detail || "Login failed");
+                localStorage.setItem("access_token", data.access_token);
+                if (data.refresh_token) {
+                    localStorage.setItem("refresh_token", data.refresh_token);
                 }
 
+                //Redirect AFTER successful login
+                window.location.href ="/coachHomepage/index.html";
+
             } catch (error) {
-                console.error("Login error:", error);
-                alert("Cannot connect to server.");
+                alert(error.message);
+
+                loginBtn.disabled = false;
+                spinner.classList.add("hidden");
+                btnText.textContent = "Log In";
             }
         });
     }
-
 });
+
+
+
+//Automatically attach access token
+async function authenticatedFetch(url, options = {}) {
+
+    let accessToken = localStorage.getItem("access_token");
+
+    options.headers = {
+        ...(options.headers || {}),
+        "Authorization": `Bearer ${accessToken}`
+    };
+
+    let response = await fetch(url, options);
+
+    //If token expired, try refresh
+    if (response.status === 401) {
+        const refreshed = await refreshAccessToken();
+
+        if (refreshed) {
+            accessToken = localStorage.getItem("access_token");
+
+            options.headers["Authorization"] = `Bearer ${accessToken}`;
+            response = await fetch(url, options);
+        } else {
+            logout();
+        }
+    }
+
+    return response;
+}
+
+
+//refresh token
+async function refreshAccessToken() {
+
+    const refreshToken = localStorage.getItem("refresh_token");
+
+    if (!refreshToken) return false;
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/auth/refresh", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                refresh_token: refreshToken
+            })
+        });
+
+        if (!response.ok) throw new Error();
+
+        const data = await response.json();
+
+        localStorage.setItem("access_token", data.access_token);
+
+        return true;
+
+    } catch (error) {
+        console.error("Refresh failed");
+        return false;
+    }
+}
+
+
+//logout
+function logout() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    window.location.href = "/coachHomepage/index.html";
+}
+
+//user test
+async function loadUsers() {
+    const response = await authenticatedFetch(
+        "http://127.0.0.1:8000/api/account",
+        { method: "GET" }
+    );
+
+    if (response.ok) {
+        const users = await response.json();
+        console.log(users);
+    } else {
+        console.log("Failed to load users");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUsers);

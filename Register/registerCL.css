@@ -2,8 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: verdana;
-    background-color: #ebeef1;
+    font-family: verdana;    
     
 }
 
@@ -12,25 +11,27 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: auto;
     width: 100%;
     background-size: 50%;
-
 }
 
 .container{
     width: 100%;
-    height: 90%;
+    max-width: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 150px;
+    margin: 40px;
+    padding: 40px;
     border-radius: 40px;
     overflow: hidden;
     gap: 40px;
     flex-direction: column;
     box-shadow: 10px 10px 10px -1px rgba(92, 110, 190, 0.16),
     -10px -10px 10px -1px rgb(92, 110, 190, 0.7);
+    min-height:100vh;
+    overflow-y: auto;
 
 }
 
@@ -71,13 +72,12 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-
-    
+    width: 100%;
 }
 
 .container .content-box .content{
-    width: 65%;
+    width: 100%;
+    max-width: 420px;
     background-color: #ebeef1;
     z-index: 1;
 
@@ -125,6 +125,32 @@ body{
      transform: translateY(-2px);
 }
 
+.input-box  select{
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    border-radius: 60px;
+    margin: 10px 0;
+    outline: none;
+    border: none;
+    font-size: 0.9rem;
+    background-color: aliceblue;
+    box-shadow: 4px 4px 4px -1px rgba(92, 110, 190, 0.16),
+    -6px -6px 6px -1px rgb(92, 110, 190, 0.7);
+    appearance: none;
+
+}
+
+.input-box select:after{
+    content: "▼";
+    position: absolute;
+    right: 20px;
+    top: 42px;
+    font-size: 12px;
+    pointer-events: none;
+    
+}
+
 .login{
     display: block;
     text-align: center;
@@ -147,8 +173,13 @@ body{
 
 /*changes design based on device the web is used- this is for mobile*/
 @media (max-width: 768px){
+
+    body{
+        align-items: flex-start;
+    }
     .container{
-        margin: 40px;
+        margin: 20px;
+        padding: 20px;
     }
     .container .img-box{
         display: none;
@@ -163,8 +194,13 @@ body{
 }
 /*display image for tablets on web*/
 @media (max-width: 962px){
+
+    body{
+        align-items: flex-start;
+    }
     .container{
-        margin: 40px;
+        margin: 20px;
+        padding: 20px;
     }
     
     .container .content-box{
