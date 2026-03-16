@@ -93,7 +93,7 @@ body {
   transform: translateY(-1px);
 }
 
-sidebar-bottom a.active {
+.sidebar-bottom a.active {
   background: RGBA(92, 110, 190, 0.7);
   color: #ffffff;
   font-weight: 700;
