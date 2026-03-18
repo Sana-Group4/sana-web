@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Messaging System</title>
+  <link rel="stylesheet" href="./messagingsystem.css" />
+</head>
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+
+      <div class="brand">
+        <a href="./clientpage.html">
+          <img src="../img/Logo.png" alt="Sana Logo" class="logo">
+        </a>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="./clientpage.html">Home</a></li>
+          <li><a href="#">Sana</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="./coachdetails.html">Coach</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+      </div>
+
+    </aside>
+
+    <main class="content">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <h2>Messages</h2>
+          <p class="topbar-subtext">Stay in touch with your coach</p>
+        </div>
+
+        <div class="topbar-right">
+          <div class="message-badge" id="headerUnreadBadge">0 unread</div>
+        </div>
+      </header>
+
+      <section class="messaging-page">
+
+        <div class="chat-card">
+
+          <div class="chat-header">
+
+            <div class="coach-summary">
+              <div class="coach-avatar">
+                <div class="coach-head"></div>
+                <div class="coach-body"></div>
+              </div>
+
+              <div class="coach-text">
+                <h3>Sandra</h3>
+                <p>Sports Coach</p>
+              </div>
+            </div>
+
+            <div class="chat-actions">
+              <button class="cbtn secondary-btn" id="markAllReadBtn" type="button">
+                Mark All As Read
+              </button>
+
+              <button class="cbtn" id="addDemoMessageBtn" type="button">
+                Add Demo Message
+              </button>
+            </div>
+
+          </div>
+
+          <div class="messages-list" id="messagesList">
+          </div>
+
+          <form class="message-input-area" id="messageForm">
+            <input
+              type="text"
+              id="messageInput"
+              class="message-input"
+              placeholder="Type a message..."
+              autocomplete="off"
+            />
+
+            <button class="send-btn" type="submit">
+              Send
+            </button>
+          </form>
+
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="./messagingsystem.js"></script>
+</body>
+</html>
