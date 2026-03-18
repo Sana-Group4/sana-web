@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coach </title>
+  <title>Client Page</title>
   <link rel="stylesheet" href="./clientpage.css" />
 </head>
 <body>
@@ -14,10 +14,10 @@
 
       <nav class="nav">
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a class="active" href="./clientpage.html">Home</a></li>
           <li><a href="#">Sana</a></li>
           <li><a href="#">Analytics</a></li>
-          <li><a class="active" href="#">Coach</a></li>
+          <li><a href="#">Coach</a></li>
           <li><a href="#">Profile</a></li>
         </ul>
       </nav>
@@ -30,30 +30,34 @@
 
     <main class="content">
       <header class="topbar">
-        <h2>Coach</h2>
+        <h2>Your Coach</h2>
       </header>
 
       <section class="coach-page">
 
         <div class="coach-card">
-          <div class="coach-info-card">
-            <div class="coach-avatar">
-              <div class="coach-head"></div>
-              <div class="coach-body"></div>
-            </div>
 
-            <div class="coach-text">
-              <h3>Sandra</h3>
-              <p>Sports Coach</p>
-            </div>
+          <a href="./coachdetails.html" class="coach-link-card">
+            <div class="coach-info-card">
+              <div class="coach-avatar">
+                <div class="coach-head"></div>
+                <div class="coach-body"></div>
+              </div>
 
-            <div class="notification-badge">3</div>
-          </div>
+              <div class="coach-text">
+                <h3>Sandra</h3>
+                <p>Sports Coach</p>
+              </div>
+
+              <div class="notification-badge">3</div>
+            </div>
+          </a>
 
           <div class="coach-actions">
             <button class="cbtn" type="button">Message</button>
             <button class="cbtn" type="button">Mark As Read</button>
           </div>
+
         </div>
 
         <div class="todo-section">

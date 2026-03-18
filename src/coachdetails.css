@@ -85,50 +85,28 @@ border-radius:14px;
 margin-bottom:18px;
 }
 
-.coach-page{
+.coach-details-page{
 background:white;
 padding:26px;
 border-radius:14px;
 }
 
-.coach-card{
+.coach-profile-card{
 display:flex;
 justify-content:space-between;
 align-items:center;
 gap:30px;
-padding:26px;
+padding:28px;
 border:1px solid #E5E7EB;
 border-radius:14px;
 background:#fafafa;
-margin-bottom:34px;
+margin-bottom:28px;
 }
 
-.coach-link-card{
-text-decoration:none;
-color:inherit;
-display:block;
-}
-
-.coach-link-card .coach-info-card{
-transition:.2s;
-}
-
-.coach-link-card .coach-info-card:hover{
-box-shadow:0 8px 18px rgba(0,0,0,0.08);
-transform:translateY(-2px);
-cursor:pointer;
-}
-
-.coach-info-card{
-position:relative;
+.profile-left{
 display:flex;
 align-items:center;
-gap:18px;
-min-width:320px;
-padding:22px;
-border:1px solid #D9DDE5;
-border-radius:12px;
-background:white;
+gap:22px;
 }
 
 .coach-avatar{
@@ -140,6 +118,11 @@ position:relative;
 flex-shrink:0;
 }
 
+.large-avatar{
+width:96px;
+height:96px;
+}
+
 .coach-head{
 width:18px;
 height:18px;
@@ -149,6 +132,12 @@ position:absolute;
 top:14px;
 left:50%;
 transform:translateX(-50%);
+}
+
+.large-avatar .coach-head{
+width:22px;
+height:22px;
+top:18px;
 }
 
 .coach-body{
@@ -163,35 +152,34 @@ left:50%;
 transform:translateX(-50%);
 }
 
-.coach-text h3{
-font-size:18px;
-margin-bottom:6px;
+.large-avatar .coach-body{
+width:44px;
+height:28px;
+bottom:18px;
 }
 
-.coach-text p{
-font-size:15px;
+.coach-main-info h1{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.role{
+font-size:16px;
+font-weight:600;
 color:#6B7280;
+margin-bottom:12px;
 }
 
-.notification-badge{
-position:absolute;
-top:-12px;
-right:-12px;
-width:36px;
-height:36px;
-border-radius:50%;
-background:#c92b1f;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:14px;
-font-weight:700;
+.bio{
+max-width:620px;
+font-size:15px;
+line-height:1.6;
+color:#374151;
 }
 
-.coach-actions{
+.profile-right{
 display:flex;
-gap:22px;
+gap:16px;
 flex-wrap:wrap;
 }
 
@@ -205,91 +193,104 @@ font-weight:600;
 color:white;
 cursor:pointer;
 transition:.2s;
-min-width:160px;
+min-width:150px;
 }
 
 .cbtn:hover{
 background:#4f59a5;
 }
 
-.todo-section{
-margin-top:10px;
+.secondary-btn{
+background:white;
+color:#5c6ebe;
+border:1px solid #C7D2FE;
 }
 
-.todo-header{
+.secondary-btn:hover{
+background:#EEF2FF;
+}
+
+.details-grid{
 display:grid;
-grid-template-columns:2fr 1fr;
-margin-bottom:16px;
-padding:0 8px;
+grid-template-columns:repeat(2, 1fr);
+gap:22px;
 }
 
-.todo-header h3{
-font-size:18px;
-font-weight:600;
-color:#6B7280;
-}
-
-.todo-card{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:24px;
-padding:28px;
+.details-card{
+background:#fafafa;
 border:1px solid #E5E7EB;
 border-radius:14px;
-background:#fafafa;
+padding:24px;
 }
 
-.todo-list{
+.details-card h3{
+font-size:18px;
+margin-bottom:18px;
+color:#111827;
+}
+
+.info-row{
+margin-bottom:16px;
+}
+
+.info-row:last-child{
+margin-bottom:0;
+}
+
+.info-row span{
+display:block;
+font-size:14px;
+font-weight:700;
+color:#6B7280;
+margin-bottom:6px;
+}
+
+.info-row p{
+font-size:15px;
+color:#111827;
+}
+
+.tag-list{
 display:flex;
-flex-direction:column;
-gap:18px;
+flex-wrap:wrap;
+gap:10px;
 }
 
-.todo-item{
-background:white;
-border:1px solid #D9DDE5;
-border-radius:10px;
-padding:16px 22px;
-font-size:16px;
-font-weight:500;
-max-width:500px;
+.tag{
+background:#EEF2FF;
+color:#4b2f86;
+padding:10px 14px;
+border-radius:999px;
+font-size:14px;
+font-weight:600;
 }
 
-.todo-checks{
-display:flex;
-flex-direction:column;
-gap:18px;
-align-items:flex-start;
-justify-content:flex-start;
-padding-top:2px;
+.focus-list{
+padding-left:18px;
+color:#111827;
+line-height:1.8;
+font-size:15px;
 }
 
-.check-row{
-height:50px;
-display:flex;
-align-items:center;
-}
-
-.check-row input{
-width:26px;
-height:26px;
-cursor:pointer;
-accent-color:rgba(92,110,190,0.9);
+.notes-text{
+font-size:15px;
+line-height:1.7;
+color:#374151;
 }
 
 @media (max-width: 1100px){
-.coach-card{
+.coach-profile-card{
 flex-direction:column;
 align-items:flex-start;
 }
 
-.todo-header,
-.todo-card{
-grid-template-columns:1fr;
+.profile-left{
+flex-direction:column;
+align-items:flex-start;
 }
 
-.todo-checks{
-padding-top:0;
+.details-grid{
+grid-template-columns:1fr;
 }
 }
 
@@ -302,12 +303,7 @@ width:200px;
 padding:14px;
 }
 
-.coach-info-card{
-min-width:unset;
-width:100%;
-}
-
-.coach-actions{
+.profile-right{
 width:100%;
 }
 
@@ -315,7 +311,7 @@ width:100%;
 width:100%;
 }
 
-.todo-item{
-max-width:none;
+.coach-main-info h1{
+font-size:24px;
 }
 }
