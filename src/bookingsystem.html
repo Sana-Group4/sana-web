@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Session</title>
+  <link rel="stylesheet" href="./bookingsystem.css" />
+</head>
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <a href="./clientpage.html">
+          <img src="../img/Logo.png" alt="Sana Logo" class="logo">
+        </a>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="./clientpage.html">Home</a></li>
+          <li><a href="#">Sana</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="./coachdetails.html">Coach</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h2>Book a Session</h2>
+          <p class="topbar-subtext">Choose a date and time with your coach</p>
+        </div>
+      </header>
+
+      <section class="booking-page">
+
+        <div class="booking-card">
+          <div class="booking-header">
+            <div class="coach-summary">
+              <div class="coach-avatar">
+                <div class="coach-head"></div>
+                <div class="coach-body"></div>
+              </div>
+
+              <div class="coach-text">
+                <h3>Sandra</h3>
+                <p>Sports Coach</p>
+              </div>
+            </div>
+          </div>
+
+          <form class="booking-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="sessionDate">Select Date</label>
+                <input type="date" id="sessionDate" name="sessionDate">
+              </div>
+
+              <div class="form-group">
+                <label for="sessionType">Session Type</label>
+                <select id="sessionType" name="sessionType">
+                  <option value="">Choose a session</option>
+                  <option value="fitness">Fitness Check-In</option>
+                  <option value="training">Training Session</option>
+                  <option value="mobility">Mobility Session</option>
+                  <option value="progress">Progress Review</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="time-section">
+              <h3>Available Times</h3>
+                
+              <input type="hidden" id="selectedTime" name="selectedTime">
+
+              <div class="time-slots">
+                <button type="button" class="time-slot">09:00 AM</button>
+                <button type="button" class="time-slot">10:00 AM</button>
+                <button type="button" class="time-slot">11:30 AM</button>
+                <button type="button" class="time-slot">01:00 PM</button>
+                <button type="button" class="time-slot">02:30 PM</button>
+                <button type="button" class="time-slot">04:00 PM</button>
+              </div>
+            </div>
+
+            <div class="form-group notes-group">
+              <label for="notes">Notes for Your Coach</label>
+              <textarea id="notes" name="notes" placeholder="Add anything you want Sandra to know before the session..."></textarea>
+            </div>
+
+            <div class="booking-summary">
+              <h3>Booking Summary</h3>
+              <p><strong>Coach:</strong> Sandra</p>
+              <p><strong>Location:</strong> Online / In App</p>
+              <p><strong>Duration:</strong> 45 minutes</p>
+            </div>
+
+            <div class="booking-actions">
+              <a href="./coachdetails.html" class="secondary-link-btn">Back</a>
+              <button type="submit" class="primary-btn">Confirm Booking</button>
+            </div>
+          </form>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script>
+  const timeSlots = document.querySelectorAll(".time-slot");
+  const selectedTimeInput = document.getElementById("selectedTime");
+  const bookingForm = document.querySelector(".booking-form");
+
+  timeSlots.forEach(slot => {
+    slot.addEventListener("click", () => {
+      timeSlots.forEach(button => button.classList.remove("selected"));
+      slot.classList.add("selected");
+      selectedTimeInput.value = slot.textContent.trim();
+    });
+  });
+
+  bookingForm.addEventListener("submit", event => {
+    if (!selectedTimeInput.value) {
+      event.preventDefault();
+      alert("Please select a time slot before confirming your booking.");
+    }
+  });
+</script>
+</body>
+</html>

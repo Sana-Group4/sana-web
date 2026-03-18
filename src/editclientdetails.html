@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Profile</title>
+  <link rel="stylesheet" href="./editclientdetails.css" />
+</head>
+
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">Sana</div>
+
+      <nav class="nav">
+        <ul> 
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sana</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="#">Coach</a></li>
+          <li><a class="active" href="#">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <h2>Profile</h2>
+      </header>
+
+      <section class="profile-page" id="profilePage">
+
+        <div class="profile-avatar">
+          <div class="avatar-circle">
+            <div class="avatar-head"></div>
+            <div class="avatar-body"></div>
+          </div>
+
+          <div class="profile-name view-mode" id="nameText">F**** N***</div>
+          <input
+            class="name-input edit-mode"
+            type="text"
+            id="fullName"
+            value="F**** N***"
+          />
+        </div>
+
+        <div class="profile-fields">
+          <div class="pfield">
+            <label for="email">Email</label>
+            <div class="pfield-box view-mode" id="emailText">example@mail.com</div>
+            <input
+              class="pfield-input edit-mode"
+              type="email"
+              id="email"
+              value="example@mail.com"
+            />
+          </div>
+
+          <div class="pfield">
+            <label for="phone">Phone Number</label>
+            <div class="pfield-box view-mode" id="phoneText">+44 1234 567890</div>
+            <input
+              class="pfield-input edit-mode"
+              type="tel"
+              id="phone"
+              value="+44 1234 567890"
+            />
+          </div>
+
+          <div class="pfield">
+            <label for="dob">Date Of Birth</label>
+            <div class="pfield-box view-mode" id="dobText">01/10/2004</div>
+            <input
+              class="pfield-input edit-mode"
+              type="date"
+              id="dob"
+              value="2004-10-01"
+            />
+          </div>
+        </div>
+
+        <div class="profile-buttons">
+          <button class="pbtn pbtn-edit view-mode" id="editBtn" type="button">
+            Edit Profile
+          </button>
+
+          <div class="edit-actions edit-mode">
+            <button class="pbtn pbtn-save" id="saveBtn" type="button">
+              Save Changes
+            </button>
+            <button class="pbtn pbtn-cancel" id="cancelBtn" type="button">
+              Cancel
+            </button>
+          </div>
+
+          <button class="pbtn pbtn-devices" type="button">View Devices</button>
+          <button class="pbtn pbtn-logout" type="button">Log Out</button>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const profilePage = document.getElementById("profilePage");
+    const editBtn = document.getElementById("editBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    const fullNameInput = document.getElementById("fullName");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const dobInput = document.getElementById("dob");
+
+    const nameText = document.getElementById("nameText");
+    const emailText = document.getElementById("emailText");
+    const phoneText = document.getElementById("phoneText");
+    const dobText = document.getElementById("dobText");
+
+    let originalValues = {
+      fullName: fullNameInput.value,
+      email: emailInput.value,
+      phone: phoneInput.value,
+      dob: dobInput.value
+    };
+
+    function formatDate(dateValue) {
+      if (!dateValue) return "";
+      const date = new Date(dateValue);
+      if (isNaN(date)) return dateValue;
+
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+
+      return `${day}/${month}/${year}`;
+    }
+
+    editBtn.addEventListener("click", () => {
+      profilePage.classList.add("editing");
+    });
+
+    cancelBtn.addEventListener("click", () => {
+      fullNameInput.value = originalValues.fullName;
+      emailInput.value = originalValues.email;
+      phoneInput.value = originalValues.phone;
+      dobInput.value = originalValues.dob;
+
+      profilePage.classList.remove("editing");
+    });
+
+    saveBtn.addEventListener("click", () => {
+      nameText.textContent = fullNameInput.value;
+      emailText.textContent = emailInput.value;
+      phoneText.textContent = phoneInput.value;
+      dobText.textContent = formatDate(dobInput.value);
+
+      originalValues = {
+        fullName: fullNameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value,
+        dob: dobInput.value
+      };
+
+      profilePage.classList.remove("editing");
+    });
+  </script>
+</body>
+</html>
