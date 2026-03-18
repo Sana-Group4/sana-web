@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coach Clients</title>
+  <link rel="stylesheet" href="./addclient.css" />
+</head>
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">Sana</div>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sana</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a class="active" href="#">Coach</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <h2>Clients</h2>
+      </header>
+
+      <section class="clients-page">
+        <div class="clients-grid" id="clientsGrid">
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>Jane</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>J******s</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>E******a</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>M*****a</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>V*******d</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>K*****r</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>A******w</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>A****t</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>R*****n</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>A*****n</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>C*****n</span>
+          </div>
+
+          <div class="client-card">
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>D*******d</span>
+          </div>
+
+        </div>
+
+        <div class="clients-buttons">
+          <button class="cbtn" type="button" onclick="toggleAddClientForm()">Add Clients</button>
+          <button class="cbtn remove-btn" type="button">Remove Clients</button>
+        </div>
+
+        <div class="add-client-panel hidden" id="addClientPanel">
+          <h3>Add Client</h3>
+
+          <form id="addClientForm" class="add-client-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="clientName">Full Name</label>
+                <input type="text" id="clientName" placeholder="Enter client name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="clientEmail">Email</label>
+                <input type="email" id="clientEmail" placeholder="Enter email" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="clientPhone">Phone Number</label>
+                <input type="text" id="clientPhone" placeholder="Enter phone number" />
+              </div>
+
+              <div class="form-group">
+                <label for="clientDob">Date of Birth</label>
+                <input type="date" id="clientDob" />
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="cbtn" type="submit">Save Client</button>
+            </div>
+          </form>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function toggleAddClientForm() {
+      document.getElementById("addClientPanel").classList.toggle("hidden");
+    }
+
+    document.getElementById("addClientForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("clientName").value.trim();
+      if (!name) return;
+
+      const grid = document.getElementById("clientsGrid");
+
+      const card = document.createElement("div");
+      card.className = "client-card";
+      card.innerHTML = `
+        <div class="client-avatar">
+          <div class="client-head"></div>
+          <div class="client-body"></div>
+        </div>
+        <span>${name}</span>
+      `;
+
+      grid.appendChild(card);
+
+      this.reset();
+      document.getElementById("addClientPanel").classList.add("hidden");
+    });
+  </script>
+</body>
+</html>
