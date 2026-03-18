@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coach Clients</title>
+  <link rel="stylesheet" href="./deleteclients.css" />
+</head>
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">Sana</div>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sana</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a class="active" href="#">Coach</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <h2>Clients</h2>
+      </header>
+
+      <section class="clients-page">
+        <div class="clients-grid" id="clientsGrid">
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>Jane</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>J******s</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>E******a</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>M*****a</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>V*******d</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>K*****r</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>A******w</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>A****t</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>R*****n</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>A*****n</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>C*****n</span>
+          </div>
+
+          <div class="client-card">
+            <label class="select-box hidden">
+              <input type="checkbox" class="client-check">
+            </label>
+            <div class="client-avatar">
+              <div class="client-head"></div>
+              <div class="client-body"></div>
+            </div>
+            <span>D*******d</span>
+          </div>
+
+        </div>
+
+        <div class="clients-buttons">
+          <button class="cbtn" type="button">Add Clients</button>
+          <button class="cbtn remove-btn" type="button" onclick="handleRemoveClients()">Remove Clients</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let removeMode = false;
+
+    function handleRemoveClients() {
+      const checkboxes = document.querySelectorAll(".select-box");
+      const checkedClients = document.querySelectorAll(".client-check:checked");
+      const removeBtn = document.querySelector(".remove-btn");
+
+      if (!removeMode) {
+        removeMode = true;
+        checkboxes.forEach(box => box.classList.remove("hidden"));
+        removeBtn.textContent = "Confirm Remove";
+        return;
+      }
+
+      checkedClients.forEach(check => {
+        check.closest(".client-card").remove();
+      });
+
+      const remainingCheckboxes = document.querySelectorAll(".select-box");
+      const remainingChecks = document.querySelectorAll(".client-check");
+
+      remainingCheckboxes.forEach(box => box.classList.add("hidden"));
+      remainingChecks.forEach(check => check.checked = false);
+
+      removeMode = false;
+      removeBtn.textContent = "Remove Clients";
+    }
+  </script>
+</body>
+</html>
