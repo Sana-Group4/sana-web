@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coach Dashboard</title>
+  <link rel="stylesheet" href="./clientpage.css" />
+</head>
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">Sana</div>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sana</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a class="active" href="#">Coach</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <h2>Coach</h2>
+      </header>
+
+      <section class="coach-page">
+
+        <div class="coach-card">
+          <div class="coach-info-card">
+            <div class="coach-avatar">
+              <div class="coach-head"></div>
+              <div class="coach-body"></div>
+            </div>
+
+            <div class="coach-text">
+              <h3>Sandra</h3>
+              <p>Sports Coach</p>
+            </div>
+
+            <div class="notification-badge">3</div>
+          </div>
+
+          <div class="coach-actions">
+            <button class="cbtn" type="button">Message</button>
+            <button class="cbtn" type="button">Mark As Read</button>
+          </div>
+        </div>
+
+        <div class="todo-section">
+          <div class="todo-header">
+            <h3>To Do:</h3>
+            <h3>Mark As Done:</h3>
+          </div>
+
+          <div class="todo-card">
+            <div class="todo-list">
+              <div class="todo-item">8:00 - Jog</div>
+              <div class="todo-item">10:00 - Gym</div>
+              <div class="todo-item">11:00 - Training</div>
+              <div class="todo-item">12:00 - Rest</div>
+              <div class="todo-item">13:00 - Training</div>
+            </div>
+
+            <div class="todo-checks">
+              <label class="check-row"><input type="checkbox"></label>
+              <label class="check-row"><input type="checkbox"></label>
+              <label class="check-row"><input type="checkbox"></label>
+              <label class="check-row"><input type="checkbox"></label>
+              <label class="check-row"><input type="checkbox"></label>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>
