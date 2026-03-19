@@ -16,7 +16,7 @@ min-height:100vh;
 }
 
 .sidebar{
-width:240px;
+width:280px;
 background:white;
 padding:18px 14px;
 border-right:1px solid #EEF0F4;
@@ -24,13 +24,17 @@ display:flex;
 flex-direction:column;
 }
 
-.brand{
+.brand {
 display:flex;
 justify-content:center;
 align-items:center;
-padding:18px 10px 24px;
-margin-bottom:18px;
-border-bottom:1px solid #EEF0F4;
+padding:10px 0 20px;
+}
+
+.logo{
+width: 220px;
+height: auto;
+display: block;
 }
 
 .brand a{
@@ -40,12 +44,6 @@ align-items:center;
 text-decoration:none;
 }
 
-.logo{
-width:110px;
-height:auto;
-display:block;
-object-fit:contain;
-}
 
 .nav ul{
 list-style:none;

@@ -15,30 +15,27 @@ html{
     min-height: 100vh;
 }
 
-/* Left nav styling */
 
 .sidebar{
-    box-sizing: border-box;
-    width: 250px;
-    background: white;
-    border-right: 1px solid rgb(252, 246, 246);
-    padding: 5px 1em;
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    align-self: start;
+width:280px;
+background:white;
+padding:18px 14px;
+border-right:1px solid #EEF0F4;
+display:flex;
+flex-direction:column;
 }
 
 .brand {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 1rem;
-  height: 80px;
-  font-size: 2.3rem;
-  font-weight: bold;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:10px 0 20px;
+}
+
+.logo{
+width: 220px;
+height: auto;
+display: block;
 }
 
 .nav{
