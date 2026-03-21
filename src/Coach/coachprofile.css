@@ -253,6 +253,16 @@ body {
   font-size: 15px;
 }
 
+.pbtn-edit {
+  width: 280px;
+  background: rgba(92, 110, 190, 0.7);
+  color: white;
+}
+
+.pbtn-edit:hover {
+  background: #4f59a5;
+}
+
 .pbtn-devices {
   width: 280px;
   background: RGBA(92, 110, 190, 0.7);

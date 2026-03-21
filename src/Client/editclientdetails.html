@@ -175,68 +175,74 @@
   </div>
 
   <script>
-    const profilePage = document.getElementById("profilePage");
-    const editBtn = document.getElementById("editBtn");
-    const saveBtn = document.getElementById("saveBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
+  const profilePage = document.getElementById("profilePage");
+  const editBtn = document.getElementById("editBtn");
+  const saveBtn = document.getElementById("saveBtn");
+  const cancelBtn = document.getElementById("cancelBtn");
 
-    const fullNameInput = document.getElementById("fullName");
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    const dobInput = document.getElementById("dob");
+  const fullNameInput = document.getElementById("fullName");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+  const dobInput = document.getElementById("dob");
 
-    const nameText = document.getElementById("nameText");
-    const emailText = document.getElementById("emailText");
-    const phoneText = document.getElementById("phoneText");
-    const dobText = document.getElementById("dobText");
+  const nameText = document.getElementById("nameText");
+  const emailText = document.getElementById("emailText");
+  const phoneText = document.getElementById("phoneText");
+  const dobText = document.getElementById("dobText");
 
-    let originalValues = {
+  let originalValues = {
+    fullName: fullNameInput.value,
+    email: emailInput.value,
+    phone: phoneInput.value,
+    dob: dobInput.value
+  };
+
+  function formatDate(dateValue) {
+    if (!dateValue) return "";
+    const date = new Date(dateValue);
+    if (isNaN(date)) return dateValue;
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
+
+  editBtn.addEventListener("click", () => {
+    profilePage.classList.add("editing");
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    fullNameInput.value = originalValues.fullName;
+    emailInput.value = originalValues.email;
+    phoneInput.value = originalValues.phone;
+    dobInput.value = originalValues.dob;
+
+    profilePage.classList.remove("editing");
+  });
+
+  saveBtn.addEventListener("click", () => {
+    nameText.textContent = fullNameInput.value;
+    emailText.textContent = emailInput.value;
+    phoneText.textContent = phoneInput.value;
+    dobText.textContent = formatDate(dobInput.value);
+
+    originalValues = {
       fullName: fullNameInput.value,
       email: emailInput.value,
       phone: phoneInput.value,
       dob: dobInput.value
     };
 
-    function formatDate(dateValue) {
-      if (!dateValue) return "";
-      const date = new Date(dateValue);
-      if (isNaN(date)) return dateValue;
+    profilePage.classList.remove("editing");
+  });
 
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const year = date.getFullYear();
+  const params = new URLSearchParams(window.location.search);
 
-      return `${day}/${month}/${year}`;
-    }
-
-    editBtn.addEventListener("click", () => {
-      profilePage.classList.add("editing");
-    });
-
-    cancelBtn.addEventListener("click", () => {
-      fullNameInput.value = originalValues.fullName;
-      emailInput.value = originalValues.email;
-      phoneInput.value = originalValues.phone;
-      dobInput.value = originalValues.dob;
-
-      profilePage.classList.remove("editing");
-    });
-
-    saveBtn.addEventListener("click", () => {
-      nameText.textContent = fullNameInput.value;
-      emailText.textContent = emailInput.value;
-      phoneText.textContent = phoneInput.value;
-      dobText.textContent = formatDate(dobInput.value);
-
-      originalValues = {
-        fullName: fullNameInput.value,
-        email: emailInput.value,
-        phone: phoneInput.value,
-        dob: dobInput.value
-      };
-
-      profilePage.classList.remove("editing");
-    });
-  </script>
+  if (params.get("edit") === "true") {
+    profilePage.classList.add("editing");
+  }
+</script>
 </body>
 </html>

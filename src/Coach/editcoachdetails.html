@@ -170,8 +170,7 @@
     </main>
   </div>
 
-  <script>
-
+<script>
   const profilePage = document.getElementById("profilePage");
   const editBtn = document.getElementById("editBtn");
   const saveBtn = document.getElementById("saveBtn");
@@ -234,6 +233,12 @@
 
     profilePage.classList.remove("editing");
   });
-  </script>
+
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("edit") === "true") {
+    profilePage.classList.add("editing");
+  }
+</script>
 </body>
 </html>
