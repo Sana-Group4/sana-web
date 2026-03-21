@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coach Profile</title>
-  <link rel="stylesheet" href="./editcoachdetails.css" />
+  <title>Messaging System</title>
+  <link rel="stylesheet" href="./messagingsystem.css" />
   <link rel="icon" href="/img/Favicon.png" type="image/svg+xml">   
 </head>
-
 <body>
+  
   <div class="layout">
     <aside class="sidebar">
       <div class="brand">
@@ -20,7 +20,7 @@
       <nav class="nav"> 
         <ul>
           <li>
-            <a href="/coachHomepage/index.html">
+            <a href="/src/clientlogin.html">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true">
                 <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
               </svg>
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li>
-            <a  href="/src/coachpage.html">
+            <a class="active" href="/src/clientpage.html">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true">
                 <path d="M440-200q-100 0-170-70t-70-170q0-11 1-22t3-22q-5 2-12 3t-12 1q-42 0-71-29t-29-71q0-42 27.5-71t69.5-29q33 0 59.5 18.5T274-614q33-30 75.5-48t90.5-18h440v160H680v80q0 100-70 170t-170 70ZM208.5-551.5Q220-563 220-580t-11.5-28.5Q197-620 180-620t-28.5 11.5Q140-597 140-580t11.5 28.5Q163-540 180-540t28.5-11.5ZM539-341q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-42.5-42.5Q520-407 520-440t-23.5-56.5Q473-520 440-520t-56.5 23.5Q360-473 360-440t23.5 56.5Q407-360 440-360t56.5-23.5ZM440-440Z"/>
               </svg>
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li>
-            <a class="active" href="/src/coachprofile.html">
+            <a href="/src/clientprofile.html">
               <svg class="nav-icon" viewBox="0 -960 960 960" aria-hidden="true">
                 <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/>
               </svg>
@@ -73,7 +73,7 @@
             </a>
           </li>
           <li>
-            <a href="/Login/login.html">
+            <a href="/Login/">
               <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true">
                 <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
               </svg>
@@ -85,155 +85,72 @@
     </aside>
 
     <main class="content">
+
       <header class="topbar">
-        <h2>Profile</h2>
+        <div class="topbar-left">
+          <h2>Messages</h2>
+          <p class="topbar-subtext">Stay in touch with your coach</p>
+        </div>
+
+        <div class="topbar-right">
+          <div class="message-badge" id="headerUnreadBadge">0 unread</div>
+        </div>
       </header>
 
-      <section class="profile-page" id="profilePage">
+      <section class="messaging-page">
 
-        <div class="profile-avatar">
-          <div class="avatar-circle">
-            <div class="avatar-head"></div>
-            <div class="avatar-body"></div>
+        <div class="chat-card">
+
+          <div class="chat-header">
+
+            <div class="coach-summary">
+              <div class="coach-avatar">
+                <div class="coach-head"></div>
+                <div class="coach-body"></div>
+              </div>
+
+              <div class="coach-text">
+                <h3>Sandra</h3>
+                <p>Sports Coach</p>
+              </div>
+            </div>
+
+            <div class="chat-actions">
+              <button class="cbtn secondary-btn" id="markAllReadBtn" type="button">
+                Mark All As Read
+              </button>
+
+              <button class="cbtn" id="addDemoMessageBtn" type="button">
+                Add Demo Message
+              </button>
+            </div>
+
           </div>
 
-          <div class="profile-name view-mode" id="nameText">F**** N***</div>
-          <input
-            class="name-input edit-mode"
-            type="text"
-            id="fullName"
-            value="F**** N***"
-          />
-        </div>
+          <div class="messages-list" id="messagesList">
+          </div>
 
-        <div class="profile-fields">
-          <div class="pfield">
-            <label for="email">Email</label>
-            <div class="pfield-box view-mode" id="emailText">example@mail.com</div>
+          <form class="message-input-area" id="messageForm">
             <input
-              class="pfield-input edit-mode"
-              type="email"
-              id="email"
-              value="example@mail.com"
+              type="text"
+              id="messageInput"
+              class="message-input"
+              placeholder="Type a message..."
+              autocomplete="off"
             />
-          </div>
 
-          <div class="pfield">
-            <label for="phone">Phone Number</label>
-            <div class="pfield-box view-mode" id="phoneText">+44 1234 567890</div>
-            <input
-              class="pfield-input edit-mode"
-              type="tel"
-              id="phone"
-              value="+44 1234 567890"
-            />
-          </div>
-
-          <div class="pfield">
-            <label for="dob">Date Of Birth</label>
-            <div class="pfield-box view-mode" id="dobText">01/10/2004</div>
-            <input
-              class="pfield-input edit-mode"
-              type="date"
-              id="dob"
-              value="2004-10-01"
-            />
-          </div>
-        </div>
-
-        <div class="profile-buttons">
-          <button class="pbtn pbtn-edit view-mode" id="editBtn" type="button">
-            Edit Profile
-          </button>
-
-          <div class="edit-actions edit-mode">
-            <button class="pbtn pbtn-save" id="saveBtn" type="button">
-              Save Changes
+            <button class="send-btn" type="submit">
+              Send
             </button>
-            <button class="pbtn pbtn-cancel" id="cancelBtn" type="button">
-              Cancel
-            </button>
-          </div>
+          </form>
 
-          <button
-            class="pbtn pbtn-devices"
-            type="button"
-            onclick="window.location.href='/src/coachdevices.html?open=devices'">
-            View Devices
-          </button>
-          <button class="pbtn pbtn-logout" type="button" onclick="window.location.href='/Login/login.html'">
-            Log Out
-          </button>
         </div>
 
       </section>
+
     </main>
   </div>
 
-  <script>
-
-  const profilePage = document.getElementById("profilePage");
-  const editBtn = document.getElementById("editBtn");
-  const saveBtn = document.getElementById("saveBtn");
-  const cancelBtn = document.getElementById("cancelBtn");
-
-  const fullNameInput = document.getElementById("fullName");
-  const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("phone");
-  const dobInput = document.getElementById("dob");
-
-  const nameText = document.getElementById("nameText");
-  const emailText = document.getElementById("emailText");
-  const phoneText = document.getElementById("phoneText");
-  const dobText = document.getElementById("dobText");
-
-  let originalValues = {
-    fullName: fullNameInput.value,
-    email: emailInput.value,
-    phone: phoneInput.value,
-    dob: dobInput.value
-  };
-
-  function formatDate(dateValue) {
-    if (!dateValue) return "";
-    const date = new Date(dateValue);
-    if (isNaN(date)) return dateValue;
-
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
-  }
-
-  editBtn.addEventListener("click", () => {
-    profilePage.classList.add("editing");
-  });
-
-  cancelBtn.addEventListener("click", () => {
-    fullNameInput.value = originalValues.fullName;
-    emailInput.value = originalValues.email;
-    phoneInput.value = originalValues.phone;
-    dobInput.value = originalValues.dob;
-
-    profilePage.classList.remove("editing");
-  });
-
-  saveBtn.addEventListener("click", () => {
-    nameText.textContent = fullNameInput.value;
-    emailText.textContent = emailInput.value;
-    phoneText.textContent = phoneInput.value;
-    dobText.textContent = formatDate(dobInput.value);
-
-    originalValues = {
-      fullName: fullNameInput.value,
-      email: emailInput.value,
-      phone: phoneInput.value,
-      dob: dobInput.value
-    };
-
-    profilePage.classList.remove("editing");
-  });
-  </script>
+  <script src="./messagingsystem.js"></script>
 </body>
 </html>
