@@ -72,16 +72,18 @@ body {
 
 .nav a:hover {
   background: #f3f4f8;
+  color: #111827;
 }
 
 .nav a.active {
   background: #a6afe8;
   color: #ffffff;
+  box-shadow: none;
 }
 
-.nav a i,
 .nav a svg,
-.nav a img {
+.nav a img,
+.nav a i {
   width: 28px;
   height: 28px;
   flex-shrink: 0;
@@ -123,11 +125,12 @@ body {
 
 .sidebar-bottom a:hover {
   background: #f3f4f8;
+  color: #111827;
 }
 
-.sidebar-bottom a i,
 .sidebar-bottom a svg,
-.sidebar-bottom a img {
+.sidebar-bottom a img,
+.sidebar-bottom a i {
   width: 28px;
   height: 28px;
   flex-shrink: 0;
@@ -144,9 +147,13 @@ body {
   padding: 16px 18px;
   border-radius: 14px;
   margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }
 
-.topbar h2 {
+.topbar-left h2 {
   font-size: 22px;
   margin-bottom: 4px;
 }
@@ -156,26 +163,40 @@ body {
   color: #6B7280;
 }
 
-.booking-page {
+.message-badge {
+  min-width: 92px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #EEF2FF;
+  color: #4f59a5;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.messaging-page {
   background: white;
   padding: 26px;
   border-radius: 14px;
 }
 
-.booking-card {
+.chat-card {
   background: #fafafa;
   border: 1px solid #E5E7EB;
   border-radius: 14px;
-  padding: 28px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 700px;
 }
 
-.booking-header {
+.chat-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding-bottom: 22px;
-  margin-bottom: 24px;
+  padding-bottom: 18px;
   border-bottom: 1px solid #E5E7EB;
 }
 
@@ -227,154 +248,157 @@ body {
   color: #6B7280;
 }
 
-.booking-form {
+.chat-actions {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.form-group label {
-  font-size: 15px;
-  font-weight: 700;
-  color: #374151;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #D9DDE5;
-  border-radius: 12px;
-  font-size: 15px;
-  background: white;
-  color: #111827;
-  outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #9CA3AF;
-}
-
-.form-group textarea {
-  min-height: 130px;
-  resize: vertical;
-}
-
-.time-section h3 {
-  font-size: 18px;
-  margin-bottom: 14px;
-}
-
-.time-slots {
-  display: flex;
-  flex-wrap: wrap;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
-.time-slot {
-  background: white;
-  border: 1px solid #C7D2FE;
-  color: #5c6ebe;
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.time-slot.selected {
+.cbtn {
   background: rgba(92, 110, 190, 0.7);
-  color: white;
-  border-color: rgba(92, 110, 190, 0.7);
-}
-
-.time-slot:hover {
-  background: #EEF2FF;
-}
-
-.booking-summary {
-  background: white;
-  border: 1px solid #E5E7EB;
-  border-radius: 14px;
-  padding: 20px;
-}
-
-.booking-summary h3 {
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.booking-summary p {
-  font-size: 15px;
-  color: #374151;
-  margin-bottom: 10px;
-}
-
-.booking-summary p:last-child {
-  margin-bottom: 0;
-}
-
-.booking-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.primary-btn,
-.secondary-link-btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 24px;
+  border: none;
+  padding: 14px 22px;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
-  text-decoration: none;
+  color: white;
   cursor: pointer;
   transition: .2s;
-  min-width: 150px;
+  min-width: 170px;
 }
 
-.primary-btn {
-  background: rgba(92, 110, 190, 0.7);
-  border: none;
-  color: white;
-}
-
-.primary-btn:hover {
+.cbtn:hover {
   background: #4f59a5;
 }
 
-.secondary-link-btn {
+.secondary-btn {
   background: white;
   color: #5c6ebe;
   border: 1px solid #C7D2FE;
 }
 
-.secondary-link-btn:hover {
+.secondary-btn:hover {
   background: #EEF2FF;
 }
 
-@media (max-width: 900px) {
-  .form-grid {
-    grid-template-columns: 1fr;
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.message-row {
+  display: flex;
+}
+
+.message-row.coach {
+  justify-content: flex-start;
+}
+
+.message-row.client {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  position: relative;
+  line-height: 1.5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.message-row.coach .message-bubble {
+  background: white;
+  border: 1px solid #E5E7EB;
+  color: #111827;
+  border-top-left-radius: 6px;
+}
+
+.message-row.client .message-bubble {
+  background: rgba(92, 110, 190, 0.12);
+  border: 1px solid rgba(92, 110, 190, 0.2);
+  color: #111827;
+  border-top-right-radius: 6px;
+}
+
+.message-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6B7280;
+}
+
+.unread-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #FEE2E2;
+  color: #B91C1C;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: #6B7280;
+  font-size: 15px;
+}
+
+.message-input-area {
+  display: flex;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid #E5E7EB;
+}
+
+.message-input {
+  flex: 1;
+  padding: 15px 16px;
+  border: 1px solid #D9DDE5;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  background: white;
+}
+
+.message-input:focus {
+  border-color: #9CA3AF;
+}
+
+.send-btn {
+  background: rgba(92, 110, 190, 0.7);
+  border: none;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: .2s;
+  min-width: 120px;
+}
+
+.send-btn:hover {
+  background: #4f59a5;
+}
+
+@media (max-width: 1100px) {
+  .chat-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chat-actions {
+    width: 100%;
   }
 }
 
@@ -387,12 +411,21 @@ body {
     padding: 14px;
   }
 
-  .booking-actions {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .message-input-area {
     flex-direction: column;
   }
 
-  .primary-btn,
-  .secondary-link-btn {
+  .send-btn,
+  .cbtn {
     width: 100%;
+  }
+
+  .message-bubble {
+    max-width: 100%;
   }
 }

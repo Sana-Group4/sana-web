@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Client Profile</title>
-  <link rel="stylesheet" href="./clientdevices.css">
+  <link rel="stylesheet" href="./editclientdetails.css" />
   <link rel="icon" href="/img/Favicon.png" type="image/svg+xml">
 </head>
 
@@ -84,188 +84,140 @@
     </aside>
 
     <main class="content">
-
       <header class="topbar">
         <h2>Profile</h2>
       </header>
 
-      <section class="profile-page">
+      <section class="profile-page" id="profilePage">
 
-
-        <div id="profileSection">
-
-          <div class="profile-avatar">
-
-            <div class="avatar-circle">
-              <div class="avatar-head"></div>
-              <div class="avatar-body"></div>
-            </div>
-
-            <div class="profile-name">
-              E*** A********
-            </div>
-
+        <div class="profile-avatar">
+          <div class="avatar-circle">
+            <div class="avatar-head"></div>
+            <div class="avatar-body"></div>
           </div>
 
-          <div class="profile-fields">
-
-            <div class="pfield">
-              <label>Email</label>
-              <div class="pfield-box">
-                example@mail.com
-              </div>
-            </div>
-
-            <div class="pfield">
-              <label>Phone Number</label>
-              <div class="pfield-box">
-                +44 1234 567890
-              </div>
-            </div>
-
-            <div class="pfield">
-              <label>Date Of Birth</label>
-              <div class="pfield-box">
-                01/10/2004
-              </div>
-            </div>
-
-          </div>
-
-          <div class="profile-buttons">
-
-            <button class="pbtn pbtn-devices" type="button"
-              onclick="window.location.href='/src/clientdevices.html?open=devices'">
-              View Devices
-            </button>
-
-            <button class="pbtn pbtn-logout" type="button" onclick="window.location.href='/Login/login.html'">
-              Log Out
-            </button>
-
-          </div>
-
+          <div class="profile-name view-mode" id="nameText">E*** A*******</div>
+          <input class="name-input edit-mode" type="text" id="fullName" value="E*** A*******" />
         </div>
 
-
-        <div class="devices-section hidden" id="devicesSection">
-
-          <div class="devices-header">
-
-            <h3>My Devices</h3>
-
-            <button class="back-btn" id="backBtn" type="button">
-              ← Back to Profile
-            </button>
-
+        <div class="profile-fields">
+          <div class="pfield">
+            <label for="email">Email</label>
+            <div class="pfield-box view-mode" id="emailText">example@mail.com</div>
+            <input class="pfield-input edit-mode" type="email" id="email" value="example@mail.com" />
           </div>
 
-          <div class="device-form">
-
-            <input type="text" id="deviceName" placeholder="Device name (Example: iPhone 15)">
-
-            <input type="text" id="deviceType" placeholder="Device type (Example: Mobile)">
-
-            <button class="add-device-btn" id="addDeviceBtn" type="button">
-              Add Device
-            </button>
-
+          <div class="pfield">
+            <label for="phone">Phone Number</label>
+            <div class="pfield-box view-mode" id="phoneText">+44 1234 567890</div>
+            <input class="pfield-input edit-mode" type="tel" id="phone" value="+44 1234 567890" />
           </div>
 
-          <div class="devices-list" id="devicesList"></div>
+          <div class="pfield">
+            <label for="dob">Date Of Birth</label>
+            <div class="pfield-box view-mode" id="dobText">01/10/2004</div>
+            <input class="pfield-input edit-mode" type="date" id="dob" value="2004-10-01" />
+          </div>
+        </div>
 
+        <div class="profile-buttons">
+          <button class="pbtn pbtn-edit view-mode" id="editBtn" type="button">
+            Edit Profile
+          </button>
+
+          <div class="edit-actions edit-mode">
+            <button class="pbtn pbtn-save" id="saveBtn" type="button">
+              Save Changes
+            </button>
+            <button class="pbtn pbtn-cancel" id="cancelBtn" type="button">
+              Cancel
+            </button>
+          </div>
+
+          <button class="pbtn pbtn-devices" type="button"
+            onclick="window.location.href='/src/clientdevices.html?open=devices'">
+            View Devices
+          </button>
+
+          <button class="pbtn pbtn-logout" type="button" onclick="window.location.href='/Login/login.html'">
+            Log Out
+          </button>
         </div>
 
       </section>
-
     </main>
   </div>
 
   <script>
-    const profileSection = document.getElementById("profileSection");
-    const devicesSection = document.getElementById("devicesSection");
-    const backBtn = document.getElementById("backBtn");
+    const profilePage = document.getElementById("profilePage");
+    const editBtn = document.getElementById("editBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
 
-    const deviceNameInput = document.getElementById("deviceName");
-    const deviceTypeInput = document.getElementById("deviceType");
+    const fullNameInput = document.getElementById("fullName");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const dobInput = document.getElementById("dob");
 
-    const addDeviceBtn = document.getElementById("addDeviceBtn");
-    const devicesList = document.getElementById("devicesList");
+    const nameText = document.getElementById("nameText");
+    const emailText = document.getElementById("emailText");
+    const phoneText = document.getElementById("phoneText");
+    const dobText = document.getElementById("dobText");
 
-    let devices = [
-      { id: 1, name: "iPhone 14", type: "Mobile" },
-      { id: 2, name: "MacBook Pro", type: "Laptop" }
-    ];
+    let originalValues = {
+      fullName: fullNameInput.value,
+      email: emailInput.value,
+      phone: phoneInput.value,
+      dob: dobInput.value
+    };
 
-    backBtn.addEventListener("click", () => {
-      devicesSection.classList.add("hidden");
-      profileSection.classList.remove("hidden");
-    });
+    function formatDate(dateValue) {
+      if (!dateValue) return "";
+      const date = new Date(dateValue);
+      if (isNaN(date)) return dateValue;
 
-    addDeviceBtn.addEventListener("click", () => {
-      const name = deviceNameInput.value.trim();
-      const type = deviceTypeInput.value.trim();
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
 
-      if (!name || !type) {
-        alert("Please enter device name and type");
-        return;
-      }
-
-      devices.push({
-        id: Date.now(),
-        name,
-        type
-      });
-
-      deviceNameInput.value = "";
-      deviceTypeInput.value = "";
-
-      renderDevices();
-    });
-
-    function renderDevices() {
-      devicesList.innerHTML = "";
-
-      if (devices.length === 0) {
-        devicesList.innerHTML = "<p>No devices added.</p>";
-        return;
-      }
-
-      devices.forEach(device => {
-        const card = document.createElement("div");
-        card.className = "device-card";
-
-        card.innerHTML = `
-      <div class="device-info">
-        <strong>${device.name}</strong><br>
-        <span>${device.type}</span>
-      </div>
-      <button class="remove-device-btn" data-id="${device.id}" type="button">
-        Remove
-      </button>
-    `;
-
-        devicesList.appendChild(card);
-      });
-
-      document.querySelectorAll(".remove-device-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = Number(btn.dataset.id);
-          devices = devices.filter(d => d.id !== id);
-          renderDevices();
-        });
-      });
+      return `${day}/${month}/${year}`;
     }
+
+    editBtn.addEventListener("click", () => {
+      profilePage.classList.add("editing");
+    });
+
+    cancelBtn.addEventListener("click", () => {
+      fullNameInput.value = originalValues.fullName;
+      emailInput.value = originalValues.email;
+      phoneInput.value = originalValues.phone;
+      dobInput.value = originalValues.dob;
+
+      profilePage.classList.remove("editing");
+    });
+
+    saveBtn.addEventListener("click", () => {
+      nameText.textContent = fullNameInput.value;
+      emailText.textContent = emailInput.value;
+      phoneText.textContent = phoneInput.value;
+      dobText.textContent = formatDate(dobInput.value);
+
+      originalValues = {
+        fullName: fullNameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value,
+        dob: dobInput.value
+      };
+
+      profilePage.classList.remove("editing");
+    });
 
     const params = new URLSearchParams(window.location.search);
 
-    if (params.get("open") === "devices") {
-      profileSection.classList.add("hidden");
-      devicesSection.classList.remove("hidden");
-      renderDevices();
+    if (params.get("edit") === "true") {
+      profilePage.classList.add("editing");
     }
   </script>
-
 </body>
 
 </html>
