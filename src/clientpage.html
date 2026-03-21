@@ -89,59 +89,114 @@
       </header>
 
       <section class="coach-page">
-
         <div class="coach-card">
 
-          <a href="./coachdetails.html" class="coach-link-card">
-            <div class="coach-info-card">
-              <div class="coach-avatar">
-                <div class="coach-head"></div>
-                <div class="coach-body"></div>
-              </div>
+          <div class="coach-top-row">
+            <a href="./coachdetails.html" class="coach-link-card">
+              <div class="coach-info-card">
+                <div class="coach-avatar">
+                  <div class="coach-head"></div>
+                  <div class="coach-body"></div>
+                </div>
 
-              <div class="coach-text">
-                <h3>Sandra</h3>
-                <p>Sports Coach</p>
+                <div class="coach-text">
+                  <h3>Sandra</h3>
+                  <p>Sports Coach</p>
+                </div>
               </div>
+            </a>
 
-              <div class="notification-badge">3</div>
+            <div class="notification-badge" id="notificationBadge">0</div>
+
+            <div class="coach-actions">
+              <button class="coach-btn" id="messageBtn" type="button">Message</button>
+              <button class="coach-btn" id="markReadBtn" type="button">Mark As Read</button>
             </div>
-          </a>
+          </div>
 
-          <div class="coach-actions">
-            <button class="cbtn" type="button">Message</button>
-            <button class="cbtn" type="button">Mark As Read</button>
+          <div class="todo-section">
+            <div class="todo-header">
+              <h3>To Do:</h3>
+              <h3>Mark As Done:</h3>
+            </div>
+
+            <div class="todo-card">
+              <div class="todo-list">
+                <div class="todo-item">8:00 - Jog</div>
+                <div class="todo-item">10:00 - Gym</div>
+                <div class="todo-item">11:00 - Training</div>
+                <div class="todo-item">12:00 - Rest</div>
+                <div class="todo-item">13:00 - Training</div>
+              </div>
+
+              <div class="todo-checks">
+                <label class="check-row"><input type="checkbox"></label>
+                <label class="check-row"><input type="checkbox"></label>
+                <label class="check-row"><input type="checkbox"></label>
+                <label class="check-row"><input type="checkbox"></label>
+                <label class="check-row"><input type="checkbox"></label>
+              </div>
+            </div>
           </div>
 
         </div>
-
-        <div class="todo-section">
-          <div class="todo-header">
-            <h3>To Do:</h3>
-            <h3>Mark As Done:</h3>
-          </div>
-
-          <div class="todo-card">
-            <div class="todo-list">
-              <div class="todo-item">8:00 - Jog</div>
-              <div class="todo-item">10:00 - Gym</div>
-              <div class="todo-item">11:00 - Training</div>
-              <div class="todo-item">12:00 - Rest</div>
-              <div class="todo-item">13:00 - Training</div>
-            </div>
-
-            <div class="todo-checks">
-              <label class="check-row"><input type="checkbox"></label>
-              <label class="check-row"><input type="checkbox"></label>
-              <label class="check-row"><input type="checkbox"></label>
-              <label class="check-row"><input type="checkbox"></label>
-              <label class="check-row"><input type="checkbox"></label>
-            </div>
-          </div>
-        </div>
-
       </section>
     </main>
   </div>
+
+  <script>
+    const notificationBadge = document.getElementById("notificationBadge");
+    const messageBtn = document.getElementById("messageBtn");
+    const markReadBtn = document.getElementById("markReadBtn");
+
+    function getMessages() {
+      return JSON.parse(localStorage.getItem("sanaMessages")) || [];
+    }
+
+    function saveMessages(messages) {
+      localStorage.setItem("sanaMessages", JSON.stringify(messages));
+    }
+
+    function getUnreadCount() {
+      const messages = getMessages();
+      return messages.filter(message => message.fromCoach && !message.read).length;
+    }
+
+    function updateNotificationBadge() {
+      const unreadCount = getUnreadCount();
+
+      if (unreadCount > 0) {
+        notificationBadge.textContent = unreadCount;
+        notificationBadge.style.display = "flex";
+      } else {
+        notificationBadge.textContent = "0";
+        notificationBadge.style.display = "flex";
+      }
+    }
+
+    function markAllCoachMessagesAsRead() {
+      const messages = getMessages().map(message => {
+        if (message.fromCoach) {
+          return { ...message, read: true };
+        }
+        return message;
+      });
+
+      saveMessages(messages);
+      updateNotificationBadge();
+    }
+
+    messageBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      window.location.href = "messagingsystem.html";
+    });
+
+    markReadBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      markAllCoachMessagesAsRead();
+    });
+
+    updateNotificationBadge();
+  </script>
 </body>
 </html>
