@@ -226,7 +226,7 @@
         </div>
 
         <div class="clients-buttons">
-          <button class="cbtn" type="button">Add Clients</button>
+          <button class="cbtn" type="button" onclick="goToAddClientsPage()">Add Clients </button>
           <button class="cbtn remove-btn" type="button" onclick="handleRemoveClients()">Remove Clients</button>
         </div>
       </section>
@@ -236,10 +236,16 @@
   <script>
     let removeMode = false;
 
+    function goToAddClientsPage() {
+      window.location.href = "addclient.html";
+    }
+
     function handleRemoveClients() {
       const checkboxes = document.querySelectorAll(".select-box");
       const checkedClients = document.querySelectorAll(".client-check:checked");
       const removeBtn = document.querySelector(".remove-btn");
+
+      
 
       if (!removeMode) {
         removeMode = true;

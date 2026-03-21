@@ -1,15 +1,8 @@
 *{
-<<<<<<< HEAD
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-=======
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:verdana;
->>>>>>> 23c425e484e47a5c109aa70cd53746774e9162f6
 }
 
 body{
@@ -38,12 +31,6 @@ body{
   padding:6px 8px 30px;
 }
 
-.brand a{
-  display:flex;
-  align-items:center;
-  text-decoration:none;
-}
-
 .logo{
   width:170px;
   height:auto;
@@ -52,8 +39,6 @@ body{
 
 .nav ul{
   list-style:none;
-  padding:0;
-  margin:0;
   display:flex;
   flex-direction:column;
   gap:8px;
@@ -83,12 +68,11 @@ body{
 .nav a.active{
   background:#a6afe8;
   color:#ffffff;
-  box-shadow:none;
 }
 
+.nav a i,
 .nav a svg,
-.nav a img,
-.nav a i{
+.nav a img{
   width:28px;
   height:28px;
   flex-shrink:0;
@@ -100,19 +84,6 @@ body{
   display:flex;
   flex-direction:column;
   gap:8px;
-}
-
-.sidebar-bottom ul{
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.sidebar-bottom li{
-  margin:0;
 }
 
 .sidebar-bottom a{
@@ -128,13 +99,19 @@ body{
   transition:0.2s ease;
 }
 
+.sidebar-bottom ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .sidebar-bottom a:hover{
   background:#f3f4f8;
 }
 
+.sidebar-bottom a i,
 .sidebar-bottom a svg,
-.sidebar-bottom a img,
-.sidebar-bottom a i{
+.sidebar-bottom a img{
   width:28px;
   height:28px;
   flex-shrink:0;
@@ -154,104 +131,127 @@ body{
 }
 
 .clients-page{
-background:white;
-padding:26px;
-border-radius:14px;
+  background:white;
+  padding:26px;
+  border-radius:14px;
 }
 
 .clients-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:22px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
 }
 
 .client-card{
-position:relative;
-display:flex;
-align-items:center;
-gap:18px;
-border:1px solid #D9DDE5;
-padding:16px;
-border-radius:12px;
-background:white;
-min-height:108px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  border:1px solid #D9DDE5;
+  padding:16px;
+  border-radius:12px;
+  background:white;
 }
 
 .client-avatar{
-width:62px;
-height:62px;
-background:#efe6ff;
-border-radius:50%;
-position:relative;
+  width:62px;
+  height:62px;
+  background:#efe6ff;
+  border-radius:50%;
+  position:relative;
 }
 
 .client-head{
-width:16px;
-height:16px;
-border:3px solid #4b2f86;
-border-radius:50%;
-position:absolute;
-top:12px;
-left:50%;
-transform:translateX(-50%);
+  width:16px;
+  height:16px;
+  border:3px solid #4b2f86;
+  border-radius:50%;
+  position:absolute;
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
 }
 
 .client-body{
-width:32px;
-height:20px;
-border:3px solid #4b2f86;
-border-bottom:0;
-border-radius:20px 20px 0 0;
-position:absolute;
-bottom:12px;
-left:50%;
-transform:translateX(-50%);
+  width:32px;
+  height:20px;
+  border:3px solid #4b2f86;
+  border-bottom:0;
+  border-radius:20px 20px 0 0;
+  position:absolute;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
 }
 
 .client-card span{
-font-size:18px;
-}
-
-.select-box{
-position:absolute;
-top:12px;
-right:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-width:18px;
-height:18px;
-}
-
-.select-box input{
-width:16px;
-height:16px;
-cursor:pointer;
-accent-color:rgba(92,110,190,0.9);
+  font-size:18px;
 }
 
 .clients-buttons{
-display:flex;
-justify-content:center;
-gap:30px;
-margin-top:40px;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-top:40px;
 }
 
 .cbtn{
-background:rgba(92,110,190,0.7);
-border:none;
-padding:14px 24px;
-border-radius:10px;
-font-size:15px;
-font-weight:600;
-color:white;
-cursor:pointer;
+  background:rgba(92,110,190,0.7);
+  border:none;
+  padding:14px 24px;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+  color:white;
+  cursor:pointer;
 }
 
 .cbtn:hover{
-background:#4f59a5;
+  background:#4f59a5;
+}
+
+.add-client-panel{
+  margin-top:30px;
+  border:1px solid #E5E7EB;
+  border-radius:12px;
+  padding:22px;
+  background:#fafafa;
+}
+
+.add-client-panel h3{
+  margin-bottom:20px;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group label{
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+.form-group input,
+.form-group textarea{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  background:#efe6ff;
+}
+
+.form-actions{
+  display:flex;
+  justify-content:center;
+  margin-top:10px;
 }
 
 .hidden{
-display:none;
+  display:none;
 }
