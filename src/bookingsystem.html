@@ -165,7 +165,7 @@
     </main>
   </div>
 
-  <script>
+ <script>
   const timeSlots = document.querySelectorAll(".time-slot");
   const selectedTimeInput = document.getElementById("selectedTime");
   const bookingForm = document.querySelector(".booking-form");
@@ -179,10 +179,44 @@
   });
 
   bookingForm.addEventListener("submit", event => {
-    if (!selectedTimeInput.value) {
-      event.preventDefault();
-      alert("Please select a time slot before confirming your booking.");
+    event.preventDefault();
+
+    const sessionDate = document.getElementById("sessionDate").value;
+    const sessionType = document.getElementById("sessionType").value;
+
+    if (!sessionDate) {
+      alert("Please select a date.");
+      return;
     }
+
+    if (!sessionType) {
+      alert("Please choose a session type.");
+      return;
+    }
+
+    if (!selectedTimeInput.value) {
+      alert("Please select a time slot.");
+      return;
+    }
+
+    const successMessage = document.createElement("div");
+    successMessage.textContent = "Booking confirmed successfully!";
+    successMessage.style.position = "fixed";
+    successMessage.style.top = "20px";
+    successMessage.style.right = "20px";
+    successMessage.style.background = "#8f99d8";
+    successMessage.style.color = "white";
+    successMessage.style.padding = "14px 20px";
+    successMessage.style.borderRadius = "12px";
+    successMessage.style.fontWeight = "600";
+    successMessage.style.boxShadow = "0 8px 20px rgba(0,0,0,0.15)";
+    successMessage.style.zIndex = "9999";
+
+    document.body.appendChild(successMessage);
+
+    setTimeout(() => {
+      window.location.href = "./coachdetails.html";
+    }, 1200);
   });
 </script>
 </body>
