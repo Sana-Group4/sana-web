@@ -226,48 +226,51 @@
         </div>
 
         <div class="clients-buttons">
-           <button class="cbtn" type="button" onclick="window.location.href='/src/addclient.html'">
+          <button class="cbtn" type="button" onclick="window.location.href='/src/addclient.html'">
             Add Clients
-          <button class="cbtn remove-btn" type="button" onclick="handleRemoveClients()">Remove Clients</button>
+          </button>
+
+          <button class="cbtn remove-btn" type="button" onclick="handleRemoveClients()">
+             Remove Clients
+          </button>
         </div>
       </section>
     </main>
   </div>
 
-  <script>
-    let removeMode = false;
+<script>
+  let removeMode = false;
 
-    function goToAddClientsPage() {
-      window.location.href = "addclient.html";
+  function handleRemoveClients() {
+    const checkboxes = document.querySelectorAll(".select-box");
+    const checkedClients = document.querySelectorAll(".client-check:checked");
+    const removeBtn = document.querySelector(".remove-btn");
+
+    if (!removeMode) {
+      removeMode = true;
+      checkboxes.forEach(box => box.classList.remove("hidden"));
+      removeBtn.textContent = "Confirm Remove";
+      return;
     }
 
-    function handleRemoveClients() {
-      const checkboxes = document.querySelectorAll(".select-box");
-      const checkedClients = document.querySelectorAll(".client-check:checked");
-      const removeBtn = document.querySelector(".remove-btn");
+    checkedClients.forEach(check => {
+      check.closest(".client-card").remove();
+    });
 
-      
+    const remainingCheckboxes = document.querySelectorAll(".select-box");
+    const remainingChecks = document.querySelectorAll(".client-check");
 
-      if (!removeMode) {
-        removeMode = true;
-        checkboxes.forEach(box => box.classList.remove("hidden"));
-        removeBtn.textContent = "Confirm Remove";
-        return;
-      }
+    remainingCheckboxes.forEach(box => box.classList.add("hidden"));
+    remainingChecks.forEach(check => check.checked = false);
 
-      checkedClients.forEach(check => {
-        check.closest(".client-card").remove();
-      });
+    removeMode = false;
+    removeBtn.textContent = "Remove Clients";
+  }
 
-      const remainingCheckboxes = document.querySelectorAll(".select-box");
-      const remainingChecks = document.querySelectorAll(".client-check");
-
-      remainingCheckboxes.forEach(box => box.classList.add("hidden"));
-      remainingChecks.forEach(check => check.checked = false);
-
-      removeMode = false;
-      removeBtn.textContent = "Remove Clients";
-    }
-  </script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("remove") === "true") {
+    handleRemoveClients();
+  }
+</script>
 </body>
 </html>

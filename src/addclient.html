@@ -192,7 +192,7 @@
         <div class="clients-buttons">
           <button class="cbtn" type="button" onclick="toggleAddClientForm()">Add Clients</button>
           <button class="cbtn remove-btn" type="button" onclick="goToDeletePage()">
-            Remove Clients
+             Remove Clients
           </button>
         </div>
 
@@ -235,39 +235,37 @@
   </div>
 
   <script>
-    function toggleAddClientForm() {
-      document.getElementById("addClientPanel").classList.toggle("hidden");
-    }
+  function toggleAddClientForm() {
+    document.getElementById("addClientPanel").classList.toggle("hidden");
+  }
 
-    function goToDeletePage(){
-      window.location.href = "deleteclients.html";
-    }
+  function goToDeletePage() {
+    window.location.href = "deleteclients.html?remove=true";
+  }
 
-    document.getElementById("addClientForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-a
-      const name = document.getElementById("clientName").value.trim();
-      if (!name) return;
+  document.getElementById("addClientForm").addEventListener("submit", function (e) {
+    e.preventDefault(); 
 
-      const grid = document.getElementById("clientsGrid");
+    const name = document.getElementById("clientName").value.trim();
+    if (!name) return;
 
-      const card = document.createElement("div");
-      card.className = "client-card";
-      card.innerHTML = `
-        <div class="client-avatar">
-          <div class="client-head"></div>
-          <div class="client-body"></div>
-        </div>
-        <span>${name}</span>
-      `;
+    const grid = document.getElementById("clientsGrid");
 
-      grid.appendChild(card);
+    const card = document.createElement("div");
+    card.className = "client-card";
+    card.innerHTML = `
+      <div class="client-avatar">
+        <div class="client-head"></div>
+        <div class="client-body"></div>
+      </div>
+      <span>${name}</span>
+    `;
 
-      this.reset();
-      document.getElementById("addClientPanel").classList.add("hidden");
+    grid.appendChild(card);
 
-      
-    });
-  </script>
+    this.reset();
+    document.getElementById("addClientPanel").classList.add("hidden");
+  });
+</script>
 </body>
 </html>
