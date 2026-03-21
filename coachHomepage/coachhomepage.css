@@ -152,25 +152,25 @@ body {
   font-size: 20px;
 }
 
-.greeting .small{
+.greeting .small {
   font-size: 0.9rem;
   opacity: 0.7;
   margin-bottom: 0.2rem;
 }
 
-.greeting .big{
+.greeting .big {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
-.topbar-right{
+.topbar-right {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
 
-.icon-btn{
+.icon-btn {
   border: none;
   background: transparent;
   font-size: 1.2rem;
@@ -180,18 +180,19 @@ body {
   text-decoration: none;
 }
 
-.icon-btn:hover{
+.icon-btn:hover {
   background: #f1f1f1;
   text-decoration: none;
 }
 
-.avatar{
+.avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #ddd; 
+  background: #ddd;
   cursor: pointer;
 }
+
 .avatar-link {
   display: inline-block;
 }
@@ -234,7 +235,7 @@ body {
 
 .client-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -266,7 +267,7 @@ body {
 .workout-btn {
   text-decoration: none;
   background: RGBA(92, 110, 190, 0.7);
-  color: #fff; 
+  color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 0.85rem;
