@@ -5,12 +5,17 @@
 }
 
 html{
+<<<<<<< HEAD
   font-family: Arial, sans-serif;
   line-height: 1.5rem;
 }
 
 body{
   background: #f3f4f6;
+=======
+    font-family: Verdana;
+    line-height: 1.5rem;
+>>>>>>> 23c425e484e47a5c109aa70cd53746774e9162f6
 }
 
 .layout{

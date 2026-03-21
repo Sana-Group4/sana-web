@@ -1,8 +1,15 @@
 *{
+<<<<<<< HEAD
   margin:0;
   padding:0;
   box-sizing:border-box;
   font-family:Arial, sans-serif;
+=======
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:verdana;
+>>>>>>> 23c425e484e47a5c109aa70cd53746774e9162f6
 }
 
 body{
