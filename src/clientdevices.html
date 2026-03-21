@@ -137,18 +137,17 @@ example@mail.com
 <div class="profile-buttons">
 
 <button
-class="pbtn pbtn-devices"
-id="viewDevicesBtn"
-type="button"
->
-View Devices
+  class="pbtn pbtn-devices"
+  type="button"
+  onclick="window.location.href='/src/clientdevices.html?open=devices'">
+  View Devices
 </button>
 
 <button
-class="pbtn pbtn-logout"
-type="button"
->
-Log Out
+  class="pbtn pbtn-logout"
+  type="button"
+  onclick="window.location.href='/Login/login.html'">
+  Log Out
 </button>
 
 </div>
@@ -208,15 +207,10 @@ id="devicesList"
 </main>
 </div>
 
-
 <script>
-
 const profileSection = document.getElementById("profileSection");
 const devicesSection = document.getElementById("devicesSection");
-
-const viewDevicesBtn = document.getElementById("viewDevicesBtn");
 const backBtn = document.getElementById("backBtn");
-
 
 const deviceNameInput = document.getElementById("deviceName");
 const deviceTypeInput = document.getElementById("deviceType");
@@ -225,109 +219,79 @@ const addDeviceBtn = document.getElementById("addDeviceBtn");
 const devicesList = document.getElementById("devicesList");
 
 let devices = [
-{ id:1, name:"iPhone 14", type:"Mobile" },
-{ id:2, name:"MacBook Pro", type:"Laptop" }
+  { id: 1, name: "iPhone 14", type: "Mobile" },
+  { id: 2, name: "MacBook Pro", type: "Laptop" }
 ];
 
-viewDevicesBtn.addEventListener("click", () => {
-
-profileSection.style.display = "none";
-devicesSection.classList.remove("hidden");
-
-renderDevices();
-
-});
-
 backBtn.addEventListener("click", () => {
-
-devicesSection.classList.add("hidden");
-profileSection.style.display = "block";
-
+  devicesSection.classList.add("hidden");
+  profileSection.style.display = "";
 });
 
 addDeviceBtn.addEventListener("click", () => {
+  const name = deviceNameInput.value.trim();
+  const type = deviceTypeInput.value.trim();
 
-const name = deviceNameInput.value.trim();
-const type = deviceTypeInput.value.trim();
+  if (!name || !type) {
+    alert("Please enter device name and type");
+    return;
+  }
 
-if(!name || !type){
+  devices.push({
+    id: Date.now(),
+    name,
+    type
+  });
 
-alert("Please enter device name and type");
-return;
+  deviceNameInput.value = "";
+  deviceTypeInput.value = "";
 
+  renderDevices();
+});
+
+function renderDevices() {
+  devicesList.innerHTML = "";
+
+  if (devices.length === 0) {
+    devicesList.innerHTML = "<p>No devices added.</p>";
+    return;
+  }
+
+  devices.forEach(device => {
+    const card = document.createElement("div");
+    card.className = "device-card";
+
+    card.innerHTML = `
+      <div class="device-info">
+        <strong>${device.name}</strong>
+        <br>
+        <span>${device.type}</span>
+      </div>
+
+      <button class="remove-device-btn" data-id="${device.id}" type="button">
+        Remove
+      </button>
+    `;
+
+    devicesList.appendChild(card);
+  });
+
+  document.querySelectorAll(".remove-device-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.dataset.id);
+      devices = devices.filter(d => d.id !== id);
+      renderDevices();
+    });
+  });
 }
 
-devices.push({
-id:Date.now(),
-name,
-type
-});
+const params = new URLSearchParams(window.location.search);
 
-deviceNameInput.value="";
-deviceTypeInput.value="";
-
-renderDevices();
-
-});
-
-
-function renderDevices(){
-
-devicesList.innerHTML="";
-
-if(devices.length === 0){
-
-devicesList.innerHTML="<p>No devices added.</p>";
-return;
-
+if (params.get("open") === "devices") {
+  profileSection.style.display = "none";
+  devicesSection.classList.remove("hidden");
+  renderDevices();
 }
-
-devices.forEach(device => {
-
-const card = document.createElement("div");
-
-card.className="device-card";
-
-card.innerHTML = `
-
-<div class="device-info">
-
-<strong>${device.name}</strong>
-<br>
-<span>${device.type}</span>
-
-</div>
-
-<button
-class="remove-device-btn"
-data-id="${device.id}"
->
-Remove
-</button>
-
-`;
-
-devicesList.appendChild(card);
-
-});
-
-document.querySelectorAll(".remove-device-btn")
-.forEach(btn => {
-
-btn.addEventListener("click", () => {
-
-const id = Number(btn.dataset.id);
-
-devices = devices.filter(d => d.id !== id);
-
-renderDevices();
-
-});
-
-});
-
-}
-
 </script>
 
 </body>
