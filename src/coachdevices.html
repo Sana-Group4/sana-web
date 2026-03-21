@@ -53,7 +53,7 @@
       </a>
     </li>
     <li>
-      <a href="coachprofile.html">
+      <a class = "active" href="coachprofile.html">
         <svg class="nav-icon" viewBox="0 -960 960 960" aria-hidden="true">
           <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/>
         </svg>
@@ -221,128 +221,88 @@ id="devicesList"
     }
   });
 
-  if (currentPage === "coachdevices.html") {
-    document.getElementById("coachLink").classList.add("active");
+  const profileSection = document.getElementById("profileSection");
+  const devicesSection = document.getElementById("devicesSection");
+
+  const viewDevicesBtn = document.getElementById("viewDevicesBtn");
+  const backBtn = document.getElementById("backBtn");
+
+  const deviceNameInput = document.getElementById("deviceName");
+  const deviceTypeInput = document.getElementById("deviceType");
+
+  const addDeviceBtn = document.getElementById("addDeviceBtn");
+  const devicesList = document.getElementById("devicesList");
+
+  let devices = [
+    { id: 1, name: "iPhone 14", type: "Mobile" },
+    { id: 2, name: "MacBook Pro", type: "Laptop" }
+  ];
+
+  viewDevicesBtn.addEventListener("click", () => {
+    profileSection.classList.add("hidden");
+    devicesSection.classList.remove("hidden");
+    renderDevices();
+  });
+
+  backBtn.addEventListener("click", () => {
+    devicesSection.classList.add("hidden");
+    profileSection.classList.remove("hidden");
+  });
+
+  addDeviceBtn.addEventListener("click", () => {
+    const name = deviceNameInput.value.trim();
+    const type = deviceTypeInput.value.trim();
+
+    if (!name || !type) {
+      alert("Please enter device name and type");
+      return;
+    }
+
+    devices.push({
+      id: Date.now(),
+      name,
+      type
+    });
+
+    deviceNameInput.value = "";
+    deviceTypeInput.value = "";
+
+    renderDevices();
+  });
+
+  function renderDevices() {
+    devicesList.innerHTML = "";
+
+    if (devices.length === 0) {
+      devicesList.innerHTML = "<p>No devices added.</p>";
+      return;
+    }
+
+    devices.forEach(device => {
+      const card = document.createElement("div");
+      card.className = "device-card";
+
+      card.innerHTML = `
+        <div class="device-info">
+          <strong>${device.name}</strong><br>
+          <span>${device.type}</span>
+        </div>
+        <button class="remove-device-btn" data-id="${device.id}" type="button">
+          Remove
+        </button>
+      `;
+
+      devicesList.appendChild(card);
+    });
+
+    document.querySelectorAll(".remove-device-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = Number(btn.dataset.id);
+        devices = devices.filter(d => d.id !== id);
+        renderDevices();
+      });
+    });
   }
-d
-
-const profileSection = document.getElementById("profileSection");
-const devicesSection = document.getElementById("devicesSection");
-
-const viewDevicesBtn = document.getElementById("viewDevicesBtn");
-const backBtn = document.getElementById("backBtn");
-
-
-const deviceNameInput = document.getElementById("deviceName");
-const deviceTypeInput = document.getElementById("deviceType");
-
-const addDeviceBtn = document.getElementById("addDeviceBtn");
-const devicesList = document.getElementById("devicesList");
-
-let devices = [
-{ id:1, name:"iPhone 14", type:"Mobile" },
-{ id:2, name:"MacBook Pro", type:"Laptop" }
-];
-
-viewDevicesBtn.addEventListener("click", () => {
-
-profileSection.style.display = "none";
-devicesSection.classList.remove("hidden");
-
-renderDevices();
-
-});
-
-backBtn.addEventListener("click", () => {
-
-devicesSection.classList.add("hidden");
-profileSection.style.display = "block";
-
-});
-
-addDeviceBtn.addEventListener("click", () => {
-
-const name = deviceNameInput.value.trim();
-const type = deviceTypeInput.value.trim();
-
-if(!name || !type){
-
-alert("Please enter device name and type");
-return;
-
-}
-
-devices.push({
-id:Date.now(),
-name,
-type
-});
-
-deviceNameInput.value="";
-deviceTypeInput.value="";
-
-renderDevices();
-
-});
-
-
-function renderDevices(){
-
-devicesList.innerHTML="";
-
-if(devices.length === 0){
-
-devicesList.innerHTML="<p>No devices added.</p>";
-return;
-
-}
-
-devices.forEach(device => {
-
-const card = document.createElement("div");
-
-card.className="device-card";
-
-card.innerHTML = `
-
-<div class="device-info">
-
-<strong>${device.name}</strong>
-<br>
-<span>${device.type}</span>
-
-</div>
-
-<button
-class="remove-device-btn"
-data-id="${device.id}"
->
-Remove
-</button>
-
-`;
-
-devicesList.appendChild(card);
-
-});
-
-document.querySelectorAll(".remove-device-btn")
-.forEach(btn => {
-
-btn.addEventListener("click", () => {
-
-const id = Number(btn.dataset.id);
-
-devices = devices.filter(d => d.id !== id);
-
-renderDevices();
-
-});
-
-});
-
-}
-
 </script>
 </body>
 </html>
