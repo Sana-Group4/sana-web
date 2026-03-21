@@ -15,7 +15,6 @@ body{
   align-items:stretch;
 }
 
-/* SIDEBAR */
 .sidebar{
   width:260px;
   min-width:260px;
@@ -38,7 +37,6 @@ body{
   display:block;
 }
 
-/* NAV */
 .nav ul{
   list-style:none;
   display:flex;
@@ -80,7 +78,6 @@ body{
   flex-shrink:0;
 }
 
-/* push bottom links down */
 .sidebar-bottom{
   margin-top:auto;
   padding-top:28px;
@@ -102,6 +99,12 @@ body{
   transition:0.2s ease;
 }
 
+.sidebar-bottom ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .sidebar-bottom a:hover{
   background:#f3f4f8;
 }
@@ -114,7 +117,6 @@ body{
   flex-shrink:0;
 }
 
-/* MAIN CONTENT */
 .content{
   flex:1;
   padding:24px 30px 40px;
