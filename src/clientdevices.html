@@ -225,7 +225,7 @@ let devices = [
 
 backBtn.addEventListener("click", () => {
   devicesSection.classList.add("hidden");
-  profileSection.style.display = "";
+  profileSection.classList.remove("hidden");
 });
 
 addDeviceBtn.addEventListener("click", () => {
@@ -263,11 +263,9 @@ function renderDevices() {
 
     card.innerHTML = `
       <div class="device-info">
-        <strong>${device.name}</strong>
-        <br>
+        <strong>${device.name}</strong><br>
         <span>${device.type}</span>
       </div>
-
       <button class="remove-device-btn" data-id="${device.id}" type="button">
         Remove
       </button>
@@ -288,7 +286,7 @@ function renderDevices() {
 const params = new URLSearchParams(window.location.search);
 
 if (params.get("open") === "devices") {
-  profileSection.style.display = "none";
+  profileSection.classList.add("hidden");
   devicesSection.classList.remove("hidden");
   renderDevices();
 }

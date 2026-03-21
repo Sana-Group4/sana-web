@@ -222,11 +222,13 @@ id="devicesList"
 
   const profileSection = document.getElementById("profileSection");
   const devicesSection = document.getElementById("devicesSection");
+
   const viewDevicesBtn = document.getElementById("viewDevicesBtn");
   const backBtn = document.getElementById("backBtn");
 
   const deviceNameInput = document.getElementById("deviceName");
   const deviceTypeInput = document.getElementById("deviceType");
+
   const addDeviceBtn = document.getElementById("addDeviceBtn");
   const devicesList = document.getElementById("devicesList");
 
@@ -235,19 +237,16 @@ id="devicesList"
     { id: 2, name: "MacBook Pro", type: "Laptop" }
   ];
 
-  function openDevicesSection() {
+  viewDevicesBtn.addEventListener("click", () => {
     profileSection.classList.add("hidden");
     devicesSection.classList.remove("hidden");
     renderDevices();
-  }
+  });
 
-  function openProfileSection() {
+  backBtn.addEventListener("click", () => {
     devicesSection.classList.add("hidden");
     profileSection.classList.remove("hidden");
-  }
-
-  viewDevicesBtn.addEventListener("click", openDevicesSection);
-  backBtn.addEventListener("click", openProfileSection);
+  });
 
   addDeviceBtn.addEventListener("click", () => {
     const name = deviceNameInput.value.trim();
@@ -307,7 +306,9 @@ id="devicesList"
   const params = new URLSearchParams(window.location.search);
 
   if (params.get("open") === "devices") {
-    openDevicesSection();
+    profileSection.classList.add("hidden");
+    devicesSection.classList.remove("hidden");
+    renderDevices();
   }
 </script>
 </body>
