@@ -15,7 +15,7 @@
 
                 <h2>Register Sana Coach Account</h2>
 
-                <form action="../Login/login.html" method="post">
+                <form id="registerForm">
 
                     <div class="input-box">
                         <label for="inputFName">Enter First Name</label>
@@ -62,18 +62,6 @@
             </div>
         </div>
     </div>
-    <script>
-        document.querySelectorAll(".eye-icon").forEach(icon => {
-            icon.addEventListener("click", function () {
-                const input = document.getElementById(this.dataset.target);
-
-                if (input.type === "password") {
-                    input.type = "text";
-                } else {
-                    input.type = "password";
-                }
-            });
-        });
-    </script>
+   <script src="./registerCO.js"></script>
 </body>
 </html>

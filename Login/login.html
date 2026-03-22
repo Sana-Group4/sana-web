@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sana Webiste Login</title>
+  <title>Sana Website Login</title>
   <link rel="stylesheet" href="login.css">
   <link rel="icon" href="/img/Favicon.png" type="image/svg+xml">    
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
@@ -74,49 +74,9 @@
                         </div>
                     </form>
                     
-<script>
 
-document.getElementById("loginForm").addEventListener("submit", async function(e){
 
-e.preventDefault();
-
-const formData = new URLSearchParams();
-
-formData.append("username", document.getElementById("username").value);
-formData.append("password", document.getElementById("password").value);
-
-try{
-
-const res = await fetch("http://127.0.0.1:8000/auth/login",{
-
-method:"POST",
-body: formData,
-credentials:"include"
-
-});
-
-const result = await res.json();
-
-if(!res.ok){
-
-throw new Error(result.detail);
-
-}
-
-localStorage.setItem("access_token", result.access_token);
-
-alert("Login successful");
-
-window.location.href="../Dashboard/dashboard.html";
-
-}catch(err){
-
-alert(err.message);
-
-}
-
-});
-
-</script>
-                </div>
+<script src="./login.js"></script>
+                
+</div>
                 
