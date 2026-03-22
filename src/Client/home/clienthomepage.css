@@ -329,10 +329,21 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .topbar {
-    border-radius: 16px;
-    padding: 1rem;
-  }
+ 
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.topbar h2 {
+  color: #111827;
+  font-size: 20px;
+}
+
 
   .greeting .big {
     font-size: 1.2rem;

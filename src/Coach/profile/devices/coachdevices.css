@@ -1,8 +1,12 @@
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
+}
+
+html {
   font-family: verdana;
+  line-height: 1.5rem;
 }
 
 body {
@@ -43,95 +47,82 @@ body {
   display: block;
 }
 
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
 .nav ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 0;
+  margin: 0;
 }
 
 .nav li {
   margin: 0;
 }
 
-.nav a {
+.sidebar a {
+  text-decoration: none;
+  color: #737b8c;
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 16px 18px;
   border-radius: 16px;
-  text-decoration: none;
-  color: #737b8c;
   font-weight: 700;
   font-size: 24px;
   transition: 0.2s ease;
 }
 
-.nav a:hover {
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.sidebar a:hover {
   background: #f3f4f8;
   color: #111827;
 }
 
-.nav a.active {
+.sidebar a.active {
   background: #a6afe8;
   color: #ffffff;
+  font-weight: 700;
+  box-shadow: none;
 }
 
-.nav a svg,
-.nav a img,
-.nav a i {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
+.sidebar a.active:hover {
+  background: #a6afe8;
 }
 
 .sidebar-bottom {
-  margin-top: auto;
-  padding-top: 28px;
   display: flex;
   flex-direction: column;
+  margin-top: auto;
+  padding-top: 28px;
   gap: 8px;
 }
 
 .sidebar-bottom ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.sidebar-bottom li {
+  padding: 0;
   margin: 0;
+  width: 100%;
 }
 
-.sidebar-bottom a {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 18px;
-  border-radius: 16px;
-  color: #737b8c;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 24px;
-  transition: 0.2s ease;
-}
-
-.sidebar-bottom a:hover {
-  background: #f3f4f8;
-  color: #111827;
-}
-
-.sidebar-bottom a svg,
-.sidebar-bottom a img,
-.sidebar-bottom a i {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
+.sidebar-bottom li+li {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .content {
