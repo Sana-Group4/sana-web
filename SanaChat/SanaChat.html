@@ -95,10 +95,28 @@
                 <div class="chat-input-area">
                     <input id="input" placeholder="Type a message..." />
                     <button onclick="sendMessage()">Send</button>
+                    <button onclick="resetChat()">Reset</button>
                 </div>
             </div>
 
             <script>
+                let sessionId = null;
+
+                // Create session when page loads
+                async function initSession() {
+                    const res = await fetch("http://localhost:3000/session");
+                    const data = await res.json();
+                    sessionId = data.sessionId;
+                }
+
+                // Run immediately
+                initSession();
+                //causing errors for now 
+                // if (!sessionId) {
+                //     alert("Still connecting, try again in a second...");
+                //     return;
+                // }
+
                 async function sendMessage() {
                     const inputBox = document.getElementById("input");
                     const chat = document.getElementById("chat");
@@ -141,7 +159,7 @@
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify({ message: text })
+                            body: JSON.stringify({ message: text, sessionID: sessionID })
                         });
 
                         const data = await res.json();
@@ -155,6 +173,22 @@
                     } catch (err) {
                         botMsg.textContent = "Error connecting to server";
                     }
+
+                }
+
+                async function resetChat() {
+                    if (!sessionId) return;
+
+                    await fetch("http://localhost:3000/reset", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ sessionId })
+                    });
+
+                    // Clear UI
+                    document.getElementById("chat").innerHTML = "";
                 }
             </script>
         </body>
