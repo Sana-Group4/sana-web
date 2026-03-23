@@ -160,6 +160,7 @@ body {
   cursor: pointer;
   padding: 0.4rem;
   border-radius: 10px;
+  text-decoration: none;
 }
 
 .icon-btn:hover {
