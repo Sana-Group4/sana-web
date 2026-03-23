@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const username = email.split("@")[0];
 
         try {
-            // ✅ 1. REGISTER
+            // REGISTER
             const registerRes = await fetch("http://localhost:8000/auth/register", {
                 method: "POST",
                 headers: {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("Registered:", registerData);
 
-            // ✅ 2. LOGIN (to get token)
+            // login(to get token)
             const formData = new URLSearchParams();
             formData.append("username", email);
             formData.append("password", password);
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const token = loginData.access_token;
 
-            // ✅ 3. SET is_coach = true
+            // SET is_coach = true
             const updateRes = await fetch("http://localhost:8000/api/update_account", {
                 method: "POST",
                 headers: {
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             alert("Coach account created successfully!");
 
-            // 👉 Redirect to login (clean flow)
+            // redirect to login page after successful registration
             window.location.href = "../Login/login.html";
 
         } catch (err) {
