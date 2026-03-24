@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sana Website Register</title>
-  <link rel="stylesheet" href="registerCO.css">
-  <link rel="icon" href="/img/Favicon.png" type="image/svg+xml">   
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sana Website Register</title>
+    <link rel="stylesheet" href="registerCO.css">
+    <link rel="icon" href="/img/Favicon.png" type="image/svg+xml">
 </head>
 
 <body>
     <div class="container">
-        <div class="content-box">   
+        <div class="content-box">
             <div class="content">
 
                 <h2>Register Sana Coach Account</h2>
@@ -43,7 +44,8 @@
                     <div class="input-box">
                         <label for="confPass">Confirm Password</label>
                         <div class="password-wrapper">
-                            <input type="password" placeholder="Confirm Password" id="confPass" name="confPassword" required>
+                            <input type="password" placeholder="Confirm Password" id="confPass" name="confPassword"
+                                required>
                             <img src="/src/assets/eye.svg" class="eye-icon" data-target="confPass">
                         </div>
                     </div>
@@ -62,6 +64,80 @@
             </div>
         </div>
     </div>
-   <script src="./registerCO.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const icons = document.querySelectorAll(".eye-icon");
+
+            icons.forEach(icon => {
+
+                icon.addEventListener("click", () => {
+
+                    const input = document.getElementById(icon.dataset.target);
+
+                    input.type = input.type === "password" ? "text" : "password";
+
+                });
+
+            });
+
+        });
+
+        document.getElementById("registerForm").addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            const password = document.getElementById("password").value;
+            const confirm = document.getElementById("confPassword").value;
+
+            if (password !== confirm) {
+
+                alert("Passwords do not match");
+                return;
+
+            }
+
+            const data = {
+
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                password: password,
+
+            };
+
+            try {
+
+                const res = await fetch("http://127.0.0.1:8000/auth/register", {
+
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify(data)
+
+                });
+
+                const result = await res.json();
+
+                if (!res.ok) {
+
+                    throw new Error(result.detail);
+
+                }
+
+                localStorage.setItem("access_token", result.access_token);
+
+                alert("Account created!");
+
+                window.location.href = "../coachHomepage/index.html";
+
+            } catch (err) {
+                alert(err.message || "Unknown error");
+            }
+        });
+
+    </script>
 </body>
+
 </html>
