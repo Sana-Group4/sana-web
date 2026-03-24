@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Account created successfully!");
 
             // Redirect the user to the home page
-            window.location.href = "../coachHomepage/index.html";
+            window.location.href = "/src/client/home/clientlogin.html";
 
         } catch (error) {
             // Log the error in the browser console for debugging
