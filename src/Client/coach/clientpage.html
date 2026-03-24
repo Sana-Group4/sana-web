@@ -94,61 +94,6 @@
 </main>
 </div>
 
-  <script>
-    const notificationBadge = document.getElementById("notificationBadge");
-    const messageBtn = document.getElementById("messageBtn");
-    const markReadBtn = document.getElementById("markReadBtn");
-
-    function getMessages() {
-      return JSON.parse(localStorage.getItem("sanaMessages")) || [];
-    }
-
-    function saveMessages(messages) {
-      localStorage.setItem("sanaMessages", JSON.stringify(messages));
-    }
-
-    function getUnreadCount() {
-      const messages = getMessages();
-      return messages.filter(message => message.fromCoach && !message.read).length;
-    }
-
-    function updateNotificationBadge() {
-      const unreadCount = getUnreadCount();
-
-      if (unreadCount > 0) {
-        notificationBadge.textContent = unreadCount;
-        notificationBadge.style.display = "flex";
-      } else {
-        notificationBadge.textContent = "0";
-        notificationBadge.style.display = "flex";
-      }
-    }
-
-    function markAllCoachMessagesAsRead() {
-      const messages = getMessages().map(message => {
-        if (message.fromCoach) {
-          return { ...message, read: true };
-        }
-        return message;
-      });
-
-      saveMessages(messages);
-      updateNotificationBadge();
-    }
-
-    messageBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      window.location.href = "messagingsystem.html";
-    });
-
-    markReadBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      markAllCoachMessagesAsRead();
-    });
-
-    updateNotificationBadge();
-  </script>
-
 <script src="./getCoachDetails.js"></script>
 
 </body>

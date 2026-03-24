@@ -1,65 +1,38 @@
+// =========================
+// track selected coach for accept/reject actions
+let selectedCoachId = null;
+
 async function loadCoachPage() {
   const container = document.getElementById("coachContainer");
   const token = localStorage.getItem("access_token");
 
-  if (!container) {
-    console.error("coachContainer not found");
-    return;
-  }
+  if (!token) return;
 
-  if (!token) {
-    container.innerHTML = `
-      <div class="coach-card">
-        <p>Please log in first.</p>
-      </div>
-    `;
-    return;
-  }
+  const headers = {
+    Authorization: `Bearer ${token}`
+  };
 
   try {
-    const inviteRes = await fetch("http://localhost:8000/api/get-coach-invites", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    //fetch both at same time
+    const [coachRes, inviteRes] = await Promise.all([
+      fetch("http://localhost:8000/api/client/coaches", { headers }),
+      fetch("http://localhost:8000/api/get-coach-invites", { headers })
+    ]);
 
-    if (!inviteRes.ok) {
-      throw new Error(`Invite fetch failed: ${inviteRes.status}`);
-    }
-
+    const coaches = await coachRes.json();
     const invites = await inviteRes.json();
-    console.log("Invites:", invites);
 
-    if (!Array.isArray(invites) || invites.length === 0) {
-      container.innerHTML = `
-        <div class="coach-card">
-          <div class="empty-state">
-            <h3>No coach yet</h3>
-            <p>Get an invite from a coach to continue.</p>
-          </div>
-        </div>
+    let html = "";
+
+    
+    if (coaches && coaches.length > 0) {
+      html += `
+        <div class="section-title">Your Coaches</div>
       `;
-      return;
-    }
 
-    const invite = invites[0];
+      html += coaches.map(coach => `
+        <div class="coach-card">
 
-    const coachRes = await fetch(`http://localhost:8000/api/account?id=${invite.coach_id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    if (!coachRes.ok) {
-      throw new Error(`Coach fetch failed: ${coachRes.status}`);
-    }
-
-    const coach = await coachRes.json();
-    console.log("Coach account:", coach);
-
-    container.innerHTML = `
-      <div class="coach-card">
-        <div class="coach-top-row">
           <div class="coach-info-card">
             <div class="coach-avatar">
               <div class="coach-head"></div>
@@ -67,52 +40,133 @@ async function loadCoachPage() {
             </div>
 
             <div class="coach-text">
-              <h3>${coach.firstName ?? ""} ${coach.lastName ?? ""}</h3>
-              <p>${coach.email ?? ""}</p>
+              <h3>${coach.firstName} ${coach.lastName}</h3>
+              <p>${coach.email}</p>
             </div>
           </div>
 
-          <div class="coach-actions">
-            <button class="coach-btn" type="button" onclick="acceptInvite(${invite.coach_id})">Accept</button>
-            <button class="coach-btn" type="button" onclick="rejectInvite(${invite.coach_id})">Reject</button>
-          </div>
         </div>
-      </div>
-    `;
-  } catch (error) {
-    console.error(error);
-    container.innerHTML = `
-      <div class="coach-card">
-        <p>Could not load coach data.</p>
-      </div>
-    `;
+      `).join("");
+    }
+
+
+    if (invites && invites.length > 0) {
+
+      html += `
+        <div class="section-title">Invitations</div>
+      `;
+
+      html += invites.map(invite => `
+        <div class="coach-card">
+
+          
+          <div class="coach-info-card selectable"
+               id="banner-${invite.coach_id}"
+               onclick="selectCoach(${invite.coach_id})">
+
+            <div class="coach-avatar">
+              <div class="coach-head"></div>
+              <div class="coach-body"></div>
+            </div>
+
+            <div class="coach-text">
+              <h3>Coach</h3>
+              <p>ID: ${invite.coach_id}</p>
+            </div>
+          </div>
+
+          <div class="coach-actions invite-actions">
+            <button class="coach-btn"
+              onclick="acceptSelected()">
+              Accept
+            </button>
+
+            <button class="coach-btn reject-btn"
+              onclick="rejectSelected()">
+              Reject
+            </button>
+          </div>
+
+        </div>
+      `).join("");
+    }
+
+    
+    if ((!coaches || coaches.length === 0) &&
+        (!invites || invites.length === 0)) {
+
+      html = `
+        <div class="coach-card">
+          <h3>No coaches yet</h3>
+          <p>Waiting for invite...</p>
+        </div>
+      `;
+    }
+
+    container.innerHTML = html;
+
+  } catch (err) {
+    console.error("Error loading coach page:", err);
   }
 }
 
-async function acceptInvite(coachId) {
+
+
+function selectCoach(coachId) {
+  const banner = document.getElementById(`banner-${coachId}`);
+
+  // Toggle off
+  if (selectedCoachId === coachId) {
+    selectedCoachId = null;
+    banner.classList.remove("selected");
+    return;
+  }
+
+  // Clear all
+  document.querySelectorAll(".coach-info-card").forEach(b => {
+    b.classList.remove("selected");
+  });
+
+  selectedCoachId = coachId;
+  banner.classList.add("selected");
+}
+
+
+
+async function acceptSelected() {
+  if (!selectedCoachId) return;
+
   const token = localStorage.getItem("access_token");
 
-  await fetch(`http://localhost:8000/api/accept-invite?coach=${coachId}`, {
+  await fetch(`http://localhost:8000/api/accept-invite?coach=${selectedCoachId}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`
     }
   });
 
+  selectedCoachId = null;
   loadCoachPage();
 }
 
-async function rejectInvite(coachId) {
+
+
+async function rejectSelected() {
+  if (!selectedCoachId) return;
+
   const token = localStorage.getItem("access_token");
 
-  await fetch(`http://localhost:8000/api/reject-invite?coach=${coachId}`, {
+  await fetch(`http://localhost:8000/api/reject-invite?coach=${selectedCoachId}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`
     }
   });
 
+  selectedCoachId = null;
   loadCoachPage();
 }
 
-document.addEventListener("DOMContentLoaded", loadCoachPage);
+
+
+window.addEventListener("DOMContentLoaded", loadCoachPage);

@@ -406,3 +406,59 @@ body {
   align-items:center;
   }
 }
+
+.invite-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.coach-btn {
+  min-width: 140px;
+  padding: 12px 0;
+  border-radius: 10px;
+}
+
+.confirm-btn {
+  background: #4CAF50 !important;
+}
+
+.reject-btn {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.reject-btn:hover {
+  background: #d5d5d5;
+}
+
+.invite-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.selected-accept {
+  border: 2px solid #4CAF50;
+  background: rgba(76, 175, 80, 0.08);
+}
+
+.selected-reject {
+  border: 2px solid #e53935;
+  background: rgba(229, 57, 53, 0.08);
+}
+
+.selectable {
+  cursor: pointer;
+}
+
+.selected {
+  border: 2px solid #8f9ae6;
+  background: rgba(143, 154, 230, 0.1);
+}
+
+.invite-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
