@@ -46,7 +46,7 @@ async function resetPassword() {
         }
 
         alert("Password updated successfully!");
-        window.location.href = "/coachHomepage/index.html";
+        window.location.href = "/Login/login.html";
 
     } catch (error) {
         alert(error.message);
