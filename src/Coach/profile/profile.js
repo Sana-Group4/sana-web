@@ -25,11 +25,10 @@ async function loadProfile() {
 
     console.log("User data:", user);
 
-    // Fill UI
     document.getElementById("profileName").textContent =
       `${user.firstName} ${user.lastName}`;
 
-    document.getElementById("profileId").textContent =
+    document.getElementById("profileID").textContent =
       user.id || "Not set";
 
     document.getElementById("profileEmail").textContent =
@@ -37,9 +36,6 @@ async function loadProfile() {
 
     document.getElementById("profilePhone").textContent =
       user.phone || "Not set";
-
-    document.getElementById("profileDob").textContent =
-      user.dob || "Not set";
 
   } catch (err) {
     console.error(err);

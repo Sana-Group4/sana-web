@@ -82,67 +82,47 @@
       </div>
     </aside>
 
-    <main class="content">
-      <header class="topbar">
-        <h2>Profile</h2>
-      </header>
+   <main class="content">
+  <header class="topbar">
+    <h2>Profile</h2>
+  </header>
 
-      <section class="profile-page" id="profilePage">
+  <section class="profile-page">
 
-        <div class="profile-avatar">
-          <div class="avatar-circle">
-            <div class="avatar-head"></div>
-            <div class="avatar-body"></div>
-          </div>
+    <div class="profile-avatar">
+      <div class="avatar-circle">
+        <div class="avatar-head"></div>
+        <div class="avatar-body"></div>
+      </div>
 
-          <div class="profile-name view-mode" id="nameText">R*** B****</div>
-          <input class="name-input edit-mode" type="text" id="fullName" value="R*** B****" />
-        </div>
+      <div class="profile-name" id="nameText">User</div>
+    </div>
 
-        <div class="profile-fields">
-          <div class="pfield">
-            <label for="email">Email</label>
-            <div class="pfield-box view-mode" id="emailText">example@mail.com</div>
-            <input class="pfield-input edit-mode" type="email" id="email" value="example@mail.com" />
-          </div>
+    <div class="profile-fields">
 
-          <div class="pfield">
-            <label for="phone">Phone Number</label>
-            <div class="pfield-box view-mode" id="phoneText">+44 1234 567890</div>
-            <input class="pfield-input edit-mode" type="tel" id="phone" value="+44 1234 567890" />
-          </div>
+     
+      <div class="pfield">
+        <label>Email</label>
+        <div class="pfield-box" id="emailText"></div>
+      </div>
 
-          <div class="pfield">
-            <label for="dob">Date Of Birth</label>
-            <div class="pfield-box view-mode" id="dobText">01/10/2004</div>
-            <input class="pfield-input edit-mode" type="date" id="dob" value="2004-10-01" />
-          </div>
-        </div>
+      
+      <div class="pfield">
+        <label for="phone">Phone Number</label>
+        <input class="pfield-input" type="tel" id="phone" placeholder="Enter phone number"/>
+      </div>
 
-        <div class="profile-buttons">
-          <button class="pbtn pbtn-edit view-mode" id="editBtn" type="button">
-            Edit Profile
-          </button>
+    </div>
 
-          <div class="edit-actions edit-mode">
-            <button class="pbtn pbtn-save" id="saveBtn" type="button">
-              Save Changes
-            </button>
-            <button class="pbtn pbtn-cancel" id="cancelBtn" type="button">
-              Cancel
-            </button>
-          </div>
-
-          <button class="pbtn pbtn-devices" type="button"
-            onclick="window.location.href='/src/coach/profile/devices/coachdevices.html?open=devices'">
-            View Devices
-          </button>
-          <button class="pbtn pbtn-logout" type="button" onclick="window.location.href='/Login/login.html'">
-            Log Out
-          </button>
-        </div>
-
-      </section>
+    <div class="profile-buttons">
+      <button class="pbtn pbtn-save" id="saveBtn" type="button">
+        Save Phone Number
+      </button>
+      <button class="pbtn pbtn-save" onclick="window.location.href='/src/Client/profile/clientprofile.html'">
+        Return To Profile
+      </button>
+    </div>
+    </section>
     </main>
   </div>
 
@@ -218,4 +198,5 @@
   </script>
 </body>
 
+<script src="./editCoachProfile.js"></script>
 </html>
