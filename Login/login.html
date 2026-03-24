@@ -1,82 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sana Website Login</title>
-  <link rel="stylesheet" href="login.css">
-  <link rel="icon" href="/img/Favicon.png" type="image/svg+xml">    
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
-  integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="/Login/login.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sana Website Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="icon" href="/img/Favicon.png" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/Login/login.js" defer></script>
 </head>
-    <body>
-        
-        <div class="container">
-            <div class="img-box">
-                <img src="../img/athlete-resting.png" alt="">
-            </div>
-            <div class="content-box">
-                <div class="content">
-                    <h2> Sana Login</h2>
-                        <form id="loginForm">
-                            <div class="input-box">
-                            <label for="inputEmail">Enter Email</label>
-                            <input type="text" placeholder="Email" id="inputEmail" required>
+
+<body>
+
+    <div class="container">
+        <div class="img-box">
+            <img src="../img/athlete-resting.png" alt="">
+        </div>
+        <div class="content-box">
+            <div class="content">
+                <h2> Sana Login</h2>
+                <form id="loginForm">
+                    <div class="input-box">
+                        <label for="inputEmail">Enter Email</label>
+                        <input type="text" placeholder="Email" id="inputEmail" required>
+                    </div>
+
+                    <div class="input-box password-box">
+                        <label for="inputPass">Enter Password</label>
+
+                        <div class="password-wrapper">
+                            <input type="password" placeholder="Password" id="inputPass" required>
+                            <img src="/src/assets/eye.svg" alt="Toggle Password" id="togglePassword" class="eye-icon" data-target="inputPass">
                         </div>
+                    </div>
 
-                        <div class="input-box password-box">
-                            <label for="inputPass">Enter Password</label>
+                    <div class="input-box">
+                        <label for="inputPass"><input type="checkbox">Remember Password</label>
 
-                            <div class="password-wrapper">
-                                <input type="password" placeholder="Password" id="inputPass" required>
-                                <img src="/src/assets/eye.svg" alt="Toggle Password" id="togglePassword" class="eye-icon">
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="input-box">
-                            <label for="inputPass"><input type="checkbox">Remember Password</label>
-                            
-                        </div>
+                    <div class="input-box">
+                        <button type="submit" id="loginBtn">
+                            <span id="btnText">Log In</span>
+                            <span id="spinner" class="spinner hidden"></span>
+                        </button>
+                    </div>
 
-                        <div class="input-box">                           
-                            <button type="submit" id="loginBtn">
-                                <span id="btnText">Log In</span>
-                                <span id="spinner" class="spinner hidden"></span>
-                            </button>                            
-                        </div>
+                    <div class="social-media">
+                        <a href="/src/Client/home/clientlogin.html">
+                            <i class="fa-brands fa-google"></i>
+                        </a>
 
-                       <div class="social-media">
-                            <a href="/src/Client/home/clientlogin.html">
-                                <i class="fa-brands fa-google"></i>
-                            </a>
+                        <a href="loginP.html">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
 
-                            <a href="loginP.html">
-                                <i class="fa-solid fa-phone"></i>
-                            </a>
+                        <a href="loginE.html">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
 
-                            <a href="loginE.html">
-                                <i class="fa-solid fa-envelope"></i>
-                            </a>
-                        </div>
-
-                        <div class="forgotPass">
+                    <div class="forgotPass">
                         <a href="/Register/forPass.html" class="forPass-link">Forgot Password?</a>
-                        </div>
+                    </div>
 
-                        <div class="register">
+                    <div class="register">
                         <label for="register">Not with us?</label>
                         <a href="/AccountType/register.html" class="register-link">Register</a>
-                        </div>
-                        
-                        
-                        </div>
-                    </form>
-                    
+                    </div>
 
 
-<script src="./login.js"></script>
-                
-</div>
-                
+            </div>
+            </form>
+
+
+
+            <script src="./login.js"></script>
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const icons = document.querySelectorAll(".eye-icon");
+
+                icons.forEach(icon => {
+
+                    icon.addEventListener("click", () => {
+
+                        const input = document.getElementById(icon.dataset.target);
+
+                        input.type = input.type === "password" ? "text" : "password";
+
+                    });
+
+                });
+
+            });
+        </script>
+    </div>
+</body>
+
+</html>

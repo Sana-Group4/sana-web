@@ -21,57 +21,48 @@
 
         <form id="registerForm">
 
-        <div class="input-box">
-            <label>First Name</label>
-            <input type="text" id="firstName" required>
-        </div>
+                    <div class="input-box">
+                        <label for="inputFName">Enter First Name</label>
+                        <input type="text" placeholder="First Name" id="inputFName" name="firstName" required>
+                    </div>
 
-        <div class="input-box">
-            <label>Last Name</label>
-            <input type="text" id="lastName" required>
-        </div>
+                    <div class="input-box">
+                        <label for="inputLName">Enter Last Name</label>
+                        <input type="text" placeholder="Last Name" id="inputLName" name="lastName" required>
+                    </div>
 
-        <div class="input-box">
-            <label>Username</label>
-            <input type="text" id="username" required>
-        </div>
+                    <div class="input-box">
+                        <label for="inputEmail">Enter Email</label>
+                        <input type="email" placeholder="Email" id="inputEmail" name="email" required>
+                    </div>
 
-        <div class="input-box">
-            <label>Email</label>
-            <input type="email" id="email" required>
-        </div>
+                    <div class="input-box">
+                        <label for="inputPass">Enter Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" placeholder="Password" id="inputPass" name="password" required>
+                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="inputPass">
+                        </div>
+                    </div>
 
-        <div class="input-box">
-        <label>Password</label>
+                    <div class="input-box">
+                        <label for="confPass">Confirm Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" placeholder="Confirm Password" id="confPass" name="confPassword"
+                                required>
+                            <img src="/src/assets/eye.svg" class="eye-icon" data-target="confPass">
+                        </div>
+                    </div>
 
-        <div class="password-wrapper">
-            <input type="password" id="password" required>
-            <img src="/src/assets/eye.svg" class="eye-icon" data-target="password">
-        </div>
+                    <div class="input-box">
+                        <input type="submit" value="Submit">
+                    </div>
 
-</div>
+                    <div class="login">
+                        <label>Already have an Account?</label>
+                        <a href="../Login/login.html" class="login-link">Sign In</a>
+                    </div>
 
-        <div class="input-box">
-        <label>Confirm Password</label>
-
-        <div class="password-wrapper">
-            <input type="password" id="confPassword" required>
-            <img src="/src/assets/eye.svg" class="eye-icon" data-target="confPassword">
-        </div>
-
-        </div>
-
-
-        <div class="input-box">
-            <input type="submit" value="Register">
-        </div>
-
-        <div class="login">
-            <label>Already have an account?</label>
-            <a href="../Login/login.html">Sign In</a>
-        </div>
-
-        </form>
+                </form>
 
         </div>
     </div>
