@@ -50,21 +50,26 @@ app.post("/chat", async (req, res) => {
     });
 
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${process.env.GROK_API}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            model: "llama-3.1-8b-instant",
-            input: chatHistory
-          })
-        });
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: chatHistory
+      })
+    });
 
     const data = await response.json();
 
+    if (!response.ok) {
+      console.error(data);
+      return res.status(500).json({ reply: "Groq API error" });
+    }
+
     const reply =
-      data.output?.[0]?.content?.[0]?.text || "No response from AI";
+      data.choices?.[0]?.message?.content || "No response from AI";
 
     // Save AI reply
     chatHistory.push({
