@@ -64,80 +64,27 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-            const icons = document.querySelectorAll(".eye-icon");
+    const icons = document.querySelectorAll(".eye-icon");
 
-            icons.forEach(icon => {
+    icons.forEach(icon => {
 
-                icon.addEventListener("click", () => {
+        icon.addEventListener("click", () => {
 
-                    const input = document.getElementById(icon.dataset.target);
+            const input = document.getElementById(icon.dataset.target);
 
-                    input.type = input.type === "password" ? "text" : "password";
-
-                });
-
-            });
+            input.type = input.type === "password" ? "text" : "password";
 
         });
 
-        document.getElementById("registerForm").addEventListener("submit", async function (e) {
+    });
 
-            e.preventDefault();
+});
+</script>
 
-            const password = document.getElementById("password").value;
-            const confirm = document.getElementById("confPassword").value;
-
-            if (password !== confirm) {
-
-                alert("Passwords do not match");
-                return;
-
-            }
-
-            const data = {
-
-                firstName: document.getElementById("firstName").value,
-                lastName: document.getElementById("lastName").value,
-                username: document.getElementById("username").value,
-                email: document.getElementById("email").value,
-                password: password,
-
-            };
-
-            try {
-
-                const res = await fetch("http://127.0.0.1:8000/auth/register", {
-
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    credentials: "include",
-                    body: JSON.stringify(data)
-
-                });
-
-                const result = await res.json();
-
-                if (!res.ok) {
-
-                    throw new Error(result.detail);
-
-                }
-
-                localStorage.setItem("access_token", result.access_token);
-
-                alert("Account created!");
-
-                window.location.href = "../coachHomepage/index.html";
-
-            } catch (err) {
-                alert(err.message || "Unknown error");
-            }
-        });
-
-    </script>
+<script src="./registerCO.js"></script>
 </body>
 
 </html>
