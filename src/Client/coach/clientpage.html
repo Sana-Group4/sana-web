@@ -83,66 +83,16 @@
       </div>
     </aside>
 
-    <main class="content">
-      <header class="topbar">
-        <h2>Your Coach</h2>
-      </header>
+ <main class="content">
+  <header class="topbar">
+    <h2>Your Coach</h2>
+  </header>
 
-      <section class="coach-page">
-        <div class="coach-card">
-
-          <div class="coach-top-row">
-            <a href="../coach/coachdetails.html" class="coach-link-card">
-              <div class="coach-info-card">
-                <div class="coach-avatar">
-                  <div class="coach-head"></div>
-                  <div class="coach-body"></div>
-                </div>
-
-                <div class="coach-text">
-                  <h3>Sandra</h3>
-                  <p>Sports Coach</p>
-                </div>
-              </div>
-            </a>
-
-            <div class="notification-badge" id="notificationBadge">0</div>
-
-            <div class="coach-actions">
-              <button class="coach-btn" id="messageBtn" type="button">Message</button>
-              <button class="coach-btn" id="markReadBtn" type="button">Mark As Read</button>
-            </div>
-          </div>
-
-          <div class="todo-section">
-            <div class="todo-header">
-              <h3>To Do:</h3>
-              <h3>Mark As Done:</h3>
-            </div>
-
-            <div class="todo-card">
-              <div class="todo-list">
-                <div class="todo-item">8:00 - Jog</div>
-                <div class="todo-item">10:00 - Gym</div>
-                <div class="todo-item">11:00 - Training</div>
-                <div class="todo-item">12:00 - Rest</div>
-                <div class="todo-item">13:00 - Training</div>
-              </div>
-
-              <div class="todo-checks">
-                <label class="check-row"><input type="checkbox"></label>
-                <label class="check-row"><input type="checkbox"></label>
-                <label class="check-row"><input type="checkbox"></label>
-                <label class="check-row"><input type="checkbox"></label>
-                <label class="check-row"><input type="checkbox"></label>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-    </main>
-  </div>
+  <section class="coach-page">
+    <div id="coachContainer"></div>
+  </section>
+</main>
+</div>
 
   <script>
     const notificationBadge = document.getElementById("notificationBadge");
@@ -198,6 +148,9 @@
 
     updateNotificationBadge();
   </script>
+
+<script src="./getCoachDetails.js"></script>
+
 </body>
 
 </html>
