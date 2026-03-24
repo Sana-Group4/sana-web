@@ -101,12 +101,22 @@
         <section class="left">
           <section class="banner">Banner</section>
 
-          <section class="stats">
-            <article class="card">Workout</article>
-            <article class="card">Calories</article>
-            <article class="card">Steps</article>
-          </section>
+         <section class="stats">
+          <article class="card">
+            <h3>Workout</h3>
+            <div id="workoutValue">--</div>
+          </article>
 
+          <article class="card">
+            <h3>Calories</h3>
+            <div id="caloriesValue">--</div>
+          </article>
+
+          <article class="card">
+            <h3>Steps</h3>
+            <div id="stepsValue">--</div>
+          </article>
+          </section>
           <section class="panel chart">Goal Progress</section>
         </section>
 
@@ -243,6 +253,8 @@
       <span>Settings</span>
     </a>
   </nav>
+
+<script src="./biometricData.js"></script>
 
 </body>
 

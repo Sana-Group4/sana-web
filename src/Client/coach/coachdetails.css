@@ -372,3 +372,19 @@ body {
     font-size: 24px;
   }
 }
+
+.no-coach {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+.invite-card {
+  background: #f5f6ff;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.invite-actions button {
+  margin-right: 10px;
+}
