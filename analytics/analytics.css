@@ -291,6 +291,71 @@ th, td {
   cursor: pointer;
 }
 
+.type-btn {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 24px 18px;
+  background: #6C7AE0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.bio-select {
+  appearance: none;
+  background-color: #ffffff;
+  background-image: url("chevron.svg");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  color: #1a1a1a;
+  cursor: pointer;
+  font-size: 14px;
+  height: 42px;
+  outline: none;
+  padding: 0 40px 0 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+
+.bio-select:hover {
+  border-color: #aaa;
+}
+
+.bio-select:focus {
+  border-color: #555;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.07);
+}
+
+.bio-input {
+  appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  color: #1a1a1a;
+  font-size: 14px;
+  height: 42px;
+  outline: none;
+  padding: 0 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+
+.bio-input::placeholder {
+  color: #b0b0b0;
+}
+
+.bio-input:hover {
+  border-color: #aaa;
+}
+
+.bio-input:focus {
+  border-color: #555;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.07);
+}
+
 .edit-btn {
   border: none;
   background: none;
