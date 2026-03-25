@@ -18,7 +18,7 @@ async function loadProfile() {
     user.phone || "";
 }
 
-
+// Save phone number
 
 async function savePhone() {
   const token = localStorage.getItem("access_token");
@@ -35,7 +35,7 @@ async function savePhone() {
     })
   });
 
-  alert("Phone updated ✅");
+  alert("Phone updated");
   loadProfile();
 }
 

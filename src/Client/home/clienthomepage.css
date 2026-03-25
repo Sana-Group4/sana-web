@@ -304,6 +304,26 @@ body {
   opacity: 0.9;
 }
 
+.completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+  opacity: 0.7;
+}
+
+.empty-state p {
+  font-weight: 600;
+  margin: 0;
+}
+
+.empty-state span {
+  font-size: 0.85rem;
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;

@@ -201,103 +201,55 @@
                </div>
 
                <div class="analytics-right">
-
                   <div class="card">
-
                      <h3>To Do List</h3>
-
-
-                     <div class="todo-item">
-
-                        <span>🧘</span>
-
-                        <div>
-
-                           <strong>Stretch</strong>
-                           <p>At 08:00</p>
-
-                        </div>
-
-                        <span class="info-goals">20 mins</span>
-
-                        <button class="edit-btn">✏️</button>
-                     </div>
-
-
-                     <div class="todo-item">
-
-                        <span>🏃</span>
-                        <div>
-
-                           <strong>Run</strong>
-                           <p>At 18:00</p>
-
-                        </div>
-
-                        <span class="info-goals">30 mins</span>
-
-                        <button class="edit-btn">✏️</button>
-                     </div>
-
-
-                     <button class="primary-btn">
+                     <ul class="item-list" id="todoContainer"></ul>
+                     <button class="primary-btn" id="addTaskBtn">
                         + Add Task
                      </button>
 
-                  </div>
+                     <div id="taskTableContainer" class="task-form hidden">
 
+                           <input id="tableName" placeholder="Task name">
 
+                           <select id="tableType">
+                              <option value="custom">Custom</option>
+                              <option value="steps">Steps</option>
+                              <option value="workout_minutes">Workout (minutes)</option>
+                              <option value="workout_session">Workout (session)</option>
+                              <option value="calories_burned">Calories</option>
+                              <option value="weight">Weight</option>
+                           </select>
 
-                  <div class="card">
+                           <input id="tableValue" type="number" placeholder="Value">
 
-                     <h3>Goals</h3>
+                           <select id="tableUnit">
+                              <option value="">Unit</option>
+                              <option value="minutes">minutes</option>
+                              <option value="steps">steps</option>
+                              <option value="kcal">kcal</option>
+                              <option value="kg">kg</option>
+                           </select>
 
-                     <div class="todo-item">
+                           <input id="tableTime" type="time">
 
-                        <span>👟</span>
+                           <button id="saveTableTask" class="primary-btn">Add</button>
 
-                        <div>
-                           <strong>Steps</strong>
-                           <p>Daily</p>
+                           </div>
+
                         </div>
-
-                        <span class="info-goals">10000</span>
-
-                        <button class="edit-btn">✏️</button>
-
-                     </div>
-
-
-                     <div class="todo-item">
-
-                        <span>🔥</span>
-
-                        <div>
-                           <strong>Calories</strong>
-                           <p>Target</p>
-                        </div>
-
-                        <span class="info-goals">2200</span>
-
-                        <button class="edit-btn">✏️</button>
-
-                     </div>
-
-                     <button class="primary-btn">+ Add Goal</button>
 
                   </div>
 
                </div>
-
-
-            </div>
-
-
          </div>
-
       </main>
-
    </div>
+
+<script src="toDoList.js"></script>
+
+
+
 </body>
 
 </html>
