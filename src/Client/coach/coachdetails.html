@@ -56,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a href="/src/clientprofile.html">
+            <a href="/src/Client/profile/clientprofile.html">
               <svg class="nav-icon" viewBox="0 -960 960 960" aria-hidden="true">
                 <path
                   d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
@@ -82,87 +82,100 @@
       </div>
     </aside>
 
-    <main class="content">
-      <header class="topbar">
-        <h2>Coach Details</h2>
-      </header>
+<main class="content">
+  <header class="topbar">
+    <h2>Coach Details</h2>
+  </header>
 
-      <section class="coach-details-page">
+  <section class="coach-details-page">
 
-        <div class="coach-profile-card">
-          <div class="profile-left">
-            <div class="coach-avatar large-avatar">
-              <div class="coach-head"></div>
-              <div class="coach-body"></div>
-            </div>
+    <!-- PROFILE -->
+    <div class="coach-profile-card">
+      <div class="profile-left">
 
-            <div class="coach-main-info">
-              <h1>Sandra</h1>
-              <p class="role">Sports Coach</p>
-              <p class="bio">
-                Sandra is a dedicated sports coach who helps clients improve
-                fitness, build healthy routines, and stay consistent with their
-                training goals.
-              </p>
-            </div>
-          </div>
-
-          <div class="profile-right">
-            <a href="../messagingsystem.html" class="cbtn">Message</a>
-            <a href="../Booking/bookingsystem.html" class="cbtn secondary-btn">Book Session</a>
-          </div>
+        <div class="coach-avatar large-avatar">
+          <div class="coach-head"></div>
+          <div class="coach-body"></div>
         </div>
 
-        <div class="details-grid">
-          <div class="details-card">
-            <h3>Contact Information</h3>
-            <div class="info-row">
-              <span>Email</span>
-              <p>sandra@sana.com</p>
-            </div>
-            <div class="info-row">
-              <span>Phone</span>
-              <p>+44 7700 900123</p>
-            </div>
-            <div class="info-row">
-              <span>Availability</span>
-              <p>Mon - Fri, 9:00 AM - 5:00 PM</p>
-            </div>
-          </div>
+        <div class="coach-main-info">
+          <h1 id="coachName">Loading...</h1>
+          <p class="role" id="coachRole">Coach</p>
 
-          <div class="details-card">
-            <h3>Specialties</h3>
-            <div class="tag-list">
-              <span class="tag">Strength Training</span>
-              <span class="tag">Cardio Fitness</span>
-              <span class="tag">Mobility</span>
-              <span class="tag">Routine Planning</span>
-            </div>
-          </div>
-
-          <div class="details-card">
-            <h3>Current Focus</h3>
-            <ul class="focus-list">
-              <li>Improve overall fitness</li>
-              <li>Build a consistent routine</li>
-              <li>Track progress weekly</li>
-              <li>Support healthy recovery habits</li>
-            </ul>
-          </div>
-
-          <div class="details-card">
-            <h3>Notes</h3>
-            <p class="notes-text">
-              Sandra recommends keeping up with the daily plan, staying hydrated,
-              and updating progress after each session so future training can be
-              adjusted properly.
-            </p>
-          </div>
+          <p class="bio" id="coachDescription">
+            Loading description...
+          </p>
         </div>
 
-      </section>
-    </main>
+      </div>
+
+      <div class="profile-right">
+        <a href="../messagingsystem.html" class="cbtn">Message</a>
+        <a href="../Booking/bookingsystem.html" class="cbtn secondary-btn">
+          Book Session
+        </a>
+      </div>
+    </div>
+
+
+    <!-- GRID -->
+    <div class="details-grid">
+
+      <!-- CONTACT -->
+      <div class="details-card">
+        <h3>Contact Information</h3>
+
+        <div class="info-row">
+          <span>Email</span>
+          <p id="coachEmail">Loading...</p>
+        </div>
+
+        <div class="info-row">
+          <span>Phone</span>
+          <p id="coachPhone">N/A</p>
+        </div>
+
+        <div class="info-row">
+          <span>Availability</span>
+          <p id="coachAvailability">N/A</p>
+        </div>
+      </div>
+
+
+      <!-- SPECIALTIES -->
+      <div class="details-card">
+        <h3>Specialties</h3>
+        <div class="tag-list" id="coachSpecialties">
+          <!-- JS will insert tags -->
+        </div>
+      </div>
+
+
+      <!-- FOCUS -->
+      <div class="details-card">
+        <h3>Current Focus</h3>
+        <ul class="focus-list" id="coachFocus">
+          <!-- JS will insert list -->
+        </ul>
+      </div>
+
+
+      <!-- NOTES -->
+      <div class="details-card">
+        <h3>Notes</h3>
+        <p class="notes-text" id="coachNotes">
+          Loading notes...
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+</main>
   </div>
+
+  
+  <script src="./coachInfo.js"></script>
 </body>
 
 </html>

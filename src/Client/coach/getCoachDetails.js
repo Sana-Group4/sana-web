@@ -30,23 +30,32 @@ async function loadCoachPage() {
         <div class="section-title">Your Coaches</div>
       `;
 
-      html += coaches.map(coach => `
-        <div class="coach-card">
+    html += coaches.map(coach => `
+    <div class="coach-card">
 
-          <div class="coach-info-card">
-            <div class="coach-avatar">
-              <div class="coach-head"></div>
-              <div class="coach-body"></div>
-            </div>
+      <div class="coach-row">
 
-            <div class="coach-text">
-              <h3>${coach.firstName} ${coach.lastName}</h3>
-              <p>${coach.email}</p>
-            </div>
+        <div class="coach-info-card">
+          <div class="coach-avatar">
+            <div class="coach-head"></div>
+            <div class="coach-body"></div>
           </div>
 
+          <div class="coach-text">
+            <h3>${coach.firstName} ${coach.lastName}</h3>
+            <p>${coach.email}</p>
+          </div>
         </div>
-      `).join("");
+
+        <button class="coach-btn view-btn"
+          onclick="goToCoach(${coach.id})">
+          View Details
+        </button>
+
+      </div>
+
+    </div>
+  `).join("");
     }
 
 
@@ -167,6 +176,9 @@ async function rejectSelected() {
   loadCoachPage();
 }
 
+function goToCoach(coachId) {
+  window.location.href = `/src/Client/coach/coachDetails.html?coach_id=${coachId}`;
+}
 
 
 window.addEventListener("DOMContentLoaded", loadCoachPage);

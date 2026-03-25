@@ -462,3 +462,9 @@ body {
   display: flex;
   gap: 20px;
 }
+
+.coach-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
