@@ -87,8 +87,8 @@
 
       <header class="topbar">
         <div class="greeting">
-          <p class="small">Good Morning</p>
-          <h2 class="big">Welcome, {user}!</h2>
+          <p class="small" id="welcome-sub">Good Morning</p>
+          <h2 class="big" id="welcome">Welcome, {user}!</h2>
         </div>
 
          <div class="topbar-right">
@@ -99,7 +99,7 @@
 
       <div class="dashboard">
         <section class="left">
-          <section class="banner">Banner</section>
+          <section class="banner">Welcome to the client homepage, this is where you can track your activity goals</section>
 
          <section class="stats">
           <article class="card">
@@ -117,7 +117,18 @@
             <div id="stepsValue">--</div>
           </article>
           </section>
-          <section class="panel chart">Goal Progress</section>
+          <section class="panel chart">Goal Progress
+          <div style="display: flex; gap: 1rem;">
+              <div style="width: 350px; height: 350px; text-align: center;">
+                  <p>Steps</p>
+                  <canvas id="steps_goal"></canvas>
+              </div>
+              <div style="width: 350px; height: 350px; text-align: center;">
+                  <p>Calories</p>
+                  <canvas id="cals_goal"></canvas>
+              </div>
+          </div>
+          </section>
         </section>
 
         <aside class="right">
@@ -148,7 +159,7 @@
                     <p class="item-sub">Today</p>
                   </div>
                 </div>
-                <span class="item-badge">10k</span>
+                <span class="item-badge" id="step_val"></span>
               </li>
 
               <li class="item-card">
@@ -159,18 +170,7 @@
                     <p class="item-sub">Target</p>
                   </div>
                 </div>
-                <span class="item-badge">2,200</span>
-              </li>
-
-              <li class="item-card">
-                <div class="item-left">
-                  <div class="item-icon">🔥</div>
-                  <div class="item-text">
-                    <p class="item-title">Calories</p>
-                    <p class="item-sub">Target</p>
-                  </div>
-                </div>
-                <span class="item-badge">2,200</span>
+                <span class="item-badge" id ="cal_val"></span>
               </li>
             </ul>
           </section>
@@ -223,7 +223,9 @@
     </a>
   </nav>
 
-<script src="./biometricData.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./biometricData.js" type="module"></script>
 <script src ="./displayActivities.js"></script>
 
 </body>
