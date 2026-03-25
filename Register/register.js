@@ -1,5 +1,23 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+    
+
+    const icons = document.querySelectorAll(".eye-icon");
+
+        icons.forEach(icon => {
+
+            icon.addEventListener("click", () => {
+
+                const input = document.getElementById(icon.dataset.target);
+
+                input.type = input.type === "password" ? "text" : "password";
+
+                });
+
+        });
+
+    });
+
 
     // Get the registration form element from the page
     const registerForm = document.getElementById("registerForm");
@@ -76,4 +94,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-});

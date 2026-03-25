@@ -72,82 +72,66 @@
         </div>
     </div>
 </div>
+<!-- 
+<script>
 
-<!-- <script>
 
-document.addEventListener("DOMContentLoaded", () => {
+    </script>
+// document.getElementById("registerForm").addEventListener("submit", async function(e){
 
-    const icons = document.querySelectorAll(".eye-icon");
+//     e.preventDefault();
 
-        icons.forEach(icon => {
+//         const password = document.getElementById("password").value;
+//         const confirm = document.getElementById("confPassword").value;
 
-            icon.addEventListener("click", () => {
+//         if(password !== confirm){
 
-                const input = document.getElementById(icon.dataset.target);
+//     alert("Passwords do not match");
+//     return;
 
-                input.type = input.type === "password" ? "text" : "password";
+//     }
 
-                });
+//     const data = {
 
-        });
+//         firstName: document.getElementById("firstName").value,
+//         lastName: document.getElementById("lastName").value,
+//         username: document.getElementById("username").value,
+//         email: document.getElementById("email").value,
+//         password: password,
 
-    });
+//     };
 
-document.getElementById("registerForm").addEventListener("submit", async function(e){
+// try{
 
-    e.preventDefault();
+//     const res = await fetch("http://127.0.0.1:8000/auth/register",{
 
-        const password = document.getElementById("password").value;
-        const confirm = document.getElementById("confPassword").value;
+//         method:"POST",
+//         headers:{ "Content-Type":"application/json" },
+//         credentials:"include",
+//         body: JSON.stringify(data)
 
-        if(password !== confirm){
+//     });
 
-    alert("Passwords do not match");
-    return;
+//     const result = await res.json();
 
-    }
+//         if(!res.ok){
 
-    const data = {
+//         throw new Error(result.detail);
 
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value,
-        username: document.getElementById("username").value,
-        email: document.getElementById("email").value,
-        password: password,
+//     }
 
-    };
+//         localStorage.setItem("access_token", result.access_token);
 
-try{
+//         alert("Account created!");
 
-    const res = await fetch("http://127.0.0.1:8000/auth/register",{
+//         window.location.href="/src/client/home/clientlogin.html";
 
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        credentials:"include",
-        body: JSON.stringify(data)
+//     }catch(err){
+//         alert(err.message || "Unknown error");
+//     }
 
-    });
+// });  -->
 
-    const result = await res.json();
-
-        if(!res.ok){
-
-        throw new Error(result.detail);
-
-    }
-
-        localStorage.setItem("access_token", result.access_token);
-
-        alert("Account created!");
-
-        window.location.href="/src/client/home/clientlogin.html";
-
-    }catch(err){
-        alert(err.message || "Unknown error");
-    }
-
-}); </script> -->
-
-<script src="register.js"></script>
+// <script src="register.js"></script>
 </body>
 </html>
