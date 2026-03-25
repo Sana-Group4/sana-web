@@ -67,68 +67,7 @@
             </div>
         </div>
     </div>
-    <script>
-
-        document.getElementById("emailForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            document.getElementById("emailForm").style.display = "none";
-            document.getElementById("authCodeForm").style.display = "block";
-        });
-
-
-        document.getElementById("emailForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            document.getElementById("emailForm").style.display = "none";
-            document.getElementById("authCodeForm").style.display = "block";
-        });
-
-      
-        document.getElementById("authCodeForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const code = document.getElementById("code").value;
-
-            
-            if (code === "123456") {
-                document.getElementById("authCodeForm").style.display = "none";
-                document.getElementById("passwordForm").style.display = "block";
-            } else {
-                alert("Invalid code!");
-            }
-        });
-
-        document.getElementById("passwordForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const pass = document.getElementById("inputPass").value;
-            const confirm = document.getElementById("confPass").value;
-
-            if (pass !== confirm) {
-                alert("Passwords do not match!");
-                return;
-            }
-
-            alert("Password successfully updated!");
-            window.location.href = "../Login/login.html";s
-        });
-        
-        document.querySelectorAll(".eye-icon").forEach(icon => {
-            icon.addEventListener("click", function () {
-
-                const input = document.getElementById(this.dataset.target);
-
-                if (input.type === "password") {
-                    input.type = "text";
-                } else {
-                    input.type = "password";
-                }
-
-            });
-        });
-
-    </script>
+    <script src="./forPass.js"></script>
 
 </body>
 
