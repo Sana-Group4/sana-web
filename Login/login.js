@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("password", password);
 
         try {
-            // LOGIN
+         
             const res = await fetch("http://localhost:8000/auth/login", {
                 method: "POST",
                 headers: {
@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const token = result.access_token;
 
-            // ✅ store token
+           
             localStorage.setItem("access_token", token);
 
-            // NOW GET USER INFO
+          
             const userRes = await fetch("http://localhost:8000/api/account", {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("User:", user);
 
-            // ROLE-BASED REDIRECT
+           
             if (user.is_coach) {
                 window.location.href = "../coachHomepage/index.html";
             } else {

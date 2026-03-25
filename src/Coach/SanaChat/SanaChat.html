@@ -89,7 +89,7 @@
         </aside>
 
         <body>
-           <div class="chat-wrapper">
+            <div class="chat-wrapper">
                 <div id="chat"></div>
 
                 <div class="chat-input-area">
@@ -154,12 +154,12 @@
                     chat.scrollTop = chat.scrollHeight;
 
                     try {
-                        const res = await fetch("http://localhost:3000/chat", {
+                        const res = await fetch("http://localhost:3000", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify({ message: text, sessionID: sessionID })
+                            body: JSON.stringify({ message: text, sessionId: sessionId })
                         });
 
                         const data = await res.json();
