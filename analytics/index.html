@@ -97,8 +97,8 @@
 
          <header class="topbar">
             <div class="greeting">
-               <p class="small">Good Morning</p>
-               <h2 class="big">Welcome, {user}!</h2>
+               <p class="small" id="welcome-sub">Good Morning</p>
+               <h2 class="big" id="welcome">Welcome, {user}!</h2>
             </div>
             <div class="topbar-right">
                <a href="/src/Client/profile/clientprofile.html" class="icon-btn" aria-label="Settings">⚙️</a>
@@ -114,25 +114,30 @@
 
                <div class="metric-card">
                   <h4>Steps Today</h4>
-                  <p>8,540</p>
+                  <p id="steps_today">8,540</p>
                </div>
 
                <div class="metric-card">
                   <h4>Calories Burned</h4>
-                  <p>520 kcal</p>
+                  <p id="cals_today">520 kcal</p>
                </div>
 
                <div class="metric-card">
                   <h4>Workouts</h4>
-                  <p>2</p>
+                  <p id="wo_today">2</p>
                </div>
 
                <div class="metric-card">
                   <h4>Active Minutes</h4>
-                  <p>64 min</p>
+                  <p id="active_mins">64 min</p>
                </div>
             </div>
 
+            <div style="padding-left: 10px; padding-bottom: 2px;">
+               <button class="primary-btn" id="7-day">7 Day</button>
+               <button class="primary-btn" id="14-day">14 Day</button>
+               <button class="primary-btn" id="30-day">30 Day</button>
+            </div>
 
             <div class="analytics-main">
 
@@ -140,8 +145,17 @@
 
                   <div class="card chart-card">
 
-                     <h3>Steps Over Time</h3>
-
+                     <h3 id="graph-title">Steps Over Time</h3>
+                     <div>
+                        <canvas id="analytics-graph"></canvas>
+                     </div>
+                  </div>
+                  <div>
+                     <button class="type-btn" id="heart_rate_bpm">Heart Rate</button>
+                     <button class="type-btn" id="steps_per_day">Steps</button>
+                     <button class="type-btn" id="weight_kg">Weight</button>
+                     <button class="type-btn" id="calories_per_day">Calories</button>
+                     <button class="type-btn" id="workout_session">Workouts</button>
                   </div>
 
                   <div class="card">
@@ -235,21 +249,45 @@
 
                            <button id="saveTableTask" class="primary-btn">Add</button>
 
-                           </div>
-
-                        </div>
+                     </div>
 
                   </div>
 
+                  <div class="card">
+                        <h3>Burned Calorie Goal 🔥</h3>
+                        <span class="info-goals" id="cal-goal"></span>
+                        <button class="edit-btn" id="cal-edit-btn">✏️</button>
+                        
+                        <br>
+                        <br>
+                        
+                        <h3>Step Goal 👟</h3>
+                        <span class="info-goals" id="step-goal"></span>
+                        <button class="edit-btn" id="step-edit-btn">✏️</button>
+                  </div>
+
+                  <div class="card">
+                     <h3>Add Biometric</h3>
+                     <select class="bio-select" id="update_bio_type">
+                        <option value="heart_rate_bpm">Heart Rate</option>
+                        <option value="weight_kg">Weight (Kg)</option>
+                        <option value="steps_per_day">Steps Today (total)</option>
+                        <option value="calories_per_day">Calories Burned (total)</option>
+                        <option value="workout_session">Workouts Today (total)</option>
+                     </select>
+                     <input value="" class="bio-input" id="update-bio-val"placeholder="Enter data value"><br>
+                     <button class="primary-btn" id="bio-add-confirm">Confirm</button>
+                  </div>
+                  </div>
                </div>
+            </div>
          </div>
       </main>
    </div>
 
 <script src="toDoList.js"></script>
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./analytics.js" type="module"></script>
 </body>
 
 </html>

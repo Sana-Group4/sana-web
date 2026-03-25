@@ -1,4 +1,4 @@
-async function getUserId() {
+async function getUser() {
   const token = localStorage.getItem("access_token");
 
   if (!token) {
@@ -19,7 +19,7 @@ async function getUserId() {
 
     const user = await res.json();
     console.log("Logged in user:", user);
-    return user.id;
+    return user;
   } catch (err) {
     console.error("Error getting user:", err);
     return null;
@@ -84,10 +84,68 @@ async function fetchBiometric(userId, type) {
   }
 }
 
+async function make_chart(user, data_name){
+  let data,goal, title;
+  if (data_name == "steps"){
+    data = await fetchBiometric(user.id, 'steps_per_day');
+    if (data == "--"){
+      data = 0
+    }
+    goal = document.getElementById("step_val").textContent
+    title = "Step Goal"
+  }
+  else if (data_name == "cals"){
+    data = await fetchBiometric(user.id, 'calories_per_day');
+    if (data == "--"){
+      data = 0
+    }
+    goal = document.getElementById("cal_val").textContent
+    title = "Burned Calories Goal"
+  }
+  const remaining = Number(goal.replace(/,/g, "").trim())-data
+  console.log(data)
+  console.log(remaining)
+  console.log(goal)
+  const processed_data = {
+    title: title,
+    labels:[
+      'Current',
+      'Remaining'
+    ],
+    datasets: [{
+      data: [data, remaining],
+      backgroundColor: [
+        '#4f59a5',
+        '#a6afe8'
+      ],
+      hoverOffset: 4
+    }]
+  }
+
+  new Chart(
+    document.getElementById(data_name+"_goal"),
+    {
+      type: 'doughnut',
+      data: processed_data
+    }
+  )
+}
+
 async function loadDashboard() {
   const caloriesEl = document.getElementById("caloriesValue");
   const stepsEl = document.getElementById("stepsValue");
   const workoutEl = document.getElementById("workoutValue");
+
+  if (!localStorage.getItem("cal-goal")){
+        localStorage.setItem("cal-goal", 1000);
+    }
+
+    if (!localStorage.getItem("step-goal")){
+        localStorage.setItem("step-goal", 8000);
+    }
+
+  document.getElementById("cal_val").textContent= localStorage.getItem("cal-goal");
+  document.getElementById("step_val").textContent= localStorage.getItem("step-goal");
 
   if (!caloriesEl || !stepsEl || !workoutEl) {
     console.error("Dashboard elements not found");
@@ -98,21 +156,39 @@ async function loadDashboard() {
   stepsEl.textContent = "Loading...";
   workoutEl.textContent = "Push Day - 45 mins";
 
-  const userId = await getUserId();
+  const user = await getUser();
 
-  if (!userId) {
+  if (!user) {
     caloriesEl.textContent = "--";
     stepsEl.textContent = "--";
     return;
   }
 
+  const dateNow = new Date();
+  const time = dateNow.getHours()
+
+  const welcome_sub = document.getElementById("welcome-sub");
+
+  if (time >=0 && time <=12){
+    welcome_sub.textContent = "Good Morning";
+  }
+  else if (time >12 && time <=17){
+    welcome_sub.textContent = "Good Afternoon";
+  }
+  else welcome_sub.textContent = "Good Evening";
+
+  document.getElementById("welcome").textContent = "Welcome, " + user.firstName + "!";
+
   const [calories, steps] = await Promise.all([
-    fetchBiometric(userId, "calories_per_day"),
-    fetchBiometric(userId, "steps_per_day")
+    fetchBiometric(user.id, "calories_per_day"),
+    fetchBiometric(user.id, "steps_per_day")
   ]);
 
   caloriesEl.textContent = calories;
   stepsEl.textContent = steps;
+
+  await make_chart(user, "steps")
+  await make_chart(user, "cals")
 }
 
 document.addEventListener("DOMContentLoaded", loadDashboard);
