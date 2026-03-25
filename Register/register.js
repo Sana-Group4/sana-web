@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const registerBtn = document.getElementById("registerBtn");
 
         // Get the password and confirmation password values from the form
-        const password = document.getElementById("password").value;
-        const confPassword = document.getElementById("confPassword").value;
+        const password = document.getElementById("inputPass").value;
+        const confPassword = document.getElementById("confPass").value;
 
         if (password !== confPassword) {
             alert("Passwords do not match");
@@ -25,9 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create a data object containing the user information
         const data = {
             // Get values from input fields and remove extra spaces
-            firstName: document.getElementById("firstName").value.trim(),
-            lastName: document.getElementById("lastName").value.trim(),
-            email: document.getElementById("email").value.trim(),
+            firstName: document.getElementById("inputFName").value.trim(),
+            lastName: document.getElementById("inputLName").value.trim(),
+            email: document.getElementById("inputEmail").value.trim(),
+            username: document.getElementById("inputUsername").value.trim(),
             password: password
         };
 

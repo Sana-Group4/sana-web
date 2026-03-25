@@ -1,268 +1,108 @@
-
-const day_7 = document.getElementById("7-day");
-const day_14 = document.getElementById("14-day");
-const day_30 = document.getElementById("30-day");
-
-const heart_rate = document.getElementById("heart_rate_bpm");
-const weight = document.getElementById("weight_kg");
-const workout = document.getElementById("workout_session");
-const steps = document.getElementById("steps_per_day");
-const calories = document.getElementById("calories_per_day");
-
-const steps_today = document.getElementById("steps_today");
-const cals_today = document.getElementById("cals_today");
-const wo_today = document.getElementById("wo_today");
-const active_mins = document.getElementById("active_mins");
-
-const bio_select = document.getElementById("update_bio_type");
-const bio_input = document.getElementById("update-bio-val");
-const bio_confirm = document.getElementById("bio-add-confirm");
-
-const graph_title = document.getElementById("graph-title");
-
-day_7.addEventListener("click", () => {
-    curr_timescale = 7;
-    make_graph(e);
-});
-
-day_14.addEventListener("click", () => {
-    curr_timescale = 14;
-    make_graph();
-});
-
-day_30.addEventListener("click", () =>  {
-    curr_timescale = 30;
-    make_graph();
-});
-
-heart_rate.addEventListener("click", () =>{
-    curr_data_type = "heart_rate_bpm";
-    make_graph();
-});
-
-weight.addEventListener("click", () =>{
-    curr_data_type = "weight_kg";
-    make_graph();
-});
-
-workout.addEventListener("click", () =>{
-    curr_data_type = "workout_session";
-    make_graph();
-});
-
-steps.addEventListener("click", () =>{
-    curr_data_type = "steps_per_day";
-    make_graph();
-});
-
-calories.addEventListener("click", () =>{
-    curr_data_type = "calories_per_day";
-    make_graph();
-});
-
-bio_confirm.addEventListener("click", () => {
-    add_bio();
-});
-
-document.getElementById("cal-edit-btn").addEventListener("click", () => {
-    makeEditable("cal-goal");
-});
-
-document.getElementById("step-edit-btn").addEventListener("click", () => {
-    makeEditable("step-goal");
-});
+console.log("analytics.js loaded");
 
 let curr_timescale = 7;
 let curr_data_type = "heart_rate_bpm";
 let curr_chart = null;
 
+// ─── API HELPERS ─────────────────────────────────────────────────────────────
+
 async function getUser() {
-  const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem("access_token");
+    if (!token) { console.error("No access token"); return null; }
 
-  if (!token) {
-    console.error("No access token found");
-    return null;
-  }
-
-  try {
-    const res = await fetch("http://localhost:8000/api/account", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to get account");
+    try {
+        const res = await fetch("http://localhost:8000/api/account", {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error("Failed to get account");
+        return await res.json();
+    } catch (err) {
+        console.error("getUser error:", err);
+        return null;
     }
-
-    const user = await res.json();
-    console.log("Logged in user:", user);
-    return user;
-  } catch (err) {
-    console.error("Error getting user:", err);
-    return null;
-  }
 }
 
 function getRange(days) {
-  const end = new Date();
-  const start = new Date();
-
-  start.setDate(end.getDate() - days);
-
-  console.log("Range:", start, end);
-  return {
-    start: start.toISOString(),
-    end: end.toISOString()
-  };
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - days);
+    return { start: start.toISOString(), end: end.toISOString() };
 }
 
+async function fetchBiometric(userId, type, days) {
+    const token = localStorage.getItem("access_token");
+    if (!token) return null;
 
-async function fetchBiometric(userId, type) {
-  const token = localStorage.getItem("access_token");
+    const { start, end } = getRange(days);
+    const url = `http://localhost:8000/api/biometrics/vector`
+        + `?user_id=${userId}`
+        + `&biometric_type=${type}`
+        + `&start=${encodeURIComponent(start)}`
+        + `&end=${encodeURIComponent(end)}`;
 
-  if (!token) {
-    console.error("No access token found");
-    return "--";
-  }
-
-  const { start, end } = getRange(curr_timescale);
-
-  const url =
-    `http://localhost:8000/api/biometrics/vector` +
-    `?user_id=${userId}` +
-    `&biometric_type=${type}` +
-    `&start=${encodeURIComponent(start)}` +
-    `&end=${encodeURIComponent(end)}`;
-
-  console.log("Fetching:", url);
-
-  try {
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error(`Failed to fetch ${type}:`, res.status, errorText);
-      return "--";
+    try {
+        const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+        if (!res.ok) { console.error(`fetchBiometric ${type} failed:`, res.status); return null; }
+        return await res.json();
+    } catch (err) {
+        console.error(`fetchBiometric error:`, err);
+        return null;
     }
-
-    const data = await res.json();
-    console.log(`${type} response:`, data);
-
-    if (data){
-        return data
-    }
-    else{
-        return "--";
-    }
-  } catch (err) {
-    console.error(`Error fetching ${type}:`, err);
-    return "--";
-  }
 }
 
-async function fetch_single_Biometric(userId, type) {
-  const token = localStorage.getItem("access_token");
-
-  if (!token) {
-    console.error("No access token found");
+async function fetchLatestBiometric(userId, type) {
+    const data = await fetchBiometric(userId, type, 1);
+    if (data && data.y && data.y.length > 0) {
+        return data.y[data.y.length - 1];
+    }
     return "--";
-  }
-
-  const { start, end } = getRange(1);
-
-  const url =
-    `http://localhost:8000/api/biometrics/vector` +
-    `?user_id=${userId}` +
-    `&biometric_type=${type}` +
-    `&start=${encodeURIComponent(start)}` +
-    `&end=${encodeURIComponent(end)}`;
-
-  console.log("Fetching:", url);
-
-  try {
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error(`Failed to fetch ${type}:`, res.status, errorText);
-      return "--";
-    }
-
-    const data = await res.json();
-    console.log(`${type} response:`, data);
-
-    if (data.y && data.y.length > 0) {
-      return data.y[data.y.length - 1];
-    }
-    else{
-        return "--";
-    }
-  } catch (err) {
-    console.error(`Error fetching ${type}:`, err);
-    return "--";
-  }
 }
 
-async function load_dashboard(){
+// ─── DASHBOARD ───────────────────────────────────────────────────────────────
+
+async function load_dashboard() {
     const user = await getUser();
+    if (!user) { console.error("No user — is access_token set?"); return; }
 
-    const dateNow = new Date();
-    const time = dateNow.getHours()
-
-    const welcome_sub = document.getElementById("welcome-sub");
-
-    if (time >=0 && time <=12){
-        welcome_sub.textContent = "Good Morning";
-    }
-    else if (time >12 && time <=17){
-        welcome_sub.textContent = "Good Afternoon";
-    }
-    else welcome_sub.textContent = "Good Evening";
-
-    let steps,cals,wo;
-    steps = await fetch_single_Biometric(user.id, "steps_per_day");
-    cals = await fetch_single_Biometric(user.id, "calories_per_day");
-    wo = await fetch_single_Biometric(user.id, "workout_session");
-
-    if (!localStorage.getItem("cal-goal")){
-        localStorage.setItem("cal-goal", 1000);
+    // Greeting
+    const hour = new Date().getHours();
+    const greetingEl = document.getElementById("welcome-sub");
+    if (greetingEl) {
+        greetingEl.textContent = hour < 12 ? "Good Morning" : hour < 17 ? "Good Afternoon" : "Good Evening";
     }
 
-    if (!localStorage.getItem("step-goal")){
-        localStorage.setItem("step-goal", 8000);
-    }
+    const welcomeEl = document.getElementById("welcome");
+    if (welcomeEl) welcomeEl.textContent = `Welcome, ${user.firstName}!`;
 
-    document.getElementById("cal-goal").innerText= localStorage.getItem("cal-goal");
-    document.getElementById("step-goal").innerText= localStorage.getItem("step-goal");
+    // Goals
+    if (!localStorage.getItem("cal-goal")) localStorage.setItem("cal-goal", 1000);
+    if (!localStorage.getItem("step-goal")) localStorage.setItem("step-goal", 8000);
+    const calGoalEl = document.getElementById("cal-goal");
+    const stepGoalEl = document.getElementById("step-goal");
+    if (calGoalEl) calGoalEl.innerText = localStorage.getItem("cal-goal");
+    if (stepGoalEl) stepGoalEl.innerText = localStorage.getItem("step-goal");
 
-    console.log(steps);
+    // Today's stats
+    const [steps, cals, wo] = await Promise.all([
+        fetchLatestBiometric(user.id, "steps_per_day"),
+        fetchLatestBiometric(user.id, "calories_per_day"),
+        fetchLatestBiometric(user.id, "workout_session")
+    ]);
 
-    steps_today.textContent = steps || "--";
-    cals_today.textContent = cals || "--";
-    wo_today.textContent = wo || "--";
-    active_mins.textContent = "--";
-
-    document.getElementById("welcome").textContent = "Welcome, " + user.firstName + "!";
+    document.getElementById("steps_today").textContent = steps;
+    document.getElementById("cals_today").textContent = cals;
+    document.getElementById("wo_today").textContent = wo;
+    document.getElementById("active_mins").textContent = "--";
 }
+
+// ─── CHARTS ──────────────────────────────────────────────────────────────────
 
 function make_line_chart(canvasId, labels, values, title = "") {
-    if (curr_chart){
-        curr_chart.destroy()
-    }
-
+    if (curr_chart) curr_chart.destroy();
     curr_chart = new Chart(document.getElementById(canvasId), {
         type: 'line',
         data: {
-            labels: labels,
+            labels,
             datasets: [{
                 label: title,
                 data: values,
@@ -273,33 +113,15 @@ function make_line_chart(canvasId, labels, values, title = "") {
             }]
         },
         options: {
-            plugins: {
-                title: {
-                    display: !!title,
-                    text: title
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        maxTicksLimit: 8  // prevents datetime labels overlapping
-                    }
-                }
-            }
+            plugins: { title: { display: !!title, text: title } },
+            scales: { x: { ticks: { maxTicksLimit: 8 } } }
         }
     });
 }
 
 function make_bar_chart(canvasId, labels, values, title = "") {
-    if (curr_chart) {
-        curr_chart.destroy();
-    }
-
-    const formattedLabels = labels.map(d => new Date(d).toLocaleString("en-GB", {
-        day: "numeric",
-        month: "short"
-    }));
-
+    if (curr_chart) curr_chart.destroy();
+    const formattedLabels = labels.map(d => new Date(d).toLocaleString("en-GB", { day: "numeric", month: "short" }));
     curr_chart = new Chart(document.getElementById(canvasId), {
         type: 'bar',
         data: {
@@ -310,178 +132,136 @@ function make_bar_chart(canvasId, labels, values, title = "") {
                 backgroundColor: '#4f59a571',
                 borderColor: '#4f59a5',
                 borderWidth: 1,
-                maxBarThickness: 60    
+                maxBarThickness: 60
             }]
         },
         options: {
-            plugins: {
-                title: {
-                    display: !!title,
-                    text: title
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        maxTicksLimit: 31
-                    }
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
+            plugins: { title: { display: !!title, text: title } },
+            scales: { x: { ticks: { maxTicksLimit: 31 } }, y: { beginAtZero: true } }
         }
     });
 }
 
 function getDailyMax(labels, values) {
     const dailyMap = {};
-
     labels.forEach((timestamp, i) => {
         const day = new Date(timestamp).toISOString().split("T")[0];
-        if (!dailyMap[day] || values[i] > dailyMap[day]) {
-            dailyMap[day] = values[i];
-        }
+        if (!dailyMap[day] || values[i] > dailyMap[day]) dailyMap[day] = values[i];
     });
-
-    return {
-        t: Object.keys(dailyMap),
-        y: Object.values(dailyMap)
-    };
+    return { t: Object.keys(dailyMap), y: Object.values(dailyMap) };
 }
 
-async function make_graph(){
+async function make_graph() {
     const user = await getUser();
-    console.log(user);
-    let data, title, graph;
-    data = await fetchBiometric(user.id, curr_data_type)
+    if (!user) { console.error("make_graph: no user"); return; }
 
-    if (curr_data_type == "heart_rate_bpm"){
-        title = "BPM"
-        graph_title.innerHTML = "Heart Rate"
-        graph = "line"
-    }
+    const data = await fetchBiometric(user.id, curr_data_type, curr_timescale);
+    if (!data || !data.t || !data.y) { console.error("make_graph: no data returned"); return; }
 
-    if (curr_data_type == "workout_session"){
-        title = "workouts"
-        graph_title.innerHTML = "Workout Sessions Per Day"
-        graph = "bar"
-    }
+    const graphTitleEl = document.getElementById("graph-title");
 
-    if (curr_data_type == "weight_kg"){
-        title = "Kg"
-        graph_title.innerHTML = "Weight"
-        graph = "line"
-    }
+    const config = {
+        heart_rate_bpm:   { title: "BPM",    label: "Heart Rate",            type: "line" },
+        weight_kg:        { title: "Kg",      label: "Weight",                type: "line" },
+        workout_session:  { title: "Workouts",label: "Workout Sessions Per Day", type: "bar" },
+        steps_per_day:    { title: "Steps",   label: "Steps Per Day",         type: "bar"  },
+        calories_per_day: { title: "Kcal",    label: "Calories Per Day",      type: "bar"  }
+    }[curr_data_type];
 
-    if (curr_data_type == "steps_per_day"){
-        title = "Steps"
-        graph_title.innerHTML = "Steps per day"
-        graph = "bar"
-    }
+    if (!config) return;
+    if (graphTitleEl) graphTitleEl.textContent = config.label;
 
-    if (curr_data_type == "calories_per_day"){
-        title = "Kcal"
-        graph_title.innerHTML = "Calories Per Day"
-        graph = "bar"
-    }
-
-    if (graph == "line"){
-        const formattedLabels = data.t.map(d => {
-        const date = new Date(d);
-        return date.toLocaleString("en-GB", {
-            day: "numeric",
-            month: "short",
-            hour: "2-digit",
-            minute: "2-digit"
-            });
-        }); 
-        make_line_chart("analytics-graph", formattedLabels, data.y, title)
-    }
-
-    if (graph == "bar"){
+    if (config.type === "line") {
+        const formattedLabels = data.t.map(d => new Date(d).toLocaleString("en-GB", {
+            day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
+        }));
+        make_line_chart("analytics-graph", formattedLabels, data.y, config.title);
+    } else {
         const daily = getDailyMax(data.t, data.y);
-        make_bar_chart("analytics-graph", daily.t, daily.y, "Steps per Day");
+        make_bar_chart("analytics-graph", daily.t, daily.y, config.title);
     }
 }
 
-async function add_bio(){
-    let type,val,token;
-    type = bio_select.options[bio_select.selectedIndex].value;
-    val = Number(bio_input.value);
-    token = localStorage.getItem("access_token")
+// ─── ADD BIOMETRIC ────────────────────────────────────────────────────────────
 
-    console.log(type);
-    console.log(val);
+async function add_bio() {
+    const bio_select = document.getElementById("update_bio_type");
+    const bio_input  = document.getElementById("update-bio-val");
+    const token      = localStorage.getItem("access_token");
+
+    const type = bio_select.options[bio_select.selectedIndex].value;
+    const val  = Number(bio_input.value);
+
+    if (!type || !val) { alert("Data not valid"); return; }
 
     const user = await getUser();
-    console.log(user);
+    if (!user) { alert("Not logged in"); return; }
 
-    const now = new Date();
-    if (!type || !val){
-        alert("data not valid")
-        return
-    }
-
-    const url =
-    `http://localhost:8000/api/biometrics/vector`
-
-    try{
-        const res= await fetch(url,{
+    try {
+        const res = await fetch("http://localhost:8000/api/biometrics/vector", {
             method: "POST",
-            body:JSON.stringify({
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            body: JSON.stringify({
                 user_id: user.id,
                 biometric_type: type,
-                times: [now.toISOString()],
+                times: [new Date().toISOString()],
                 values: [val]
-            }),
-            headers:{
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            }
-        })
-        if (!res.ok) throw new Error(response.statusText);
-        console.log(res);
-        alert("biomarker added succesfully")
-    }catch (err){
-        alert("error adding biomarker")
+            })
+        });
+        if (!res.ok) throw new Error(res.statusText);
+        bio_input.value = "";
+        alert("Biometric added successfully");
+    } catch (err) {
+        console.error(err);
+        alert("Error adding biometric");
     }
 }
+
+// ─── EDITABLE GOALS ──────────────────────────────────────────────────────────
 
 function makeEditable(spanId) {
     const span = document.getElementById(spanId);
     if (!span) return;
-
     const original = span.textContent;
 
     const input = document.createElement("input");
     input.value = original;
-    input.style.width = span.offsetWidth + "px";
-
+    input.style.width = "80px";
     span.replaceWith(input);
     input.focus();
     input.select();
 
-    input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") confirm();
-        if (e.key === "Escape") cancel();
-    });
-
-    input.addEventListener("blur", confirm);
-
     function confirm() {
         span.textContent = input.value || original;
+        localStorage.setItem(spanId, span.textContent);
         input.replaceWith(span);
-        localStorage.setItem(spanId, input.value);
     }
-
     function cancel() {
         span.textContent = original;
         input.replaceWith(span);
     }
+
+    input.addEventListener("keydown", e => { if (e.key === "Enter") confirm(); if (e.key === "Escape") cancel(); });
+    input.addEventListener("blur", confirm);
 }
 
-window.onload = () => {
-    load_dashboard()
-    make_graph()};
+// ─── EVENT LISTENERS + INIT ───────────────────────────────────────────────────
 
+document.addEventListener("DOMContentLoaded", async () => {
+    document.getElementById("7-day").addEventListener("click",  () => { curr_timescale = 7;  make_graph(); });
+    document.getElementById("14-day").addEventListener("click", () => { curr_timescale = 14; make_graph(); });
+    document.getElementById("30-day").addEventListener("click", () => { curr_timescale = 30; make_graph(); });
+
+    document.getElementById("heart_rate_bpm").addEventListener("click",   () => { curr_data_type = "heart_rate_bpm";   make_graph(); });
+    document.getElementById("weight_kg").addEventListener("click",        () => { curr_data_type = "weight_kg";        make_graph(); });
+    document.getElementById("workout_session").addEventListener("click",  () => { curr_data_type = "workout_session";  make_graph(); });
+    document.getElementById("steps_per_day").addEventListener("click",    () => { curr_data_type = "steps_per_day";    make_graph(); });
+    document.getElementById("calories_per_day").addEventListener("click", () => { curr_data_type = "calories_per_day"; make_graph(); });
+
+    document.getElementById("bio-add-confirm").addEventListener("click", add_bio);
+    document.getElementById("cal-edit-btn").addEventListener("click",  () => makeEditable("cal-goal"));
+    document.getElementById("step-edit-btn").addEventListener("click", () => makeEditable("step-goal"));
+
+    await load_dashboard();
+    await make_graph();
+});

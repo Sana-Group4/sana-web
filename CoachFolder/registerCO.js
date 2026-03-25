@@ -1,6 +1,3 @@
-const { stringify } = require("node:querystring");
-const { tokenToString } = require("typescript");
-
 document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("registerForm");

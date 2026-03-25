@@ -37,6 +37,11 @@
                     </div>
 
                     <div class="input-box">
+                        <label for="inputUsername">Enter Username</label>
+                        <input type="text" placeholder="Username" id="inputUsername" name="username" required>
+                    </div>
+
+                    <div class="input-box">
                         <label for="inputPass">Enter Password</label>
                         <div class="password-wrapper">
                             <input type="password" placeholder="Password" id="inputPass" name="password" required>
@@ -54,7 +59,7 @@
                     </div>
 
                     <div class="input-box">
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Submit" id="registerBtn">
                     </div>
 
                     <div class="login">
@@ -68,7 +73,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -141,8 +146,8 @@ try{
         alert(err.message || "Unknown error");
     }
 
-});
+}); </script> -->
 
-</script>
+<script src="register.js"></script>
 </body>
 </html>
