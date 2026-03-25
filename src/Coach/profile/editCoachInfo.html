@@ -81,122 +81,65 @@
         </ul>
       </div>
     </aside>
-
-   <main class="content">
+<main class="content">
   <header class="topbar">
     <h2>Profile</h2>
   </header>
 
   <section class="profile-page">
 
+    <!-- Avatar + Name -->
     <div class="profile-avatar">
       <div class="avatar-circle">
         <div class="avatar-head"></div>
         <div class="avatar-body"></div>
       </div>
 
-      <div class="profile-name" id="nameText">User</div>
+      <div class="profile-name" id="nameText">Loading...</div>
     </div>
 
+    
     <div class="profile-fields">
 
-     
       <div class="pfield">
-        <label>Email</label>
-        <div class="pfield-box" id="emailText"></div>
+        <label>Description</label>
+        <textarea class="pfield-input" id="description" placeholder="Enter description"></textarea>
       </div>
 
-      
       <div class="pfield">
-        <label for="phone">Phone Number</label>
-        <input class="pfield-input" type="tel" id="phone" placeholder="Enter phone number"/>
+        <label>Specialties (comma separated)</label>
+        <input class="pfield-input" type="text" id="specialties" placeholder="e.g. Strength, Cardio"/>
+      </div>
+
+      <div class="pfield">
+        <label>Focus (comma separated)</label>
+        <input class="pfield-input" type="text" id="focus" placeholder="e.g. Build routine, Fat loss"/>
+      </div>
+
+      <div class="pfield">
+        <label>Notes</label>
+        <textarea class="pfield-input" id="notes" placeholder="Enter notes"></textarea>
       </div>
 
     </div>
 
+    <!-- Buttons -->
     <div class="profile-buttons">
-      <button class="pbtn pbtn-save" id="saveBtn" type="button">
-        Save Phone Number
+
+      <button class="pbtn pbtn-save" id="saveBtn">
+        Save Info
       </button>
-      <button class="pbtn pbtn-save" onclick="window.location.href='/src/Coach/profile/coachprofile.html'">
+
+      <button class="pbtn pbtn-save"
+        onclick="window.location.href='/src/Coach/profile/coachprofile.html'">
         Return To Profile
       </button>
+
     </div>
-    </section>
-    </main>
-  </div>
 
-  <script>
-    const profilePage = document.getElementById("profilePage");
-    const editBtn = document.getElementById("editBtn");
-    const saveBtn = document.getElementById("saveBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
-
-    const fullNameInput = document.getElementById("fullName");
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    const dobInput = document.getElementById("dob");
-
-    const nameText = document.getElementById("nameText");
-    const emailText = document.getElementById("emailText");
-    const phoneText = document.getElementById("phoneText");
-    const dobText = document.getElementById("dobText");
-
-    let originalValues = {
-      fullName: fullNameInput.value,
-      email: emailInput.value,
-      phone: phoneInput.value,
-      dob: dobInput.value
-    };
-
-    function formatDate(dateValue) {
-      if (!dateValue) return "";
-      const date = new Date(dateValue);
-      if (isNaN(date)) return dateValue;
-
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const year = date.getFullYear();
-
-      return `${day}/${month}/${year}`;
-    }
-
-    editBtn.addEventListener("click", () => {
-      profilePage.classList.add("editing");
-    });
-
-    cancelBtn.addEventListener("click", () => {
-      fullNameInput.value = originalValues.fullName;
-      emailInput.value = originalValues.email;
-      phoneInput.value = originalValues.phone;
-      dobInput.value = originalValues.dob;
-
-      profilePage.classList.remove("editing");
-    });
-
-    saveBtn.addEventListener("click", () => {
-      nameText.textContent = fullNameInput.value;
-      emailText.textContent = emailInput.value;
-      phoneText.textContent = phoneInput.value;
-      dobText.textContent = formatDate(dobInput.value);
-
-      originalValues = {
-        fullName: fullNameInput.value,
-        email: emailInput.value,
-        phone: phoneInput.value,
-        dob: dobInput.value
-      };
-
-      profilePage.classList.remove("editing");
-    });
-
-    const params = new URLSearchParams(window.location.search);
-
-    if (params.get("edit") === "true") {
-      profilePage.classList.add("editing");
-    }
-  </script>
+  </section>
+</main>
+  <script src = "./editCoachInfo.js"></script>
 </body>
 
-<script src="./editCoachProfile.js"></script>
 </html>
