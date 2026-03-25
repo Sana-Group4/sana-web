@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <p class="client-meta">@${client.username}</p>
                 </div>
 
-                <a href="#" class="workout-btn">
+                <a href="/CoachAnalytics/index.html?id=${client.id}&name=${client.firstName}" class="workout-btn">
                     View Workouts
                 </a>
             `;
