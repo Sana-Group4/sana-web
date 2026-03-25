@@ -190,6 +190,13 @@ body {
   font-weight: 700;
 }
 
+.profile-id {
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: medium;
+  color: #4a4a4a;
+}
+
 
 .profile-fields {
   max-width: 540px;

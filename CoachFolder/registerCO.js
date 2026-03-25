@@ -1,3 +1,6 @@
+const { stringify } = require("node:querystring");
+const { tokenToString } = require("typescript");
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("registerForm");
@@ -47,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new URLSearchParams();
             formData.append("username", email);
             formData.append("password", password);
+
+            
 
             const loginRes = await fetch("http://localhost:8000/auth/login", {
                 method: "POST",
