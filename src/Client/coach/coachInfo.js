@@ -1,6 +1,6 @@
 console.log("Coach details page loaded");
 
-// 🔥 GET coach_id FROM URL
+
 const params = new URLSearchParams(window.location.search);
 const coachId = params.get("coach_id");
 
